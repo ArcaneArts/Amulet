@@ -10,6 +10,6 @@ public class Amulet {
         f.add("a");
         f.add("b");
 
-        List<String> c = f.copy();
+        System.out.println("Last index " + f.last());
     }
 }
