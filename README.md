@@ -1,20 +1,6 @@
 # Amulet
 A very simple collections &amp; general util api
 
-[![Release](https://jitpack.io/v/ArcaneArts/Amulet.svg)](https://jitpack.io/#ArcaneArts/Amulet)
-
-```groovy
-maven { url 'https://jitpack.io' }
-```
-
-```groovy
-implementation 'com.github.ArcaneArts:Amulet:JITPACK-VERSION'
-
-// or you can use the latest cached release 
-// ~~~~(may be a version or two behind sometimes)
-implementation 'com.github.ArcaneArts:Amulet:latest.release'
-```
-
 # Project Setup
 To use Amulet in your project, there is some additional setup required. Please follow the setup instructions to ensure everything will work properly.
 1. Make sure jitpack is a repo & you have added the dependency to your build.gradle
