@@ -60,3 +60,70 @@ To use Amulet in your project, there is some additional setup required. Please f
 9. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by re-syncing the project.
 10. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
 11. (OPTIONAL) Invalidate caches / restart
+
+## Full Gradle Example
+
+settings.gradle
+```groovy
+rootProject.name = 'ExampleProject' // TODO: CHANGE TO YOUR PROJECT NAME!!!
+
+sourceControl {
+    gitRepository("https://github.com/ArcaneArts/Amulet.git") {
+        producesModule("art.arcane:Amulet")
+    }
+}
+```
+
+build.gradle
+```groovy
+plugins {
+    id 'java'
+    id 'java-library' // Optional: For apis only
+    id "io.freefair.lombok" version "6.1.0" // Optional: For lombok
+}
+
+group 'art.arcane' // TODO: CHANGE TO YOUR GROUP NAME
+version '1.0.0'
+
+// Optional: Allow manifold in unit testing
+configurations {
+    testImplementation.extendsFrom annotationProcessor
+}
+
+// Optional: Pass on our classes to those depending on us using manifold
+jar {
+    manifest {
+        attributes('Contains-Sources':'java,class')
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'art.arcane:Amulet:1.0.2'
+    implementation 'systems.manifold:manifold-ext-rt:2021.1.16'
+    annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
+        sourceSets.main.allJava.files.any {it.name == "module-info.java"}) {
+    tasks.withType(JavaCompile) {
+        // if you DO define a module-info.java file:
+        options.compilerArgs += ['-Xplugin:Manifold', '--module-path', it.classpath.asPath]
+    }
+} else {
+    tasks.withType(JavaCompile) {
+        // If you DO NOT define a module-info.java file:
+        options.compilerArgs += ['-Xplugin:Manifold']
+    }
+}
+```
