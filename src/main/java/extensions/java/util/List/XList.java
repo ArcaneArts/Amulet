@@ -8,15 +8,21 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 @Extension
 public class XList {
+    /**
+     * Returns a copy of this list without duplicates (set conversion)
+     */
     public static <E> @Self List<E> withoutDuplicates(@This List<E> self)
     {
         return self.withoutDuplicates(ArrayList::new);
     }
 
+    /**
+     * Returns a copy of this list without duplicates (set conversion)
+     * @param factory the list implementation to use
+     */
     public static <E> @Self List<E> withoutDuplicates(@This List<E> self, Supplier<List<E>> factory)
     {
         List<E> f = factory.get();
@@ -27,6 +33,11 @@ public class XList {
     public static <E> @Self List<E> copy(@This List<E> self)
     {
         return self.copy(ArrayList::new);
+    }
+
+    public static <E> @Self List<E> unmodifiable(@This List<E> self)
+    {
+        return Collections.unmodifiableList(self);
     }
 
     public static <E> @Self List<E> copy(@This List<E> self, Supplier<List<E>> factory)
@@ -170,6 +181,23 @@ public class XList {
     {
         List<E> l = factory.get();
         l.addAll(collection);
+
+        return l;
+    }
+
+    @SafeVarargs
+    @Extension
+    public static <E> List<E> from(E... collection)
+    {
+        return List.from(ArrayList::new, collection);
+    }
+
+    @SafeVarargs
+    @Extension
+    public static <E> List<E> from(Supplier<List<E>> factory, E... collection)
+    {
+        List<E> l = factory.get();
+        l.add(collection);
 
         return l;
     }
