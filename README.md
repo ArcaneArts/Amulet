@@ -44,3 +44,19 @@ To use Amulet in your project, there is some additional setup required. Please f
         }
     }
     ```
+7. Add Manifold Dependencies to your project
+    ```groovy
+    repositories {
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+    
+    dependencies {
+        implementation 'systems.manifold:manifold-ext-rt:2021.1.16'
+        annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
+    }
+    ```
+8. Resync Gradle project in Intellij (hit the refresh button)
+9. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by re-syncing the project.
+10. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
+11. (OPTIONAL) Invalidate caches / restart
