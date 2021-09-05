@@ -12,7 +12,7 @@ To use Amulet in your project, there is some additional setup required. Please f
     }
     ````
 3. Define the dependency as `implementation art.arcane:Amulet:<TAG>` such as 1.0.2
-4. Install the Mantifold Plugin to Intellij (then restart)
+4. Install the Manifold Plugin to Intellij (then restart)
    * Note: You do not need to buy a license, use CTRL + SHIFT + A > Manage Licenses > Mantifold > Evaluate 30 Days (once expired, it will still work but may remind you to register). Though you can just re-evaluate after that time.
 5. Add this to the bottom of your build.gradle
     ```groovy
