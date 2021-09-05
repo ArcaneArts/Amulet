@@ -26,4 +26,10 @@ public class ListTests {
         assertEquals(s.size(), 3);
         assertEquals(c.size(), 2);
     }
+
+    @Test
+    public void testNumericOperators()
+    {
+        assertEquals((List.from("a", "b") + List.from("c", "d")).toString(","), "a,b,c,d");
+    }
 }

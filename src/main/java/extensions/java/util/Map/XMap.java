@@ -6,7 +6,6 @@ import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @Extension

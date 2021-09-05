@@ -75,8 +75,24 @@ public class XList {
         return self;
     }
 
+    public static <E> @Self List<E> add(@This List<E> self, List<E> o)
+    {
+        self.addAll(o);
+        return self;
+    }
+
     @SafeVarargs
     public static <E> @Self List<E> remove(@This List<E> self, E... o)
+    {
+        for(E i : o)
+        {
+            self.remove(i);
+        }
+
+        return self;
+    }
+
+    public static <E> @Self List<E> remove(@This List<E> self, List<E> o)
     {
         for(E i : o)
         {
@@ -221,6 +237,16 @@ public class XList {
     {
         self.clear();
         return self;
+    }
+
+    public static <E> @Self List<E> plus(@This List<E> self, List<E> that)
+    {
+        return List.from(self).add(that);
+    }
+
+    public static <E> @Self List<E> minus(@This List<E> self, List<E> that)
+    {
+        return List.from(self).remove(that);
     }
 
     public static <E> boolean hasIndex(@This List<E> self, int index)
