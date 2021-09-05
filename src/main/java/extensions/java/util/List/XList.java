@@ -205,11 +205,10 @@ public class XList {
     @Extension
     public static <E> List<E> from(E... collection)
     {
-        return List.from(ArrayList::new, collection);
+        return from(ArrayList::new, collection);
     }
 
     @SafeVarargs
-    @Extension
     public static <E> List<E> from(Supplier<List<E>> factory, E... collection)
     {
         List<E> l = factory.get();
@@ -242,6 +241,17 @@ public class XList {
     public static <E> @Self List<E> plus(@This List<E> self, List<E> that)
     {
         return List.from(self).add(that);
+    }
+
+    public static <E> @Self List<E> reverse(@This List<E> self)
+    {
+        Collections.reverse(self);
+        return self;
+    }
+
+    public static <E> @Self List<E> unaryMinus(@This List<E> self)
+    {
+        return List.from(self).reverse();
     }
 
     public static <E> @Self List<E> minus(@This List<E> self, List<E> that)

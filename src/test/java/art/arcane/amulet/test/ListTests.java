@@ -1,6 +1,5 @@
 package art.arcane.amulet.test;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ public class ListTests {
     {
         assertEquals(List.from("hello", "world").size(), 2);
         assertEquals(List.from("hello", "world").getClass(), ArrayList.class);
-        assertEquals(List.from(CopyOnWriteArrayList::new, "hello", "world").getClass(), CopyOnWriteArrayList.class);
     }
 
     @Test
@@ -31,5 +29,7 @@ public class ListTests {
     public void testNumericOperators()
     {
         assertEquals((List.from("a", "b") + List.from("c", "d")).toString(","), "a,b,c,d");
+        assertEquals((List.from("a", "b") - List.from("a", "d")).toString(","), "b");
+        assertEquals((-List.from("a", "b", "c")).toString(","), "c,b,a");
     }
 }

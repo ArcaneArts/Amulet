@@ -246,7 +246,7 @@ public class XMath {
      * @return the epoch days
      */
     @Extension
-    private static long epochDays(long ms) {
+    public static long epochDays(long ms) {
         return ms / 1000 / 60 / 60 / 24;
     }
 
@@ -254,6 +254,26 @@ public class XMath {
         for (int i = 0; i < sin.length; i++) {
             sin[i] = (float) Math.sin((i * Math.PI) / (precision * 180));
         }
+    }
+
+    @Extension
+    public static double constrainToRange(double value, double min, double max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
+    @Extension
+    public static double sq(double a) {
+        return a * a;
+    }
+
+    @Extension
+    public static int sq(int a) {
+        return a * a;
+    }
+
+    @Extension
+    public static float sq(float a) {
+        return a * a;
     }
 
     @Extension

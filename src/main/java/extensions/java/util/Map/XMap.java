@@ -44,6 +44,15 @@ public class XMap {
         return self.sortK(Comparator.comparing(Object::toString));
     }
 
+    public static <K,V> @Self Map<K, V> plus(@This Map<K, V> self, Map<K, V> map)
+    {
+        return self.copy().put(map);
+    }
+
+    public static <K,V> @Self Map<V, K> unaryMinus(@This Map<K, V> self)
+    {
+        return self.copy().flipFlatten();
+    }
     /**
      * Put another map's values into this map
      *
