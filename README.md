@@ -3,10 +3,18 @@ A very simple collections &amp; general util api
 
 # Project Setup
 To use Amulet in your project, there is some additional setup required. Please follow the setup instructions to ensure everything will work properly.
-1. Make sure jitpack is a repo & you have added the dependency to your build.gradle
-2. Install the Mantifold Plugin to Intellij (then restart)
+1. In settings.gradle Add
+    ```groovy
+    sourceControl {
+      gitRepository("https://github.com/ArcaneArts/Amulet.git") {
+          producesModule("art.arcane:Amulet")
+      }
+    }
+    ````
+3. Define the dependency as `implementation art.arcane:Amulet:<TAG>` such as 1.0.2
+4. Install the Mantifold Plugin to Intellij (then restart)
    * Note: You do not need to buy a license, use CTRL + SHIFT + A > Manage Licenses > Mantifold > Evaluate 30 Days (once expired, it will still work but may remind you to register). Though you can just re-evaluate after that time.
-3. Add this to the bottom of your build.gradle
+5. Add this to the bottom of your build.gradle
     ```groovy
     if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
         sourceSets.main.allJava.files.any {
@@ -22,13 +30,13 @@ To use Amulet in your project, there is some additional setup required. Please f
         }
     }
     ```
-4. (OPTIONAL) If you use unit testing with Amulet
+5. (OPTIONAL) If you use unit testing with Amulet
     ```groovy
     configurations {
         testImplementation.extendsFrom annotationProcessor
     }
     ```
-5. (OPTIONAL) If you are a dependency to another project add
+6. (OPTIONAL) If you are a dependency to another project add
     ```groovy
     jar {
         manifest {
