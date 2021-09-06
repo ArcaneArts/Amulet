@@ -1,52 +1,27 @@
 package art.arcane.amulet.geometry;
 
-import java.util.Objects;
 import java.util.Random;
 
-public class Vec3 {
+public interface Vec {
     /**
      * Threshold for fuzzy equals().
      */
-    private static final double epsilon = 0.000001;
-    public static final Vec3 ZERO = new Vec3(0);
-    private double x;
-    private double y;
-    private double z;
+    static final double epsilon = 0.000001;
+    static final Vec ZERO = new VecImpl3(0);
 
-    /**
-     * Create a new vector
-     */
-    public Vec3(double x, double y, double z)
+    static Vec of(double x, double y, double z)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        return new VecImpl3(x, y, z);
     }
 
-    /**
-     * Create a new vector
-     */
-    public Vec3(int x, int y, int z)
+    static Vec of(int x, int y, int z)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        return new VecImpl3(x, y, z);
     }
 
-    /**
-     * Create a new vector v,v,v
-     */
-    public Vec3(double v)
+    static Vec of(double x)
     {
-        this(v,v,v);
-    }
-
-    /**
-     * Create a new vector 0,0,0
-     */
-    public Vec3()
-    {
-        this(0);
+        return new VecImpl3(x);
     }
 
     /**
@@ -56,189 +31,167 @@ public class Vec3 {
      * @param z +
      * @return this (now added) vector
      */
-    public Vec3 add(double x, double y, double z)
+    default Vec add(double x, double y, double z)
     {
-        this.x +=x;
-        this.y+=y;
-        this.z+=z;
-
-        return this;
+        return setX(getX() + x).setY(getY() + y).setZ(getZ() + z);
     }
 
-    public Vec3 multiply(double mult)
+    default Vec multiply(double mult)
     {
         return multiply(mult, mult, mult);
     }
 
-    public Vec3 add(double all)
+    default Vec add(double all)
     {
         return add(all, all, all);
     }
 
-    public Vec3 copy()
+    default Vec copy()
     {
-        return new Vec3(x, y, z);
+        return new VecImpl3(getX(), getY(), getZ());
     }
 
-    public Vec3 rem(double d)
-    {
-        return copy().modulus(d);
-    }
-
-    public Vec3 plus(double d)
-    {
-        return copy().add(d);
-    }
-
-    public Vec3 minus(double d)
-    {
-        return copy().subtract(d);
-    }
-
-    public Vec3 times(double d)
-    {
-        return copy().multiply(d);
-    }
-
-    public Vec3 div(double d)
-    {
-        return copy().divide(d);
-    }
-
-    public Vec3 rem(Vec3 d)
+    default Vec rem(double d)
     {
         return copy().modulus(d);
     }
 
-    public Vec3 plus(Vec3 d)
+    default Vec plus(double d)
     {
         return copy().add(d);
     }
 
-    public Vec3 minus(Vec3 d)
+    default Vec minus(double d)
     {
         return copy().subtract(d);
     }
 
-    public Vec3 times(Vec3 d)
+    default Vec times(double d)
     {
         return copy().multiply(d);
     }
 
-    public Vec3 div(Vec3 d)
+    default Vec div(double d)
     {
         return copy().divide(d);
     }
 
-    public Vec3 modulus(Vec3 d) {
-        return modulus(d.x, d.y, d.z);
-    }
-
-    public Vec3 divide(Vec3 d) {
-        return divide(d.x, d.y, d.z);
-    }
-
-    public Vec3 multiply(Vec3 d)
+    default Vec rem(Vec d)
     {
-        return multiply(d.x, d.y, d.z);
+        return copy().modulus(d);
     }
 
-    public Vec3 inc()
+    default Vec plus(Vec d)
+    {
+        return copy().add(d);
+    }
+
+    default Vec minus(Vec d)
+    {
+        return copy().subtract(d);
+    }
+
+    default Vec times(Vec d)
+    {
+        return copy().multiply(d);
+    }
+
+    default Vec div(Vec d)
+    {
+        return copy().divide(d);
+    }
+
+    default Vec modulus(Vec d) {
+        return modulus(d.getX(), d.getY(), d.getZ());
+    }
+
+    default Vec divide(Vec d) {
+        return divide(d.getX(), d.getY(), d.getZ());
+    }
+
+    default Vec multiply(Vec d)
+    {
+        return multiply(d.getX(), d.getY(), d.getZ());
+    }
+
+    default Vec inc()
     {
         return copy().add(1);
     }
 
-    public Vec3 dec()
+    default Vec dec()
     {
         return copy().subtract(1);
     }
 
-    public Vec3 unaryMinus()
+    default Vec unaryMinus()
     {
         return copy().reverse();
     }
 
-    public Vec3 divide(double d)
+    default Vec divide(double d)
     {
         return divide(d, d, d);
     }
 
-    public Vec3 modulus(double d)
+    default Vec modulus(double d)
     {
         return modulus(d, d, d);
     }
 
-    public Vec3 subtract(double d)
+    default Vec subtract(double d)
     {
         return add(-d);
     }
 
-    public Vec3 multiply(double x, double y, double z)
+    default Vec multiply(double x, double y, double z)
     {
-        this.x *=x;
-        this.y *=y;
-        this.z *=z;
-
-        return this;
+        return setX(getX() * x).setY(getY() * y).setZ(getZ() * z);
     }
 
-    public Vec3 divide(double x, double y, double z)
+    default Vec divide(double x, double y, double z)
     {
-        this.x /=x;
-        this.y /=y;
-        this.z /=z;
-
-        return this;
+        return setX(getX() / x).setY(getY() / y).setZ(getZ() / z);
     }
 
-    public Vec3 modulus(double x, double y, double z)
+    default Vec modulus(double x, double y, double z)
     {
-        this.x %=x;
-        this.y %=y;
-        this.z %=z;
-
-        return this;
+        return setX(getX() % x).setY(getY() % y).setZ(getZ() % z);
     }
 
-    public Vec3 reverse()
+    default Vec reverse()
     {
-        x = -x;
-        y = -y;
-        z = -z;
-        return this;
+        return setX(-getX()).setY(-getY()).setZ(-getZ());
     }
 
-    public Vec3 reverseX()
+    default Vec reverseX()
     {
-        x = -x;
-        return this;
+        return setX(-getX());
     }
 
-    public Vec3 reverseY()
+    default Vec reverseY()
     {
-        y = -y;
-        return this;
+        return setY(-getY());
     }
 
-    public Vec3 reverseZ()
+    default Vec reverseZ()
     {
-        z = -z;
-        return this;
+        return setZ(-getZ());
     }
 
-    public double get(int index)
+    default double get(int index)
     {
         if(index == 0)
         {
-            return x;
+            return getX();
         }
         else if(index == 1)
         {
-            return y;
+            return getY();
         }
         else if(index == 2)
         {
-            return z;
+            return getZ();
         }
 
         else
@@ -247,23 +200,23 @@ public class Vec3 {
         }
     }
 
-    public double set(int index, double value)
+    default double set(int index, double value)
     {
         if(index == 0)
         {
-            x = value;
+            setX(value);
             return value;
         }
 
         else if(index == 1)
         {
-            y = value;
+            setY(value);
             return value;
         }
 
         else if(index == 2)
         {
-            z = value;
+            setZ(value);
             return value;
         }
 
@@ -273,47 +226,32 @@ public class Vec3 {
         }
     }
 
-    public Vec3 subtract(double x, double y, double z)
+    default Vec subtract(double x, double y, double z)
     {
         return add(-x, -y, -z);
     }
 
-    public Vec3 add(Vec3 v)
+    default Vec add(Vec v)
     {
-        return add(v.x, v.y, v.z);
+        return add(v.getX(), v.getY(), v.getZ());
     }
 
-    public Vec3 subtract(Vec3 v)
+    default Vec subtract(Vec v)
     {
-        return subtract(v.x, v.y, v.z);
+        return subtract(v.getX(), v.getY(), v.getZ());
     }
 
-    public double getX() {
-        return x;
-    }
+    double getX();
 
-    public Vec3 setX(double x) {
-        this.x = x;
-        return this;
-    }
+    Vec setX(double x);
 
-    public double getY() {
-        return y;
-    }
+    double getY();
 
-    public Vec3 setY(double y) {
-        this.y = y;
-        return this;
-    }
+    Vec setY(double y);
 
-    public double getZ() {
-        return z;
-    }
+    double getZ();
 
-    public Vec3 setZ(double z) {
-        this.z = z;
-        return this;
-    }
+     Vec setZ(double z);
 
 
     /**
@@ -325,8 +263,8 @@ public class Vec3 {
      *
      * @return the magnitude
      */
-    public double length() {
-        return Math.sqrt(Math.sq(x) + Math.sq(y) + Math.sq(z));
+    default double length() {
+        return Math.sqrt(Math.sq(getX()) + Math.sq(getY()) + Math.sq(getZ()));
     }
 
     /**
@@ -334,8 +272,8 @@ public class Vec3 {
      *
      * @return the magnitude
      */
-    public double lengthSquared() {
-        return Math.sq(x) + Math.sq(y) + Math.sq(z);
+    default double lengthSquared() {
+        return Math.sq(getX()) + Math.sq(getY()) + Math.sq(getZ());
     }
 
     /**
@@ -348,8 +286,8 @@ public class Vec3 {
      * @param o The other vector
      * @return the distance
      */
-    public double distance(Vec3 o) {
-        return Math.sqrt(Math.sq(x - o.x) + Math.sq(y - o.y) + Math.sq(z - o.z));
+    default double distance(Vec o) {
+        return Math.sqrt(Math.sq(getX() - o.getX()) + Math.sq(getY() - o.getY()) + Math.sq(getZ() - o.getZ()));
     }
 
     /**
@@ -358,8 +296,8 @@ public class Vec3 {
      * @param o The other vector
      * @return the distance
      */
-    public double distanceSquared(Vec3 o) {
-        return Math.sq(x - o.x) + Math.sq(y - o.y) + Math.sq(z - o.z);
+    default double distanceSquared(Vec o) {
+        return Math.sq(getX() - o.getX()) + Math.sq(getY() - o.getY()) + Math.sq(getZ() - o.getZ());
     }
 
     /**
@@ -368,7 +306,7 @@ public class Vec3 {
      * @param other The other vector
      * @return angle in radians
      */
-    public float angle(Vec3 other) {
+    default float angle(Vec other) {
         double dot = Math.constrainToRange(dot(other) / (length() * other.length()), -1.0, 1.0);
 
         return (float) Math.acos(dot);
@@ -381,8 +319,8 @@ public class Vec3 {
      * @param other The other vector
      * @return dot product
      */
-    public double dot(Vec3 other) {
-        return x * other.x + y * other.y + z * other.z;
+    default double dot(Vec other) {
+        return getX() * other.getX() + getY() * other.getY() + getZ() * other.getZ();
     }
 
 
@@ -392,10 +330,10 @@ public class Vec3 {
      * @param other The other vector
      * @return this same vector (now a midpoint)
      */
-    public Vec3 midpoint(Vec3 other) {
-        x = (x + other.x) / 2;
-        y = (y + other.y) / 2;
-        z = (z + other.z) / 2;
+    default Vec midpoint(Vec other) {
+        setX((getX() + other.getX()) / 2);
+        setY((getY() + other.getY()) / 2);
+        setZ((getZ() + other.getZ()) / 2);
         return this;
     }
 
@@ -405,11 +343,11 @@ public class Vec3 {
      * @param other The other vector
      * @return a new midpoint vector
      */
-    public Vec3 getMidpoint(Vec3 other) {
-        double x = (this.x + other.x) / 2;
-        double y = (this.y + other.y) / 2;
-        double z = (this.z + other.z) / 2;
-        return new Vec3(x, y, z);
+    default Vec getMidpoint(Vec other) {
+        double x = (this.getX() + other.getX()) / 2;
+        double y = (this.getY() + other.getY()) / 2;
+        double z = (this.getZ() + other.getZ()) / 2;
+        return new VecImpl3(x, y, z);
     }
 
     /**
@@ -424,15 +362,12 @@ public class Vec3 {
      * @param o The other vector
      * @return the same vector
      */
-    public Vec3 crossProduct(Vec3 o) {
-        double newX = y * o.z - o.y * z;
-        double newY = z * o.x - o.z * x;
-        double newZ = x * o.y - o.x * y;
+    default Vec crossProduct(Vec o) {
+        double newX = getY() * o.getZ() - o.getY() * getZ();
+        double newY = getZ() * o.getX() - o.getZ() * getX();
+        double newZ = getX() * o.getY() - o.getX() * getY();
 
-        x = newX;
-        y = newY;
-        z = newZ;
-        return this;
+        return setX(newX).setY(newY).setZ(newZ);
     }
 
     /**
@@ -447,11 +382,11 @@ public class Vec3 {
      * @param o The other vector
      * @return a new vector
      */
-    public Vec3 getCrossProduct(Vec3 o) {
-        double x = this.y * o.z - o.y * this.z;
-        double y = this.z * o.x - o.z * this.x;
-        double z = this.x * o.y - o.x * this.y;
-        return new Vec3(x, y, z);
+    default Vec getCrossProduct(Vec o) {
+        double x = this.getY() * o.getZ() - o.getY() * this.getZ();
+        double y = this.getZ() * o.getX() - o.getZ() * this.getX();
+        double z = this.getX() * o.getY() - o.getX() * this.getY();
+        return new VecImpl3(x, y, z);
     }
 
     /**
@@ -459,13 +394,8 @@ public class Vec3 {
      *
      * @return the same vector
      */
-    public Vec3 normalize() {
-        double length = length();
-
-        x /= length;
-        y /= length;
-        z /= length;
-        return this;
+    default Vec normalize() {
+        return divide(length());
     }
 
     /**
@@ -473,11 +403,8 @@ public class Vec3 {
      *
      * @return the same vector
      */
-    public Vec3 zero() {
-        x = 0;
-        y = 0;
-        z = 0;
-        return this;
+    default Vec zero() {
+        return setX(0).setY(0).setZ(0);
     }
 
     /**
@@ -485,10 +412,16 @@ public class Vec3 {
      *
      * @return This vector.
      */
-    public Vec3 normalizeZeros() {
-        if (x == -0.0D) x = 0.0D;
-        if (y == -0.0D) y = 0.0D;
-        if (z == -0.0D) z = 0.0D;
+    default Vec normalizeZeros() {
+        if (getX() == -0.0D) {
+            setX(0);
+        }
+        if (getY() == -0.0D){
+            setY(0);
+        }
+        if (getZ() == -0.0D){
+            setZ(0);
+        }
         return this;
     }
 
@@ -504,8 +437,8 @@ public class Vec3 {
      * @param max Maximum vector
      * @return whether this vector is in the AABB
      */
-    public boolean isInAABB(Vec3 min, Vec3 max) {
-        return x >= min.x && x <= max.x && y >= min.y && y <= max.y && z >= min.z && z <= max.z;
+    default boolean isInAABB(Vec min, Vec max) {
+        return getX() >= min.getX() && getX() <= max.getX() && getY() >= min.getY() && getY() <= max.getY() && getZ() >= min.getZ() && getZ() <= max.getZ();
     }
 
     /**
@@ -515,8 +448,8 @@ public class Vec3 {
      * @param radius Sphere radius
      * @return whether this vector is in the sphere
      */
-    public boolean isInSphere(Vec3 origin, double radius) {
-        return (Math.sq(origin.x - x) + Math.sq(origin.y - y) + Math.sq(origin.z - z)) <= Math.sq(radius);
+    default boolean isInSphere(Vec origin, double radius) {
+        return (Math.sq(origin.getX() - getX()) + Math.sq(origin.getY() - getY()) + Math.sq(origin.getZ() - getZ())) <= Math.sq(radius);
     }
 
     /**
@@ -524,7 +457,7 @@ public class Vec3 {
      *
      * @return whether the vector is normalised
      */
-    public boolean isNormalized() {
+    default boolean isNormalized() {
         return Math.abs(this.lengthSquared() - 1) < getEpsilon();
     }
 
@@ -533,7 +466,7 @@ public class Vec3 {
      *
      * @return The epsilon.
      */
-    public static double getEpsilon() {
+    static double getEpsilon() {
         return epsilon;
     }
 
@@ -549,7 +482,7 @@ public class Vec3 {
      * in radians
      * @return the same vector
      */
-    public Vec3 rotateAroundX(double angle) {
+    default Vec rotateAroundX(double angle) {
         double angleCos = Math.cos(angle);
         double angleSin = Math.sin(angle);
 
@@ -570,7 +503,7 @@ public class Vec3 {
      * in radians
      * @return the same vector
      */
-    public Vec3 rotateAroundY(double angle) {
+    default Vec rotateAroundY(double angle) {
         double angleCos = Math.cos(angle);
         double angleSin = Math.sin(angle);
 
@@ -591,7 +524,7 @@ public class Vec3 {
      * in radians
      * @return the same vector
      */
-    public Vec3 rotateAroundZ(double angle) {
+    default Vec rotateAroundZ(double angle) {
         double angleCos = Math.cos(angle);
         double angleSin = Math.sin(angle);
 
@@ -619,7 +552,7 @@ public class Vec3 {
      * @throws IllegalArgumentException if the provided axis vector instance is
      * null
      */
-    public Vec3 rotateAroundAxis(Vec3 axis, double angle) throws IllegalArgumentException {
+    default Vec rotateAroundAxis(Vec axis, double angle) throws IllegalArgumentException {
         return rotateAroundNonUnitAxis(axis.isNormalized() ? axis : axis.copy().normalize(), angle);
     }
 
@@ -642,7 +575,7 @@ public class Vec3 {
      * @throws IllegalArgumentException if the provided axis vector instance is
      * null
      */
-    public Vec3 rotateAroundNonUnitAxis(Vec3 axis, double angle) throws IllegalArgumentException {
+    default Vec rotateAroundNonUnitAxis(Vec axis, double angle) throws IllegalArgumentException {
         double x = getX(), y = getY(), z = getZ();
         double x2 = axis.getX(), y2 = axis.getY(), z2 = axis.getZ();
 
@@ -663,48 +596,28 @@ public class Vec3 {
         return setX(xPrime).setY(yPrime).setZ(zPrime);
     }
 
-    public Vec3 floor()
+    default Vec floor()
     {
-        return setX(Math.floor(x)).setY(Math.floor(y)).setZ(Math.floor(z));
+        return setX(Math.floor(getX())).setY(Math.floor(getY())).setZ(Math.floor(getZ()));
     }
 
-    public Vec3 ceil()
+    default Vec ceil()
     {
-        return setX(Math.ceil(x)).setY(Math.ceil(y)).setZ(Math.ceil(z));
+        return setX(Math.ceil(getX())).setY(Math.ceil(getY())).setZ(Math.ceil(getZ()));
     }
 
-    public Vec3 floorDiv(int m)
+    default Vec floorDiv(int m)
     {
-        return floor().setX(Math.floorDiv((int) x, m))
-                .setY(Math.floorDiv((int) y, m))
-                .setZ(Math.floorDiv((int) z, m));
+        return floor().setX(Math.floorDiv((int) getX(), m))
+                .setY(Math.floorDiv((int) getY(), m))
+                .setZ(Math.floorDiv((int) getZ(), m));
     }
 
-    public String toString()
-    {
-        return "[" + x + "," + y + "," + z + "]";
+    static Vec random(Random random) {
+        return new VecImpl3(random.nextDouble(), random.nextDouble(), random.nextDouble());
     }
 
-    public static Vec3 random(Random random) {
-        return new Vec3(random.nextDouble(), random.nextDouble(), random.nextDouble());
-    }
-
-    public static Vec3 random() {
+    static Vec random() {
         return random(Random.r());
-    }
-
-    public int hashCode()
-    {
-        return Objects.hash(x, y, z);
-    }
-
-    public boolean equals(Object other)
-    {
-        if(other instanceof Vec3 v)
-        {
-            return v.x == x && v.y == y && v.z == z;
-        }
-
-        return false;
     }
 }
