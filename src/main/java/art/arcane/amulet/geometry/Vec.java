@@ -11,6 +11,11 @@ public interface Vec {
      */
     static final double epsilon = 0.000001;
 
+    static Vec of(Vec other)
+    {
+        return other.copy();
+    }
+
     static Vec of(double x, double y, double z)
     {
         return new VecImpl3(x, y, z);
