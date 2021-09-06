@@ -1,13 +1,15 @@
 package art.arcane.amulet.geometry;
 
+import manifold.ext.rt.api.Structural;
+
 import java.util.Random;
 
+@Structural
 public interface Vec {
     /**
      * Threshold for fuzzy equals().
      */
     static final double epsilon = 0.000001;
-    static final Vec ZERO = new VecImpl3(0);
 
     static Vec of(double x, double y, double z)
     {
@@ -33,7 +35,7 @@ public interface Vec {
      */
     default Vec add(double x, double y, double z)
     {
-        return setX(getX() + x).setY(getY() + y).setZ(getZ() + z);
+        return x(x() + x).y(y() + y).z(z() + z);
     }
 
     default Vec multiply(double mult)
@@ -48,7 +50,7 @@ public interface Vec {
 
     default Vec copy()
     {
-        return new VecImpl3(getX(), getY(), getZ());
+        return new VecImpl3(x(), y(), z());
     }
 
     default Vec rem(double d)
@@ -102,16 +104,16 @@ public interface Vec {
     }
 
     default Vec modulus(Vec d) {
-        return modulus(d.getX(), d.getY(), d.getZ());
+        return modulus(d.x(), d.y(), d.z());
     }
 
     default Vec divide(Vec d) {
-        return divide(d.getX(), d.getY(), d.getZ());
+        return divide(d.x(), d.y(), d.z());
     }
 
     default Vec multiply(Vec d)
     {
-        return multiply(d.getX(), d.getY(), d.getZ());
+        return multiply(d.x(), d.y(), d.z());
     }
 
     default Vec inc()
@@ -146,52 +148,52 @@ public interface Vec {
 
     default Vec multiply(double x, double y, double z)
     {
-        return setX(getX() * x).setY(getY() * y).setZ(getZ() * z);
+        return x(x() * x).y(y() * y).z(z() * z);
     }
 
     default Vec divide(double x, double y, double z)
     {
-        return setX(getX() / x).setY(getY() / y).setZ(getZ() / z);
+        return x(x() / x).y(y() / y).z(z() / z);
     }
 
     default Vec modulus(double x, double y, double z)
     {
-        return setX(getX() % x).setY(getY() % y).setZ(getZ() % z);
+        return x(x() % x).y(y() % y).z(z() % z);
     }
 
     default Vec reverse()
     {
-        return setX(-getX()).setY(-getY()).setZ(-getZ());
+        return x(-x()).y(-y()).z(-z());
     }
 
     default Vec reverseX()
     {
-        return setX(-getX());
+        return x(-x());
     }
 
     default Vec reverseY()
     {
-        return setY(-getY());
+        return y(-y());
     }
 
     default Vec reverseZ()
     {
-        return setZ(-getZ());
+        return z(-z());
     }
 
     default double get(int index)
     {
         if(index == 0)
         {
-            return getX();
+            return x();
         }
         else if(index == 1)
         {
-            return getY();
+            return y();
         }
         else if(index == 2)
         {
-            return getZ();
+            return z();
         }
 
         else
@@ -204,19 +206,19 @@ public interface Vec {
     {
         if(index == 0)
         {
-            setX(value);
+            x(value);
             return value;
         }
 
         else if(index == 1)
         {
-            setY(value);
+            y(value);
             return value;
         }
 
         else if(index == 2)
         {
-            setZ(value);
+            z(value);
             return value;
         }
 
@@ -233,25 +235,25 @@ public interface Vec {
 
     default Vec add(Vec v)
     {
-        return add(v.getX(), v.getY(), v.getZ());
+        return add(v.x(), v.y(), v.z());
     }
 
     default Vec subtract(Vec v)
     {
-        return subtract(v.getX(), v.getY(), v.getZ());
+        return subtract(v.x(), v.y(), v.z());
     }
 
-    double getX();
+    double x();
 
-    Vec setX(double x);
+    Vec x(double x);
 
-    double getY();
+    double y();
 
-    Vec setY(double y);
+    Vec y(double y);
 
-    double getZ();
+    double z();
 
-     Vec setZ(double z);
+     Vec z(double z);
 
 
     /**
@@ -264,7 +266,7 @@ public interface Vec {
      * @return the magnitude
      */
     default double length() {
-        return Math.sqrt(Math.sq(getX()) + Math.sq(getY()) + Math.sq(getZ()));
+        return Math.sqrt(Math.sq(x()) + Math.sq(y()) + Math.sq(z()));
     }
 
     /**
@@ -273,7 +275,7 @@ public interface Vec {
      * @return the magnitude
      */
     default double lengthSquared() {
-        return Math.sq(getX()) + Math.sq(getY()) + Math.sq(getZ());
+        return Math.sq(x()) + Math.sq(y()) + Math.sq(z());
     }
 
     /**
@@ -287,7 +289,7 @@ public interface Vec {
      * @return the distance
      */
     default double distance(Vec o) {
-        return Math.sqrt(Math.sq(getX() - o.getX()) + Math.sq(getY() - o.getY()) + Math.sq(getZ() - o.getZ()));
+        return Math.sqrt(Math.sq(x() - o.x()) + Math.sq(y() - o.y()) + Math.sq(z() - o.z()));
     }
 
     /**
@@ -297,7 +299,7 @@ public interface Vec {
      * @return the distance
      */
     default double distanceSquared(Vec o) {
-        return Math.sq(getX() - o.getX()) + Math.sq(getY() - o.getY()) + Math.sq(getZ() - o.getZ());
+        return Math.sq(x() - o.x()) + Math.sq(y() - o.y()) + Math.sq(z() - o.z());
     }
 
     /**
@@ -320,7 +322,7 @@ public interface Vec {
      * @return dot product
      */
     default double dot(Vec other) {
-        return getX() * other.getX() + getY() * other.getY() + getZ() * other.getZ();
+        return x() * other.x() + y() * other.y() + z() * other.z();
     }
 
 
@@ -331,9 +333,9 @@ public interface Vec {
      * @return this same vector (now a midpoint)
      */
     default Vec midpoint(Vec other) {
-        setX((getX() + other.getX()) / 2);
-        setY((getY() + other.getY()) / 2);
-        setZ((getZ() + other.getZ()) / 2);
+        x((x() + other.x()) / 2);
+        y((y() + other.y()) / 2);
+        z((z() + other.z()) / 2);
         return this;
     }
 
@@ -344,9 +346,9 @@ public interface Vec {
      * @return a new midpoint vector
      */
     default Vec getMidpoint(Vec other) {
-        double x = (this.getX() + other.getX()) / 2;
-        double y = (this.getY() + other.getY()) / 2;
-        double z = (this.getZ() + other.getZ()) / 2;
+        double x = (this.x() + other.x()) / 2;
+        double y = (this.y() + other.y()) / 2;
+        double z = (this.z() + other.z()) / 2;
         return new VecImpl3(x, y, z);
     }
 
@@ -363,11 +365,11 @@ public interface Vec {
      * @return the same vector
      */
     default Vec crossProduct(Vec o) {
-        double newX = getY() * o.getZ() - o.getY() * getZ();
-        double newY = getZ() * o.getX() - o.getZ() * getX();
-        double newZ = getX() * o.getY() - o.getX() * getY();
+        double newX = y() * o.z() - o.y() * z();
+        double newY = z() * o.x() - o.z() * x();
+        double newZ = x() * o.y() - o.x() * y();
 
-        return setX(newX).setY(newY).setZ(newZ);
+        return x(newX).y(newY).z(newZ);
     }
 
     /**
@@ -383,9 +385,9 @@ public interface Vec {
      * @return a new vector
      */
     default Vec getCrossProduct(Vec o) {
-        double x = this.getY() * o.getZ() - o.getY() * this.getZ();
-        double y = this.getZ() * o.getX() - o.getZ() * this.getX();
-        double z = this.getX() * o.getY() - o.getX() * this.getY();
+        double x = this.y() * o.z() - o.y() * this.z();
+        double y = this.z() * o.x() - o.z() * this.x();
+        double z = this.x() * o.y() - o.x() * this.y();
         return new VecImpl3(x, y, z);
     }
 
@@ -404,7 +406,7 @@ public interface Vec {
      * @return the same vector
      */
     default Vec zero() {
-        return setX(0).setY(0).setZ(0);
+        return x(0).y(0).z(0);
     }
 
     /**
@@ -413,14 +415,14 @@ public interface Vec {
      * @return This vector.
      */
     default Vec normalizeZeros() {
-        if (getX() == -0.0D) {
-            setX(0);
+        if (x() == -0.0D) {
+            x(0);
         }
-        if (getY() == -0.0D){
-            setY(0);
+        if (y() == -0.0D){
+            y(0);
         }
-        if (getZ() == -0.0D){
-            setZ(0);
+        if (z() == -0.0D){
+            z(0);
         }
         return this;
     }
@@ -438,7 +440,7 @@ public interface Vec {
      * @return whether this vector is in the AABB
      */
     default boolean isInAABB(Vec min, Vec max) {
-        return getX() >= min.getX() && getX() <= max.getX() && getY() >= min.getY() && getY() <= max.getY() && getZ() >= min.getZ() && getZ() <= max.getZ();
+        return x() >= min.x() && x() <= max.x() && y() >= min.y() && y() <= max.y() && z() >= min.z() && z() <= max.z();
     }
 
     /**
@@ -449,7 +451,7 @@ public interface Vec {
      * @return whether this vector is in the sphere
      */
     default boolean isInSphere(Vec origin, double radius) {
-        return (Math.sq(origin.getX() - getX()) + Math.sq(origin.getY() - getY()) + Math.sq(origin.getZ() - getZ())) <= Math.sq(radius);
+        return (Math.sq(origin.x() - x()) + Math.sq(origin.y() - y()) + Math.sq(origin.z() - z())) <= Math.sq(radius);
     }
 
     /**
@@ -486,9 +488,9 @@ public interface Vec {
         double angleCos = Math.cos(angle);
         double angleSin = Math.sin(angle);
 
-        double y = angleCos * getY() - angleSin * getZ();
-        double z = angleSin * getY() + angleCos * getZ();
-        return setY(y).setZ(z);
+        double y = angleCos * y() - angleSin * z();
+        double z = angleSin * y() + angleCos * z();
+        return y(y).z(z);
     }
 
     /**
@@ -507,9 +509,9 @@ public interface Vec {
         double angleCos = Math.cos(angle);
         double angleSin = Math.sin(angle);
 
-        double x = angleCos * getX() + angleSin * getZ();
-        double z = -angleSin * getX() + angleCos * getZ();
-        return setX(x).setZ(z);
+        double x = angleCos * x() + angleSin * z();
+        double z = -angleSin * x() + angleCos * z();
+        return x(x).z(z);
     }
 
     /**
@@ -528,9 +530,9 @@ public interface Vec {
         double angleCos = Math.cos(angle);
         double angleSin = Math.sin(angle);
 
-        double x = angleCos * getX() - angleSin * getY();
-        double y = angleSin * getX() + angleCos * getY();
-        return setX(x).setY(y);
+        double x = angleCos * x() - angleSin * y();
+        double y = angleSin * x() + angleCos * y();
+        return x(x).y(y);
     }
 
     /**
@@ -576,8 +578,8 @@ public interface Vec {
      * null
      */
     default Vec rotateAroundNonUnitAxis(Vec axis, double angle) throws IllegalArgumentException {
-        double x = getX(), y = getY(), z = getZ();
-        double x2 = axis.getX(), y2 = axis.getY(), z2 = axis.getZ();
+        double x = x(), y = y(), z = z();
+        double x2 = axis.x(), y2 = axis.y(), z2 = axis.z();
 
         double cosTheta = Math.cos(angle);
         double sinTheta = Math.sin(angle);
@@ -593,24 +595,24 @@ public interface Vec {
                 + z * cosTheta
                 + (-y2 * x + x2 * y) * sinTheta;
 
-        return setX(xPrime).setY(yPrime).setZ(zPrime);
+        return x(xPrime).y(yPrime).z(zPrime);
     }
 
     default Vec floor()
     {
-        return setX(Math.floor(getX())).setY(Math.floor(getY())).setZ(Math.floor(getZ()));
+        return x(Math.floor(x())).y(Math.floor(y())).z(Math.floor(z()));
     }
 
     default Vec ceil()
     {
-        return setX(Math.ceil(getX())).setY(Math.ceil(getY())).setZ(Math.ceil(getZ()));
+        return x(Math.ceil(x())).y(Math.ceil(y())).z(Math.ceil(z()));
     }
 
     default Vec floorDiv(int m)
     {
-        return floor().setX(Math.floorDiv((int) getX(), m))
-                .setY(Math.floorDiv((int) getY(), m))
-                .setZ(Math.floorDiv((int) getZ(), m));
+        return floor().x(Math.floorDiv((int) x(), m))
+                .y(Math.floorDiv((int) y(), m))
+                .z(Math.floorDiv((int) z(), m));
     }
 
     static Vec random(Random random) {

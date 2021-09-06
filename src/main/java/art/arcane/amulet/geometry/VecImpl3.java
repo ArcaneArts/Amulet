@@ -3,7 +3,7 @@ package art.arcane.amulet.geometry;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-@Accessors(chain = true)
+@Accessors(chain = true, fluent = true)
 @Data
 public class VecImpl3 implements Vec {
     private double x;
