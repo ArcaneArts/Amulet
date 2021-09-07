@@ -22,4 +22,8 @@ public class XStream {
   public static <T> @Self Stream<T> and(@This Stream<T> thiz, Stream<T> add) {
     return Stream.concat(thiz, add);
   }
+
+  public static <T> @Self Stream<T> plus(@This Stream<T> thiz, Stream<T> add) {
+    return Stream.concat(thiz, add);
+  }
 }
