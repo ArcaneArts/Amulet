@@ -4,6 +4,22 @@ import art.arcane.amulet.geometry.Vec;
 
 public class MagicalSugar {
     /**
+     * Dot product (same as v1.dot(v2))
+     */
+    public static final _MAGIC_Vec_Dot dot = _MAGIC_Vec_Dot.instance();
+    public static class _MAGIC_Vec_Dot
+    {
+        private static final _MAGIC_Vec_Dot INSTANCE = new _MAGIC_Vec_Dot();
+        private static _MAGIC_Vec_Dot instance() {return INSTANCE;}
+        public __FROM postfixBind(Vec from) {return new __FROM(from);}
+        public record __FROM(Vec start) {
+            public double prefixBind(Vec into) {
+                return start.dot(into);
+            }
+        }
+    }
+
+    /**
      * Get a unit direction if a direction b, then it is really b.subtract(a).normalize() or (b - a).normalize()
      */
     public static final _MAGIC_Vec_Direction direction = _MAGIC_Vec_Direction.instance();

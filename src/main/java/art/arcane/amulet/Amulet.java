@@ -1,21 +1,27 @@
 package art.arcane.amulet;
 
-import art.arcane.amulet.geometry.Vec;
-
-import static art.arcane.amulet.MagicalSugar.*;
-
 public class Amulet {
     public static void main(String[] ax) {
 
-        Vec a = Vec.of(0,0,0);
-        Vec b = Vec.of(3,3,3);
-
-        Vec v;
-
-        v = a direction b; // Returns Vec direction with a magnitude of 1.0
-        System.println(v);
-        v = a ray b;       // Returns Vec(3,3,3)
-        System.println(v);
-
     }
+
+//    import art.arcane.amulet.geometry.Vec;
+//    import org.junit.jupiter.api.Test;
+//
+//    import static art.arcane.amulet.MagicalSugar.*;
+//    import static org.junit.jupiter.api.Assertions.*;
+//
+//    public class MagicSugarTests {
+//        @Test
+//        public void testVectors()
+//        {
+//            Vec a = Vec.random() * 100;
+//            Vec b = Vec.random() * 100;
+//
+//            assertEquals(a direction b, (b - a).normalize(), "Incorrect direction sugar");
+//            assertEquals(a distance b, a.distance(b), "Incorrect distance sugar");
+//            assertEquals(a distanceSq b, a.distanceSquared(b), "Incorrect distanceSq sugar");
+//            assertEquals(a ray b, b - a, "Incorrect ray sugar");
+//        }
+//    }
 }

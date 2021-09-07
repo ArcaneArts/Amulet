@@ -26,6 +26,7 @@ jar {
 }
 
 dependencies {
+    implementation 'systems.manifold:manifold-rt:2021.1.16'
     implementation 'systems.manifold:manifold-ext-rt:2021.1.16'
     annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
