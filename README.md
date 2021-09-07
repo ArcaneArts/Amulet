@@ -1,6 +1,63 @@
 # Amulet
 A very simple collections &amp; general util api
 
+# But what does it do?
+Amulet can do a ton to help save you time.
+
+## Lists, Sets, Maps
+There's a fair bit of new methods for lists sets & maps you can use on any implementation, here's the gist
+```java
+List<Intege> list = List.of(3, 4, 5);
+list.toString(","); // "3,4,5"
+(-list).toString(",") // "5,4,3"
+list.pop() // Removes off 5 & returns it"
+list.popLast() // Removes off 3 & returns it
+list += List.of(7, 8, 9); // List is now 3, 7, 8, 9
+list[2] = 46; // Array accessors
+
+Map<String, Integer> map = Map.of();
+m.qput("a", 1).qput("b", 2);
+
+Map<Integer, String> flp = -map;
+// you get it
+```
+
+## Vectors
+Vectors are useful
+```
+Vec a = Vec.of(0); // 0,0,0
+a += 1; // 1,1,1
+a *= 3; // 3,3,3
+a += Vec.of(1, 2, 3); // 4, 5, 6
+a[0] = 2; // Array accessor for x,y, & z
+
+Vec b = Vec.of(55,3,5);
+
+Vec unitAngle = a direction b; // Yes this works
+Vec prod = a dot b; // dot product
+Vec crs = a cross b; // cross product
+Vec rtx = a rotateX 90 deg; // rotate by 90 degrees on x axis
+Vec rt a rotate b angle 45 deg; // rotate a around b (as plane) by 45 degrees
+```
+
+## Ranges
+Gotta love ranges
+```java
+for(int i : 0 to 19) {} // inclusive 0 to 19
+for(int i : 5 to 25 step 3) {}
+int val = 34 clip 5 to 10; // restrict input (34) to a range of 5-10, so its 10
+```
+
+## Strings
+```java
+" hello   world   ".normalize(); // "hello world"
+"hello world".capitalizeWords(); // "Hello World"
+
+("hello world" split " ").forEach(...); // returns List<String>, using regex \\Q<INPUT>\\E
+"what a great day!" without "great" normalized; // returns "what a day!"
+"hello"uc; // "HELLO" (use lc for lower obvi)
+```
+
 # Project Setup
 To use Amulet in your project, there is some additional setup required. Please follow the setup instructions to ensure everything will work properly.
 1. In settings.gradle Add
