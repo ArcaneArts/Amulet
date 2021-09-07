@@ -24,7 +24,7 @@ Map<Integer, String> flp = -map;
 
 ## Vectors
 Vectors are useful
-```
+```java
 Vec a = Vec.of(0); // 0,0,0
 a += 1; // 1,1,1
 a *= 3; // 3,3,3
