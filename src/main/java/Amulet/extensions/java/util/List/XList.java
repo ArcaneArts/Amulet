@@ -1,4 +1,4 @@
-package extensions.java.util.List;
+package Amulet.extensions.java.util.List;
 
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
@@ -65,7 +65,7 @@ public class XList {
 
     public static <E> boolean isNotEmpty(@This List<E> self)
     {
-        return self.isNotEmpty();
+        return !self.isEmpty();
     }
 
     @SafeVarargs

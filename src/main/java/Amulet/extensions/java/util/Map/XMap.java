@@ -1,4 +1,4 @@
-package extensions.java.util.Map;
+package Amulet.extensions.java.util.Map;
 
 import art.arcane.amulet.functional.Consume;
 import manifold.ext.rt.api.Extension;
@@ -32,6 +32,11 @@ public class XMap {
         }
 
         return k;
+    }
+
+    public static <K,V> @Self Map<K,V> unmodifiable(@This Map<K,V> self)
+    {
+        return Collections.unmodifiableMap(self);
     }
 
     /**

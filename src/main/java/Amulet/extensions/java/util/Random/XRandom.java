@@ -1,4 +1,4 @@
-package extensions.java.util.Random;
+package Amulet.extensions.java.util.Random;
 
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;

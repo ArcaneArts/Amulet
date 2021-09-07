@@ -1,4 +1,4 @@
-package extensions.java.lang.String;
+package Amulet.extensions.java.lang.String;
 
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;

@@ -1,4 +1,4 @@
-package extensions.java.lang.Math;
+package Amulet.extensions.java.lang.Math;
 
 import manifold.ext.rt.api.Extension;
 
