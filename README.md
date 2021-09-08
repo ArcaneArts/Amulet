@@ -158,6 +158,7 @@ To use Amulet in your project, there is some additional setup required. Please f
 9. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by re-syncing the project.
 10. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
 11. (OPTIONAL) Invalidate caches / restart
+12. (OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New Template). Specify an abbriviation such as sugar, and enter `import static art.arcane.amulet.MagicalSugar.*;` in the template text. Then simply set the applicable types to Java > Declaration only.
 
 ## Full Gradle Example
 
