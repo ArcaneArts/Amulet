@@ -122,6 +122,22 @@ public class MagicalSugar {
     }
 
     /**
+     * String without
+     */
+    public static final _MAGIC_String_Without without = _MAGIC_String_Without.instance();
+    public static class _MAGIC_String_Without
+    {
+        private static final _MAGIC_String_Without INSTANCE = new _MAGIC_String_Without();
+        private static _MAGIC_String_Without instance() {return INSTANCE;}
+        public __FROM postfixBind(String from) {return new __FROM(from);}
+        public record __FROM(String start) {
+            public List<String> prefixBind(String into) {
+                return List.of(start.replaceAbs(into, ""));
+            }
+        }
+    }
+
+    /**
      * Clip a number to a min and max bound
      */
     public static final _MAGIC_Number_Clip clip = _MAGIC_Number_Clip.instance();

@@ -1,10 +1,7 @@
 package art.arcane.amulet.concurrent;
 
-import art.arcane.amulet.functional.Run;
-
+import java.util.Arrays;
 import java.util.concurrent.*;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class J
 {
@@ -15,6 +12,12 @@ public class J
     public static Future<?> run(Runnable r)
     {
         return e.submit(r);
+    }
+
+    @SuppressWarnings("Convert2MethodRef")
+    public static Future<?> runAll(Runnable... r)
+    {
+        return J.run(() -> Arrays.stream(r).map(J::run).forEach((i) -> i.force()));
     }
 
     public static <T> T attempt(Callable<T> c)
