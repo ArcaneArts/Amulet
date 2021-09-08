@@ -694,4 +694,148 @@ public class MagicalSugar {
             }
         }
     }
+
+    /**
+     * Time ticks to ms
+     */
+    public static final _MAGIC_Time_Ticks ticks = _MAGIC_Time_Ticks.instance();
+
+    public static class _MAGIC_Time_Ticks
+    {
+        private static final _MAGIC_Time_Ticks INSTANCE = new _MAGIC_Time_Ticks();
+        private static _MAGIC_Time_Ticks instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TT);}
+    }
+
+    /**
+     * Time seconds to ms
+     */
+    public static final _MAGIC_Time_Seconds seconds = _MAGIC_Time_Seconds.instance();
+    /**
+     * Time seconds to ms
+     */
+    public static final _MAGIC_Time_Seconds second = _MAGIC_Time_Seconds.instance();
+
+    /**
+     * Time seconds to ms
+     */
+    public static final _MAGIC_Time_Seconds sec = _MAGIC_Time_Seconds.instance();
+    public static class _MAGIC_Time_Seconds
+    {
+        private static final _MAGIC_Time_Seconds INSTANCE = new _MAGIC_Time_Seconds();
+        private static _MAGIC_Time_Seconds instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TS);}
+    }
+
+    /**
+     * Time minutes to ms
+     */
+    public static final _MAGIC_Time_Minutes minutes = _MAGIC_Time_Minutes.instance();
+
+    /**
+     * Time minutes to ms
+     */
+    public static final _MAGIC_Time_Minutes minute = _MAGIC_Time_Minutes.instance();
+
+    /**
+     * Time minutes to ms
+     */
+    public static final _MAGIC_Time_Minutes min = _MAGIC_Time_Minutes.instance();
+    public static class _MAGIC_Time_Minutes
+    {
+        private static final _MAGIC_Time_Minutes INSTANCE = new _MAGIC_Time_Minutes();
+        private static _MAGIC_Time_Minutes instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TM);}
+    }
+
+    /**
+     * Time hours to ms
+     */
+    public static final _MAGIC_Time_Hours hours = _MAGIC_Time_Hours.instance();
+
+    /**
+     * Time hours to ms
+     */
+    public static final _MAGIC_Time_Hours hour = _MAGIC_Time_Hours.instance();
+    public static class _MAGIC_Time_Hours
+    {
+        private static final _MAGIC_Time_Hours INSTANCE = new _MAGIC_Time_Hours();
+        private static _MAGIC_Time_Hours instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TH);}
+    }
+
+    /**
+     * Time days to ms
+     */
+    public static final _MAGIC_Time_Days days = _MAGIC_Time_Days.instance();
+
+    /**
+     * Time days to ms
+     */
+    public static final _MAGIC_Time_Days day = _MAGIC_Time_Days.instance();
+    public static class _MAGIC_Time_Days
+    {
+        private static final _MAGIC_Time_Days INSTANCE = new _MAGIC_Time_Days();
+        private static _MAGIC_Time_Days instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TD);}
+    }
+
+    /**
+     * Time weeks to ms
+     */
+    public static final _MAGIC_Time_Weeks weeks = _MAGIC_Time_Weeks.instance();
+
+    /**
+     * Time weeks to ms
+     */
+    public static final _MAGIC_Time_Weeks week = _MAGIC_Time_Weeks.instance();
+    public static class _MAGIC_Time_Weeks
+    {
+        private static final _MAGIC_Time_Weeks INSTANCE = new _MAGIC_Time_Weeks();
+        private static _MAGIC_Time_Weeks instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TW);}
+    }
+
+    /**
+     * Time months to ms
+     */
+    public static final _MAGIC_Time_Months months = _MAGIC_Time_Months.instance();
+
+    /**
+     * Time months to ms
+     */
+    public static final _MAGIC_Time_Months month = _MAGIC_Time_Months.instance();
+    public static class _MAGIC_Time_Months
+    {
+        private static final _MAGIC_Time_Months INSTANCE = new _MAGIC_Time_Months();
+        private static _MAGIC_Time_Months instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TMO);}
+    }
+
+    /**
+     * Time years to ms
+     */
+    public static final _MAGIC_Time_Years years = _MAGIC_Time_Years.instance();
+
+    /**
+     * Time years to ms
+     */
+    public static final _MAGIC_Time_Years year = _MAGIC_Time_Years.instance();
+    public static class _MAGIC_Time_Years
+    {
+        private static final _MAGIC_Time_Years INSTANCE = new _MAGIC_Time_Years();
+        private static _MAGIC_Time_Years instance() {return INSTANCE;}
+        public long postfixBind(double rad) {return (long) (rad * __MAGIC_UNIT_TIMES.TY);}
+    }
+
+    private static class __MAGIC_UNIT_TIMES {
+        private static final long TT = 50;
+        private static final long TS = 1_000;
+        private static final long TM = TS * 60;
+        private static final long TH = TM * 60;
+        private static final long TD = TH * 24;
+        private static final long TW = TD * 7;
+        private static final long TMO = 2_628_000_000L;
+        private static final long TY = TMO * 12;
+    }
 }

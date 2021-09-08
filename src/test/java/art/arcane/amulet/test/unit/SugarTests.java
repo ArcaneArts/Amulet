@@ -7,8 +7,17 @@ import art.arcane.amulet.geometry.Vec;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SugarTests {
+    @Test
+    public void testTime()
+    {
+        assertEquals(30 seconds, TimeUnit.SECONDS.toMillis(30));
+        assertEquals(4.5 hours, TimeUnit.HOURS.toMillis(1) * 4.5D);
+        assertEquals(30 seconds + 25 minutes, TimeUnit.SECONDS.toMillis(TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25)));
+    }
+
     @Test
     public void testClip()
     {
