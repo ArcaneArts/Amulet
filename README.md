@@ -5,7 +5,7 @@ A very simple collections &amp; general util api
 Amulet can do a ton to help save you time.
 
 ## Sugar
-Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in ITJ if you setup a live-template.
+Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in ITJ if you setup a live-template for Java > Declaration
 
 ## Lists, Sets, Maps
 There's a fair bit of new methods for lists sets & maps you can use on any implementation, here's the gist
