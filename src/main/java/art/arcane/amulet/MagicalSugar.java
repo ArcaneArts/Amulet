@@ -673,16 +673,16 @@ public class MagicalSugar {
     /**
      * Square Root of the value. sqrt 45 == Math.sqrt(45) == Math.pow(45, 1/2)
      */
-    public static final _MAGIC_Math_Square_Root sqrt___ = _MAGIC_Math_Square_Root.instance();
+    public static final _MAGIC_Math_Square_Root sqrt = _MAGIC_Math_Square_Root.instance();
     @SuppressWarnings("unused")
     public static class _MAGIC_Math_Square_Root
     {
         private static final _MAGIC_Math_Square_Root INSTANCE = new _MAGIC_Math_Square_Root();
         private static _MAGIC_Math_Square_Root instance() {return INSTANCE;}
-        public double prefixBind(int rad) {return Math.sqrt(rad);}
-        public double prefixBind(long rad) {return Math.sqrt(rad);}
-        public double prefixBind(float rad) {return Math.sqrt(rad);}
-        public double prefixBind(double rad) {return Math.sqrt(rad);}
+        public double postfixBind(int rad) {return Math.sqrt(rad);}
+        public double postfixBind(long rad) {return Math.sqrt(rad);}
+        public double postfixBind(float rad) {return Math.sqrt(rad);}
+        public double postfixBind(double rad) {return Math.sqrt(rad);}
     }
 
     /**
