@@ -6,6 +6,7 @@ import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 @Extension
@@ -52,6 +53,33 @@ public class XMap {
     public static <K,V> @Self Map<K, V> plus(@This Map<K, V> self, Map<K, V> map)
     {
         return self.copy().put(map);
+    }
+
+    public static <K,V> @Self Map<K,V> removeWhere(@This Map<K,V> self, Predicate<K> predicate)
+    {
+        self.keySet().removeWhere(predicate);
+        return self;
+    }
+
+    public static <K,V> @Self Map<K,V> keepWhere(@This Map<K,V> self, Predicate<K> predicate)
+    {
+        self.keySet().keepWhere(predicate);
+        return self;
+    }
+
+    public static <K,V> @Self Map<K, V> minus(@This Map<K, V> self, Map<K, V> map)
+    {
+        return self.copy().removeWhere(map::containsKey);
+    }
+
+    public static <K,V> @Self Map<K, V> minus(@This Map<K, V> self, Collection<K> collection)
+    {
+        return self.copy().removeWhere(collection::contains);
+    }
+
+    public static <K,V> @Self Map<K, V> minus(@This Map<K, V> self, K v)
+    {
+        return self.copy().qremove(v);
     }
 
     public static <K,V> @Self Map<V, K> unaryMinus(@This Map<K, V> self)
@@ -210,6 +238,11 @@ public class XMap {
      */
     public static <K,V> @Self Map<K, V> qput(@This Map<K, V> self, K key, V value) {
         self.put(key, value);
+        return self;
+    }
+
+    public static <K,V> @Self Map<K, V> qremove(@This Map<K, V> self, K key) {
+        self.remove(key);
         return self;
     }
 

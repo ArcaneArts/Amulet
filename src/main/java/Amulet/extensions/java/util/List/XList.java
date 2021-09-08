@@ -232,15 +232,32 @@ public class XList {
         return self.remove(r.i(0, self.last()));
     }
 
-    public static <E> @Self List<E> qclear(@This List<E> self)
+    public static <E> @Self List<E> plus(@This List<E> self, E that)
     {
-        self.clear();
-        return self;
+        List<E> s = List.from(self);
+        s.add(that);
+        return s;
     }
 
-    public static <E> @Self List<E> plus(@This List<E> self, List<E> that)
+    public static <E> @Self List<E> minus(@This List<E> self, E that)
     {
-        return List.from(self).add(that);
+        List<E> s = List.from(self);
+        s.remove(that);
+        return s;
+    }
+
+    public static <E> @Self List<E> plus(@This List<E> self, Collection<E> that)
+    {
+        List<E> s = List.from(self);
+        s.addAll(that);
+        return s;
+    }
+
+    public static <E> @Self List<E> minus(@This List<E> self, Collection<E> that)
+    {
+        List<E> s = List.from(self);
+        s.removeAll(that);
+        return s;
     }
 
     public static <E> @Self List<E> reverse(@This List<E> self)

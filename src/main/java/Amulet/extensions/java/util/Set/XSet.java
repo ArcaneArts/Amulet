@@ -172,14 +172,32 @@ public class XSet {
     return List.from(self);
   }
 
-  public static <E> @Self Set<E> plus(@This Set<E> self, Set<E> that)
+  public static <E> @Self Set<E> plus(@This Set<E> self, E that)
   {
-    return Set.from(self).add(that);
+    Set<E> s = Set.from(self);
+    s.add(that);
+    return s;
   }
 
-  public static <E> @Self Set<E> minus(@This Set<E> self, Set<E> that)
+  public static <E> @Self Set<E> minus(@This Set<E> self, E that)
   {
-    return Set.from(self).remove(that);
+    Set<E> s = Set.from(self);
+    s.remove(that);
+    return s;
+  }
+
+  public static <E> @Self Set<E> plus(@This Set<E> self, Collection<E> that)
+  {
+    Set<E> s = Set.from(self);
+    s.addAll(that);
+    return s;
+  }
+
+  public static <E> @Self Set<E> minus(@This Set<E> self, Collection<E> that)
+  {
+    Set<E> s = Set.from(self);
+    s.removeAll(that);
+    return s;
   }
 
   public static <E> String toString(@This Set<E> self, String split)

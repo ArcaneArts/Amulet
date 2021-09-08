@@ -131,8 +131,8 @@ public class MagicalSugar {
         private static _MAGIC_String_Without instance() {return INSTANCE;}
         public __FROM postfixBind(String from) {return new __FROM(from);}
         public record __FROM(String start) {
-            public List<String> prefixBind(String into) {
-                return List.of(start.replaceAbs(into, ""));
+            public String prefixBind(String into) {
+                return start.remove(into);
             }
         }
     }
