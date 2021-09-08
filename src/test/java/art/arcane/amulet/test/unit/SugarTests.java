@@ -19,6 +19,15 @@ public class SugarTests {
     }
 
     @Test
+    public void testMath()
+    {
+        assertEquals(40 max 15, 15);
+        assertEquals(48 min 64, 64);
+        assertEquals(50 min 60 max 70, 60);
+        assertEquals(76 min 60 max 70, 70);
+    }
+
+    @Test
     public void testClip()
     {
         assertEquals(45 clip 3 to 50, 45);

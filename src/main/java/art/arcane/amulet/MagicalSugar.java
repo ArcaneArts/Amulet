@@ -7,11 +7,13 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class MagicalSugar {
     /**
      * Create a vector & angle amount
      */
     public static final _MAGIC_Vec_Angle angle = _MAGIC_Vec_Angle.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_Angle
     {
         private static final _MAGIC_Vec_Angle INSTANCE = new _MAGIC_Vec_Angle();
@@ -29,6 +31,7 @@ public class MagicalSugar {
      * Rotate a vector around a unit vector axis/amount
      */
     public static final _MAGIC_Vec_RT rotate = _MAGIC_Vec_RT.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_RT
     {
         private static final _MAGIC_Vec_RT INSTANCE = new _MAGIC_Vec_RT();
@@ -45,6 +48,7 @@ public class MagicalSugar {
      * Rotate a vector around the x axis
      */
     public static final _MAGIC_Vec_RTX rotateX = _MAGIC_Vec_RTX.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_RTX
     {
         private static final _MAGIC_Vec_RTX INSTANCE = new _MAGIC_Vec_RTX();
@@ -61,6 +65,7 @@ public class MagicalSugar {
      * Rotate a vector around the y axis
      */
     public static final _MAGIC_Vec_RTY rotateY = _MAGIC_Vec_RTY.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_RTY
     {
         private static final _MAGIC_Vec_RTY INSTANCE = new _MAGIC_Vec_RTY();
@@ -77,6 +82,7 @@ public class MagicalSugar {
      * Rotate a vector around the z axis
      */
     public static final _MAGIC_Vec_RTZ rotateZ = _MAGIC_Vec_RTZ.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_RTZ
     {
         private static final _MAGIC_Vec_RTZ INSTANCE = new _MAGIC_Vec_RTZ();
@@ -93,6 +99,7 @@ public class MagicalSugar {
      * Dot product (same as v1.dot(v2))
      */
     public static final _MAGIC_Vec_Dot dot = _MAGIC_Vec_Dot.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_Dot
     {
         private static final _MAGIC_Vec_Dot INSTANCE = new _MAGIC_Vec_Dot();
@@ -106,9 +113,146 @@ public class MagicalSugar {
     }
 
     /**
+     * a min b == Math.min(a, b)
+     */
+    public static final _MAGIC_Math_Min_Double min = _MAGIC_Math_Min_Double.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Min_Double
+    {
+        private static final _MAGIC_Math_Min_Double INSTANCE = new _MAGIC_Math_Min_Double();
+        private static _MAGIC_Math_Min_Double instance() {return INSTANCE;}
+        public __FROM postfixBind(double from) {return new __FROM(from);}
+        public record __FROM(double start) {
+            public double prefixBind(double into) {
+                return Math.min(start, into);
+            }
+        }
+    }
+
+    /**
+     * a min b == Math.min(a, b)
+     */
+    public static final _MAGIC_Math_Min_Float min_ = _MAGIC_Math_Min_Float.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Min_Float
+    {
+        private static final _MAGIC_Math_Min_Float INSTANCE = new _MAGIC_Math_Min_Float();
+        private static _MAGIC_Math_Min_Float instance() {return INSTANCE;}
+        public __FROM postfixBind(float from) {return new __FROM(from);}
+        public record __FROM(float start) {
+            public float prefixBind(float into) {
+                return Math.min(start, into);
+            }
+        }
+    }
+
+    /**
+     * a min b == Math.min(a, b)
+     */
+    public static final _MAGIC_Math_Min_Int min__ = _MAGIC_Math_Min_Int.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Min_Int
+    {
+        private static final _MAGIC_Math_Min_Int INSTANCE = new _MAGIC_Math_Min_Int();
+        private static _MAGIC_Math_Min_Int instance() {return INSTANCE;}
+        public __FROM postfixBind(int from) {return new __FROM(from);}
+        public record __FROM(int start) {
+            public int prefixBind(int into) {
+                return Math.min(start, into);
+            }
+        }
+    }
+
+    /**
+     * a min b == Math.min(a, b)
+     */
+    public static final _MAGIC_Math_Min_Long min___ = _MAGIC_Math_Min_Long.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Min_Long
+    {
+        private static final _MAGIC_Math_Min_Long INSTANCE = new _MAGIC_Math_Min_Long();
+        private static _MAGIC_Math_Min_Long instance() {return INSTANCE;}
+        public __FROM postfixBind(long from) {return new __FROM(from);}
+        public record __FROM(long start) {
+            public long prefixBind(long into) {
+                return Math.min(start, into);
+            }
+        }
+    }
+
+    /**
+     * a max b == Math.max(a, b)
+     */
+    public static final _MAGIC_Math_Max_Double max = _MAGIC_Math_Max_Double.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Max_Double
+    {
+        private static final _MAGIC_Math_Max_Double INSTANCE = new _MAGIC_Math_Max_Double();
+        private static _MAGIC_Math_Max_Double instance() {return INSTANCE;}
+        public __FROM postfixBind(double from) {return new __FROM(from);}
+        public record __FROM(double start) {
+            public double prefixBind(double into) {
+                return Math.max(start, into);
+            }
+        }
+    }
+
+    /**
+     * a max b == Math.max(a, b)
+     */
+    public static final _MAGIC_Math_Max_Float max_ = _MAGIC_Math_Max_Float.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Max_Float
+    {
+        private static final _MAGIC_Math_Max_Float INSTANCE = new _MAGIC_Math_Max_Float();
+        private static _MAGIC_Math_Max_Float instance() {return INSTANCE;}
+        public __FROM postfixBind(float from) {return new __FROM(from);}
+        public record __FROM(float start) {
+            public float prefixBind(float into) {
+                return Math.max(start, into);
+            }
+        }
+    }
+
+    /**
+     * a max b == Math.max(a, b)
+     */
+    public static final _MAGIC_Math_Max_Int max__ = _MAGIC_Math_Max_Int.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Max_Int
+    {
+        private static final _MAGIC_Math_Max_Int INSTANCE = new _MAGIC_Math_Max_Int();
+        private static _MAGIC_Math_Max_Int instance() {return INSTANCE;}
+        public __FROM postfixBind(int from) {return new __FROM(from);}
+        public record __FROM(int start) {
+            public int prefixBind(int into) {
+                return Math.max(start, into);
+            }
+        }
+    }
+
+    /**
+     * a max b == Math.max(a, b)
+     */
+    public static final _MAGIC_Math_Max_Long max___ = _MAGIC_Math_Max_Long.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Max_Long
+    {
+        private static final _MAGIC_Math_Max_Long INSTANCE = new _MAGIC_Math_Max_Long();
+        private static _MAGIC_Math_Max_Long instance() {return INSTANCE;}
+        public __FROM postfixBind(long from) {return new __FROM(from);}
+        public record __FROM(long start) {
+            public long prefixBind(long into) {
+                return Math.max(start, into);
+            }
+        }
+    }
+
+    /**
      * String split
      */
     public static final _MAGIC_String_Split split = _MAGIC_String_Split.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_String_Split
     {
         private static final _MAGIC_String_Split INSTANCE = new _MAGIC_String_Split();
@@ -125,6 +269,7 @@ public class MagicalSugar {
      * String without
      */
     public static final _MAGIC_String_Without without = _MAGIC_String_Without.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_String_Without
     {
         private static final _MAGIC_String_Without INSTANCE = new _MAGIC_String_Without();
@@ -141,6 +286,7 @@ public class MagicalSugar {
      * Clip a number to a min and max bound
      */
     public static final _MAGIC_Number_Clip clip = _MAGIC_Number_Clip.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Number_Clip
     {
         private static final _MAGIC_Number_Clip INSTANCE = new _MAGIC_Number_Clip();
@@ -167,7 +313,7 @@ public class MagicalSugar {
             public long prefixBind(LongRange into) {
                 long min = Math.min(into.getLeftEndpoint(), into.getRightEndpoint());
                 long max = Math.max(into.getLeftEndpoint(), into.getRightEndpoint());
-                return (long) Math.min(Math.max(start, min), max);
+                return Math.min(Math.max(start, min), max);
             }
         }
     }
@@ -181,6 +327,7 @@ public class MagicalSugar {
      * Convert degrees to radians
      */
     public static final _MAGIC_Convert_Degrees degrees = _MAGIC_Convert_Degrees.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Convert_Degrees
     {
         private static final _MAGIC_Convert_Degrees INSTANCE = new _MAGIC_Convert_Degrees();
@@ -196,6 +343,7 @@ public class MagicalSugar {
      * Convert to lower case
      */
     public static final _MAGIC_Convert_Lowercase lower = _MAGIC_Convert_Lowercase.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Convert_Lowercase
     {
         private static final _MAGIC_Convert_Lowercase INSTANCE = new _MAGIC_Convert_Lowercase();
@@ -211,6 +359,7 @@ public class MagicalSugar {
      * Convert to uppper case
      */
     public static final _MAGIC_Convert_Uppercase upper = _MAGIC_Convert_Uppercase.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Convert_Uppercase
     {
         private static final _MAGIC_Convert_Uppercase INSTANCE = new _MAGIC_Convert_Uppercase();
@@ -227,6 +376,7 @@ public class MagicalSugar {
      * Convert degrees to radians
      */
     public static final _MAGIC_Convert_Vector vector = _MAGIC_Convert_Vector.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Convert_Vector
     {
         private static final _MAGIC_Convert_Vector INSTANCE = new _MAGIC_Convert_Vector();
@@ -244,6 +394,7 @@ public class MagicalSugar {
      * Convert radians to degrees
      */
     public static final _MAGIC_Convert_Radians radians = _MAGIC_Convert_Radians.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Convert_Radians
     {
         private static final _MAGIC_Convert_Radians INSTANCE = new _MAGIC_Convert_Radians();
@@ -255,6 +406,7 @@ public class MagicalSugar {
      * Cross product (same as v1.crossProduct(v2))
      */
     public static final _MAGIC_Vec_CrossProduct cross = _MAGIC_Vec_CrossProduct.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_CrossProduct
     {
         private static final _MAGIC_Vec_CrossProduct INSTANCE = new _MAGIC_Vec_CrossProduct();
@@ -271,6 +423,7 @@ public class MagicalSugar {
      * Get a unit direction if a direction b, then it is really b.subtract(a).normalize() or (b - a).normalize()
      */
     public static final _MAGIC_Vec_Direction direction = _MAGIC_Vec_Direction.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_Direction
     {
         private static final _MAGIC_Vec_Direction INSTANCE = new _MAGIC_Vec_Direction();
@@ -287,6 +440,7 @@ public class MagicalSugar {
      * Get a ray (direction & distance), essentially if a ray b, it is (b - a). Not normalized.
      */
     public static final _MAGIC_Vec_Ray ray = _MAGIC_Vec_Ray.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_Ray
     {
         private static final _MAGIC_Vec_Ray INSTANCE = new _MAGIC_Vec_Ray();
@@ -304,6 +458,7 @@ public class MagicalSugar {
      * Get the distance between two vectors (a distance b)
      */
     public static final _MAGIC_Vec_Distance distance = _MAGIC_Vec_Distance.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_Distance
     {
         private static final _MAGIC_Vec_Distance INSTANCE = new _MAGIC_Vec_Distance();
@@ -321,6 +476,7 @@ public class MagicalSugar {
      * Get the squared distance between two vectors (a distanceSq b)
      */
     public static final _MAGIC_Vec_DistanceSquared distanceSq = _MAGIC_Vec_DistanceSquared.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Vec_DistanceSquared
     {
         private static final _MAGIC_Vec_DistanceSquared INSTANCE = new _MAGIC_Vec_DistanceSquared();
@@ -333,366 +489,200 @@ public class MagicalSugar {
         }
     }
     
-    public static final MagicalSugar.Closed to   = MagicalSugar.Closed.instance();    // both endpoints included
-    public static final MagicalSugar.LeftOpen _to   = MagicalSugar.LeftOpen.instance();  // left endpoint excluded
-    public static final MagicalSugar.RightOpen to_  = MagicalSugar.RightOpen.instance(); // right endpoint excluded
-    public static final MagicalSugar.Open _to_  = MagicalSugar.Open.instance();      // both endpoints excluded
+    public static final _MAGIC_RANGE_Closed to   = _MAGIC_RANGE_Closed.instance();
+    public static final _MAGIC_RANGE_LeftOpen _to   = _MAGIC_RANGE_LeftOpen.instance();
+    public static final _MAGIC_RANGE_RightOpen to_  = _MAGIC_RANGE_RightOpen.instance();
+    public static final _MAGIC_RANGE_Open _to_  = _MAGIC_RANGE_Open.instance();
+    public static final _MAGIC_RANGE_Step step  = _MAGIC_RANGE_Step.instance();
+    public static final _MAGIC_RANGE_Unit unit  = _MAGIC_RANGE_Unit.instance();
+    public static final _MAGIC_RANGE_Inside inside = _MAGIC_RANGE_Inside.instance();
+    public static final _MAGIC_RANGE_Outside outside = _MAGIC_RANGE_Outside.instance();
 
-    public static final MagicalSugar.Step step  = MagicalSugar.Step.instance();      // provides a `step` clause
-    public static final MagicalSugar.Unit unit  = MagicalSugar.Unit.instance();      // provides a `unit` clause
-
-    public static final MagicalSugar.Inside inside = MagicalSugar.Inside.instance();      // test for range membership
-    public static final MagicalSugar.Outside outside = MagicalSugar.Outside.instance();   // negative test for range membership
-
-    /**
-     * For internal use.
-     */
-    public static class Closed
-    {
-        private static final MagicalSugar.Closed INSTANCE = new MagicalSugar.Closed();
-
-        public static MagicalSugar.Closed instance()
-        {
-            return INSTANCE;
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_Closed {
+        private static final _MAGIC_RANGE_Closed INSTANCE = new _MAGIC_RANGE_Closed();
+        public static _MAGIC_RANGE_Closed instance() {return INSTANCE;}
+        boolean _leftClosed;boolean _rightClosed;
+        private _MAGIC_RANGE_Closed() {_leftClosed = true;_rightClosed = true;}
+        public <E extends Comparable<E>> _MAGIC_RANGE_From_Comp<E> postfixBind(E comparable ) {return new _MAGIC_RANGE_From_Comp<>( comparable );}
+        public class _MAGIC_RANGE_From_Comp<E extends Comparable<E>> {
+            private final E _start;
+            _MAGIC_RANGE_From_Comp(E sequential ) {_start = sequential;}
+            public ComparableRange<E> prefixBind(E end ) {return new ComparableRange<>( _start, end, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
-
-        boolean _leftClosed;
-        boolean _rightClosed;
-
-        private Closed()
-        {
-            _leftClosed = true;
-            _rightClosed = true;
+        public <E extends Sequential<E, S, U>, S, U> _MAGIC_RANGE_From_Seq<E, S, U> postfixBind(E sequential ) {return new _MAGIC_RANGE_From_Seq<>( sequential );}
+        public class _MAGIC_RANGE_From_Seq<E extends Sequential<E, S, U>, S, U> {
+            private final E _start;
+            _MAGIC_RANGE_From_Seq(E sequential ) {_start = sequential;}
+            public SequentialRange<E, S, U> prefixBind(E end ) {return new SequentialRange<>( _start, end, null, null, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
-
-        /** Comparable */
-
-        public <E extends Comparable<E>> MagicalSugar.Closed.From_Comp<E> postfixBind(E comparable )
-        {
-            return new MagicalSugar.Closed.From_Comp<>( comparable );
+        public _MAGIC_RANGE_From_BigDecimal postfixBind(BigDecimal bd ) {return new _MAGIC_RANGE_From_BigDecimal( bd );}
+        public class _MAGIC_RANGE_From_BigDecimal {
+            private final BigDecimal _start;
+            _MAGIC_RANGE_From_BigDecimal(BigDecimal sequential ) {_start = sequential;}
+            public BigDecimalRange prefixBind( BigDecimal end ) {return new BigDecimalRange( _start, end, BigDecimal.ONE, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
-
-        public class From_Comp<E extends Comparable<E>>
-        {
-            private E _start;
-
-            From_Comp( E sequential )
-            {
-                _start = sequential;
-            }
-
-            public ComparableRange<E> prefixBind(E end )
-            {
-                return new ComparableRange<>( _start, end, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
+        public _MAGIC_RANGE_From_BigInteger postfixBind(BigInteger bd ) {return new _MAGIC_RANGE_From_BigInteger( bd );
         }
-
-        /** Sequential */
-
-        public <E extends Sequential<E, S, U>, S, U> MagicalSugar.Closed.From_Seq<E, S, U> postfixBind(E sequential )
-        {
-            return new MagicalSugar.Closed.From_Seq<>( sequential );
+        public class _MAGIC_RANGE_From_BigInteger {
+            private final BigInteger _start;
+            _MAGIC_RANGE_From_BigInteger(BigInteger sequential ) {_start = sequential;}
+            public BigIntegerRange prefixBind( BigInteger end ) {return new BigIntegerRange( _start, end, BigInteger.ONE, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
-
-        public class From_Seq<E extends Sequential<E, S, U>, S, U>
-        {
-            private E _start;
-
-            From_Seq( E sequential )
-            {
-                _start = sequential;
-            }
-
-            public SequentialRange<E, S, U> prefixBind(E end )
-            {
-                return new SequentialRange<>( _start, end, null, null, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
+        public _MAGIC_RANGE_From_Double postfixBind(Double bd ) {return new _MAGIC_RANGE_From_Double( bd );}
+        public class _MAGIC_RANGE_From_Double {
+            private final Double _start;
+            _MAGIC_RANGE_From_Double(Double sequential ) {_start = sequential;}
+            public DoubleRange prefixBind( Double end ) {return new DoubleRange( _start, end, 1, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
-
-        /** BigDecimal */
-
-        public MagicalSugar.Closed.From_BigDecimal postfixBind(BigDecimal bd )
-        {
-            return new MagicalSugar.Closed.From_BigDecimal( bd );
+        public _MAGIC_RANGE_From_Long postfixBind(Long bd ) {return new _MAGIC_RANGE_From_Long( bd );}
+        public class _MAGIC_RANGE_From_Long {
+            private final Long _start;
+            _MAGIC_RANGE_From_Long(Long sequential ) {_start = sequential;}
+            public LongRange prefixBind( Long end ) {return new LongRange( _start, end, 1, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
-        public class From_BigDecimal
-        {
-            private BigDecimal _start;
-
-            From_BigDecimal( BigDecimal sequential )
-            {
-                _start = sequential;
-            }
-
-            public BigDecimalRange prefixBind( BigDecimal end )
-            {
-                return new BigDecimalRange( _start, end, BigDecimal.ONE,
-                        _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
+        public _MAGIC_RANGE_From_Integer postfixBind(Integer bd ) {return new _MAGIC_RANGE_From_Integer( bd );}
+        public class _MAGIC_RANGE_From_Integer {
+            private final Integer _start;
+            _MAGIC_RANGE_From_Integer(Integer sequential ) {_start = sequential;}
+            public IntegerRange prefixBind( Integer end ) {return new IntegerRange( _start, end, 1, _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );}
         }
+    }
 
-        /** BigInteger */
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_LeftOpen extends _MAGIC_RANGE_Closed {
+        private static final _MAGIC_RANGE_LeftOpen INSTANCE = new _MAGIC_RANGE_LeftOpen();
+        public static _MAGIC_RANGE_LeftOpen instance() {return INSTANCE;}
+        private _MAGIC_RANGE_LeftOpen() {_leftClosed = false;}
+    }
 
-        public MagicalSugar.Closed.From_BigInteger postfixBind(BigInteger bd )
-        {
-            return new MagicalSugar.Closed.From_BigInteger( bd );
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_RightOpen extends _MAGIC_RANGE_Closed {
+        private static final _MAGIC_RANGE_RightOpen INSTANCE = new _MAGIC_RANGE_RightOpen();
+        public static _MAGIC_RANGE_RightOpen instance() {return INSTANCE;}
+        private _MAGIC_RANGE_RightOpen() {_rightClosed = false;}
+    }
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_Open extends _MAGIC_RANGE_Closed {
+        private static final _MAGIC_RANGE_Open INSTANCE = new _MAGIC_RANGE_Open();
+        public static _MAGIC_RANGE_Open instance() {return INSTANCE;}
+        private _MAGIC_RANGE_Open() {_leftClosed = false;_rightClosed = false;}
+    }
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_Step {
+        private static final _MAGIC_RANGE_Step INSTANCE = new _MAGIC_RANGE_Step();
+        public static _MAGIC_RANGE_Step instance() {return INSTANCE;}
+        public <E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>> _MAGIC_RANGE_StepRange<E, S, U, RANGE> postfixBind(RANGE range ) {return new _MAGIC_RANGE_StepRange<>( range );}
+        @SuppressWarnings("unused")
+        public static class _MAGIC_RANGE_StepRange<E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>> {
+            private final RANGE _range;
+            _MAGIC_RANGE_StepRange(RANGE range ) {_range = range;}
+            public RANGE prefixBind( S step ) {return _range.step( step );}
         }
-        public class From_BigInteger
-        {
-            private BigInteger _start;
+    }
 
-            From_BigInteger( BigInteger sequential )
-            {
-                _start = sequential;
-            }
-
-            public BigIntegerRange prefixBind( BigInteger end )
-            {
-                return new BigIntegerRange( _start, end, BigInteger.ONE,
-                        _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_Unit {
+        private static final _MAGIC_RANGE_Unit INSTANCE = new _MAGIC_RANGE_Unit();
+        public static _MAGIC_RANGE_Unit instance() {return INSTANCE;}
+        public <E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>> _MAGIC_RANGE_Unit.UnitRange<E, S, U, RANGE> postfixBind(RANGE range ) {return new _MAGIC_RANGE_Unit.UnitRange<>( range );}
+        @SuppressWarnings("unused")
+        public static class UnitRange<E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>> {
+            private final RANGE _range;
+            UnitRange( RANGE range ) {_range = range;}
+            public RANGE prefixBind( U unit ) {return _range.unit( unit );}
         }
+    }
 
-        /** Double */
-
-        public MagicalSugar.Closed.From_Double postfixBind(Double bd )
-        {
-            return new MagicalSugar.Closed.From_Double( bd );
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_Inside {
+        private static final _MAGIC_RANGE_Inside INSTANCE = new _MAGIC_RANGE_Inside();
+        public static _MAGIC_RANGE_Inside instance() {return INSTANCE;}
+        public <E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>> _MAGIC_RANGE_Inside.InsideRange<E, RANGE> prefixBind(RANGE range ) {return new _MAGIC_RANGE_Inside.InsideRange<>( range );}
+        @SuppressWarnings("unused")
+        public static class InsideRange<E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>> {
+            private final RANGE _range;
+            InsideRange( RANGE range ) {_range = range;}
+            public boolean postfixBind( E element ) {return _range.contains( element );}
         }
-        public class From_Double
-        {
-            private Double _start;
+    }
 
-            From_Double( Double sequential )
-            {
-                _start = sequential;
-            }
-
-            public DoubleRange prefixBind( Double end )
-            {
-                return new DoubleRange( _start, end, 1,
-                        _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
-        }
-
-        /** Long */
-
-        public MagicalSugar.Closed.From_Long postfixBind(Long bd )
-        {
-            return new MagicalSugar.Closed.From_Long( bd );
-        }
-        public class From_Long
-        {
-            private Long _start;
-
-            From_Long( Long sequential )
-            {
-                _start = sequential;
-            }
-
-            public LongRange prefixBind( Long end )
-            {
-                return new LongRange( _start, end, 1,
-                        _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
-        }
-
-        /** Integer */
-
-        public MagicalSugar.Closed.From_Integer postfixBind(Integer bd )
-        {
-            return new MagicalSugar.Closed.From_Integer( bd );
-        }
-        public class From_Integer
-        {
-            private Integer _start;
-
-            From_Integer( Integer sequential )
-            {
-                _start = sequential;
-            }
-
-            public IntegerRange prefixBind( Integer end )
-            {
-                return new IntegerRange( _start, end, 1,
-                        _leftClosed, _rightClosed, _start.compareTo( end ) > 0 );
-            }
+    @SuppressWarnings("unused")
+    public static class _MAGIC_RANGE_Outside {
+        private static final _MAGIC_RANGE_Outside INSTANCE = new _MAGIC_RANGE_Outside();
+        public static _MAGIC_RANGE_Outside instance() {return INSTANCE;}
+        public <E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>> _MAGIC_RANGE_Outside.OutsideRange<E, RANGE> prefixBind(RANGE range ) {return new _MAGIC_RANGE_Outside.OutsideRange<>( range );}
+        @SuppressWarnings("unused")
+        public static class OutsideRange<E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>> {
+            private final RANGE _range;
+            OutsideRange( RANGE range ) {_range = range;}
+            public boolean postfixBind( E element ) {return !_range.contains( element );}
         }
     }
 
     /**
-     * For internal use.
+     * Square the value 45sq == 45 * 45
      */
-    public static class LeftOpen extends MagicalSugar.Closed
+    public static final _MAGIC_Math_Squared_Double sq = _MAGIC_Math_Squared_Double.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Squared_Double
     {
-        private static final MagicalSugar.LeftOpen INSTANCE = new MagicalSugar.LeftOpen();
-
-        public static MagicalSugar.LeftOpen instance()
-        {
-            return INSTANCE;
-        }
-
-        private LeftOpen()
-        {
-            _leftClosed = false;
-        }
+        private static final _MAGIC_Math_Squared_Double INSTANCE = new _MAGIC_Math_Squared_Double();
+        private static _MAGIC_Math_Squared_Double instance() {return INSTANCE;}
+        public double postfixBind(double rad) {return (rad * rad);}
     }
 
     /**
-     * For internal use.
+     * Square the value 45sq == 45 * 45
      */
-    public static class RightOpen extends MagicalSugar.Closed
+    public static final _MAGIC_Math_Squared_Float sq_ = _MAGIC_Math_Squared_Float.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Squared_Float
     {
-        private static final MagicalSugar.RightOpen INSTANCE = new MagicalSugar.RightOpen();
-
-        public static MagicalSugar.RightOpen instance()
-        {
-            return INSTANCE;
-        }
-
-        private RightOpen()
-        {
-            _rightClosed = false;
-        }
+        private static final _MAGIC_Math_Squared_Float INSTANCE = new _MAGIC_Math_Squared_Float();
+        private static _MAGIC_Math_Squared_Float instance() {return INSTANCE;}
+        public float postfixBind(float rad) {return (rad * rad);}
     }
 
     /**
-     * For internal use.
+     * Square the value 45sq == 45 * 45
      */
-    public static class Open extends MagicalSugar.Closed
+    public static final _MAGIC_Math_Squared_Long sq__ = _MAGIC_Math_Squared_Long.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Squared_Long
     {
-        private static final MagicalSugar.Open INSTANCE = new MagicalSugar.Open();
-
-        public static MagicalSugar.Open instance()
-        {
-            return INSTANCE;
-        }
-
-        private Open()
-        {
-            _leftClosed = false;
-            _rightClosed = false;
-        }
+        private static final _MAGIC_Math_Squared_Long INSTANCE = new _MAGIC_Math_Squared_Long();
+        private static _MAGIC_Math_Squared_Long instance() {return INSTANCE;}
+        public long postfixBind(long rad) {return (rad * rad);}
     }
 
-    public static class Step
+    /**
+     * Square the value 45sq == 45 * 45
+     */
+    public static final _MAGIC_Math_Squared_Integer sq___ = _MAGIC_Math_Squared_Integer.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Squared_Integer
     {
-        private static final MagicalSugar.Step INSTANCE = new MagicalSugar.Step();
-
-        public static MagicalSugar.Step instance()
-        {
-            return INSTANCE;
-        }
-
-        public <E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>> MagicalSugar.Step.StepRange<E, S, U, RANGE> postfixBind(RANGE range )
-        {
-            return new MagicalSugar.Step.StepRange<>( range );
-        }
-
-        public static class StepRange<E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>>
-        {
-            private final RANGE _range;
-
-            StepRange( RANGE range )
-            {
-                _range = range;
-            }
-
-            public RANGE prefixBind( S step )
-            {
-                return _range.step( step );
-            }
-        }
+        private static final _MAGIC_Math_Squared_Integer INSTANCE = new _MAGIC_Math_Squared_Integer();
+        private static _MAGIC_Math_Squared_Integer instance() {return INSTANCE;}
+        public int postfixBind(int rad) {return (rad * rad);}
     }
-
-    public static class Unit
+    
+    /**
+     * Square Root of the value. sqrt 45 == Math.sqrt(45) == Math.pow(45, 1/2)
+     */
+    public static final _MAGIC_Math_Square_Root sqrt___ = _MAGIC_Math_Square_Root.instance();
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Square_Root
     {
-        private static final MagicalSugar.Unit INSTANCE = new MagicalSugar.Unit();
-
-        public static MagicalSugar.Unit instance()
-        {
-            return INSTANCE;
-        }
-
-        public <E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>> MagicalSugar.Unit.UnitRange<E, S, U, RANGE> postfixBind(RANGE range )
-        {
-            return new MagicalSugar.Unit.UnitRange<>( range );
-        }
-
-        public static class UnitRange<E extends Comparable<E>, S, U, RANGE extends AbstractIterableRange<E, S, U, RANGE>>
-        {
-            private final RANGE _range;
-
-            UnitRange( RANGE range )
-            {
-                _range = range;
-            }
-
-            public RANGE prefixBind( U unit )
-            {
-                return _range.unit( unit );
-            }
-        }
-    }
-
-    public static class Inside
-    {
-        private static final MagicalSugar.Inside INSTANCE = new MagicalSugar.Inside();
-
-        public static MagicalSugar.Inside instance()
-        {
-            return INSTANCE;
-        }
-
-        public <E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>> MagicalSugar.Inside.InsideRange<E, RANGE> prefixBind(RANGE range )
-        {
-            return new MagicalSugar.Inside.InsideRange<>( range );
-        }
-
-        public static class InsideRange<E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>>
-        {
-            private final RANGE _range;
-
-            InsideRange( RANGE range )
-            {
-                _range = range;
-            }
-
-            public boolean postfixBind( E element )
-            {
-                return _range.contains( element );
-            }
-        }
-    }
-
-    public static class Outside
-    {
-        private static final MagicalSugar.Outside INSTANCE = new MagicalSugar.Outside();
-
-        public static MagicalSugar.Outside instance()
-        {
-            return INSTANCE;
-        }
-
-        public <E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>> MagicalSugar.Outside.OutsideRange<E, RANGE> prefixBind(RANGE range )
-        {
-            return new MagicalSugar.Outside.OutsideRange<>( range );
-        }
-
-        public static class OutsideRange<E extends Comparable<E>, RANGE extends AbstractRange<E, RANGE>>
-        {
-            private final RANGE _range;
-
-            OutsideRange( RANGE range )
-            {
-                _range = range;
-            }
-
-            public boolean postfixBind( E element )
-            {
-                return !_range.contains( element );
-            }
-        }
+        private static final _MAGIC_Math_Square_Root INSTANCE = new _MAGIC_Math_Square_Root();
+        private static _MAGIC_Math_Square_Root instance() {return INSTANCE;}
+        public double prefixBind(int rad) {return Math.sqrt(rad);}
+        public double prefixBind(long rad) {return Math.sqrt(rad);}
+        public double prefixBind(float rad) {return Math.sqrt(rad);}
+        public double prefixBind(double rad) {return Math.sqrt(rad);}
     }
 
     /**
@@ -700,6 +690,7 @@ public class MagicalSugar {
      */
     public static final _MAGIC_Time_Ticks ticks = _MAGIC_Time_Ticks.instance();
 
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Ticks
     {
         private static final _MAGIC_Time_Ticks INSTANCE = new _MAGIC_Time_Ticks();
@@ -715,11 +706,7 @@ public class MagicalSugar {
      * Time seconds to ms
      */
     public static final _MAGIC_Time_Seconds second = _MAGIC_Time_Seconds.instance();
-
-    /**
-     * Time seconds to ms
-     */
-    public static final _MAGIC_Time_Seconds sec = _MAGIC_Time_Seconds.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Seconds
     {
         private static final _MAGIC_Time_Seconds INSTANCE = new _MAGIC_Time_Seconds();
@@ -736,11 +723,7 @@ public class MagicalSugar {
      * Time minutes to ms
      */
     public static final _MAGIC_Time_Minutes minute = _MAGIC_Time_Minutes.instance();
-
-    /**
-     * Time minutes to ms
-     */
-    public static final _MAGIC_Time_Minutes min = _MAGIC_Time_Minutes.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Minutes
     {
         private static final _MAGIC_Time_Minutes INSTANCE = new _MAGIC_Time_Minutes();
@@ -757,6 +740,7 @@ public class MagicalSugar {
      * Time hours to ms
      */
     public static final _MAGIC_Time_Hours hour = _MAGIC_Time_Hours.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Hours
     {
         private static final _MAGIC_Time_Hours INSTANCE = new _MAGIC_Time_Hours();
@@ -773,6 +757,7 @@ public class MagicalSugar {
      * Time days to ms
      */
     public static final _MAGIC_Time_Days day = _MAGIC_Time_Days.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Days
     {
         private static final _MAGIC_Time_Days INSTANCE = new _MAGIC_Time_Days();
@@ -789,6 +774,7 @@ public class MagicalSugar {
      * Time weeks to ms
      */
     public static final _MAGIC_Time_Weeks week = _MAGIC_Time_Weeks.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Weeks
     {
         private static final _MAGIC_Time_Weeks INSTANCE = new _MAGIC_Time_Weeks();
@@ -805,6 +791,7 @@ public class MagicalSugar {
      * Time months to ms
      */
     public static final _MAGIC_Time_Months month = _MAGIC_Time_Months.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Months
     {
         private static final _MAGIC_Time_Months INSTANCE = new _MAGIC_Time_Months();
@@ -821,6 +808,7 @@ public class MagicalSugar {
      * Time years to ms
      */
     public static final _MAGIC_Time_Years year = _MAGIC_Time_Years.instance();
+    @SuppressWarnings("unused")
     public static class _MAGIC_Time_Years
     {
         private static final _MAGIC_Time_Years INSTANCE = new _MAGIC_Time_Years();
