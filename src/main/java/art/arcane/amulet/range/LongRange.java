@@ -72,6 +72,19 @@ public final class LongRange extends NumberRange<Long, LongRange>
     return null;
   }
 
+  public LongRange unaryMinus()
+  {
+    var left = getLeftEndpoint();
+    var right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new LongRange(left, right, getStep(), true, true, false);
+    }
+
+    return new LongRange(right, left, getStep(), true, true, true);
+  }
+
   @Override
   public Long getFromRight( int iStepIndex )
   {

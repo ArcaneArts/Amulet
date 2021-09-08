@@ -30,6 +30,19 @@ public final class BigDecimalRange extends NumberRange<BigDecimal, BigDecimalRan
     this( left, right, BigDecimal.ONE, true, true, false );
   }
 
+  public BigDecimalRange unaryMinus()
+  {
+    var left = getLeftEndpoint();
+    var right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new BigDecimalRange(left, right, getStep(), true, true, false);
+    }
+
+    return new BigDecimalRange(right, left, getStep(), true, true, true);
+  }
+
   public BigDecimalRange( BigDecimal left, BigDecimal right, BigDecimal step, boolean leftClosed, boolean rightClosed, boolean reverse )
   {
     super( left, right, step, leftClosed, rightClosed, reverse );

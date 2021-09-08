@@ -34,6 +34,19 @@ public class SequentialRange<E extends Sequential<E, S, U>, S, U> extends Abstra
     return new SequentialIterator();
   }
 
+  public SequentialRange<E, S, U> unaryMinus()
+  {
+    var left = getLeftEndpoint();
+    var right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new SequentialRange<>(left, right, getStep(), getUnit(), true, true, false);
+    }
+
+    return new SequentialRange<>(right, left, getStep(), getUnit(), true, true, true);
+  }
+
   @Override
   public Iterator<E> iterateFromRight()
   {

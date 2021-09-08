@@ -41,6 +41,19 @@ public final class IntegerRange extends NumberRange<Integer, IntegerRange>
     }
   }
 
+  public IntegerRange unaryMinus()
+  {
+    int left = getLeftEndpoint();
+    int right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new IntegerRange(left, right, getStep(), true, true, false);
+    }
+
+    return new IntegerRange(right, left, getStep(), true, true, true);
+  }
+
   @Override
   public Iterator<Integer> iterateFromLeft()
   {

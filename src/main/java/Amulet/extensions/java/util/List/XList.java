@@ -1,5 +1,6 @@
 package Amulet.extensions.java.util.List;
 
+import art.arcane.amulet.range.IntegerRange;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
@@ -8,6 +9,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import static art.arcane.amulet.MagicalSugar.*;
 
 @Extension
 public class XList {
@@ -118,7 +120,7 @@ public class XList {
             return self;
         }
 
-        for(int i = self.last(); i >= 0; i--)
+        for(int i : index self)
         {
             if(predicate.test(self.get(i)))
             {

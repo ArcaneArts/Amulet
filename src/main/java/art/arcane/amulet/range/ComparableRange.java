@@ -29,4 +29,17 @@ public final class ComparableRange<E extends Comparable<E>> extends AbstractRang
   {
     super( left, right, leftClosed, rightClosed, reverse );
   }
+
+  public ComparableRange<E> unaryMinus()
+  {
+    E left = getLeftEndpoint();
+    E right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new ComparableRange<E>(left, right, true, true, false);
+    }
+
+    return new ComparableRange<E>(right, left, true, true, true);
+  }
 }

@@ -30,6 +30,19 @@ public final class BigIntegerRange extends NumberRange<BigInteger, BigIntegerRan
     this( left, right, BigInteger.ONE, true, true, false );
   }
 
+  public BigIntegerRange unaryMinus()
+  {
+    var left = getLeftEndpoint();
+    var right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new BigIntegerRange(left, right, getStep(), true, true, false);
+    }
+
+    return new BigIntegerRange(right, left, getStep(), true, true, true);
+  }
+
   public BigIntegerRange( BigInteger left, BigInteger right, BigInteger step, boolean leftClosed, boolean rightClosed, boolean reverse )
   {
     super( left, right, step, leftClosed, rightClosed, reverse );

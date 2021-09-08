@@ -28,6 +28,19 @@ public final class DoubleRange extends NumberRange<Double, DoubleRange>
     this( left, right, 1 );
   }
 
+  public DoubleRange unaryMinus()
+  {
+    var left = getLeftEndpoint();
+    var right = getRightEndpoint();
+
+    if(isReversed())
+    {
+      return new DoubleRange(left, right, getStep(), true, true, false);
+    }
+
+    return new DoubleRange(right, left, getStep(), true, true, true);
+  }
+
   public DoubleRange( Double left, Double right, double step )
   {
     this( left, right, step, true, true, false );

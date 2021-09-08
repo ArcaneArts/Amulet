@@ -686,6 +686,55 @@ public class MagicalSugar {
     }
 
     /**
+     * Get a range from the indexes of a list. index List == 0 to List.size() - 1
+     */
+    public static final _MAGIC_Range_Index_List index = _MAGIC_Range_Index_List.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Range_Index_List
+    {
+        private static final _MAGIC_Range_Index_List INSTANCE = new _MAGIC_Range_Index_List();
+        private static _MAGIC_Range_Index_List instance() {return INSTANCE;}
+        public IntegerRange prefixBind(List<?> rad) {return 0 to (rad.last());}
+    }
+
+    /**
+     * Reverse a range (reverse 0 to 10)
+     */
+    public static final _MAGIC_Range_Reverse_Int reverse = _MAGIC_Range_Reverse_Int.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Range_Reverse_Int
+    {
+        private static final _MAGIC_Range_Reverse_Int INSTANCE = new _MAGIC_Range_Reverse_Int();
+        private static _MAGIC_Range_Reverse_Int instance() {return INSTANCE;}
+        public IntegerRange prefixBind(IntegerRange rad) {return new IntegerRange(rad.getRightEndpoint(), rad.getLeftEndpoint());}
+    }
+
+    /**
+     * Reverse a range (0 to 10 reversed)
+     */
+    public static final _MAGIC_Range_Reversed_Int reversed = _MAGIC_Range_Reversed_Int.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Range_Reversed_Int
+    {
+        private static final _MAGIC_Range_Reversed_Int INSTANCE = new _MAGIC_Range_Reversed_Int();
+        private static _MAGIC_Range_Reversed_Int instance() {return INSTANCE;}
+        public <E extends Comparable<E>> ComparableRange<E> postfixBind(ComparableRange<E> rad) {
+            E left = rad.getLeftEndpoint();
+            E right = rad.getRightEndpoint();
+
+            if(rad.isReversed())
+            {
+                return new ComparableRange<E>(left, right, true, true, false);
+            }
+
+            return new ComparableRange<E>(right, left, true, true, true);
+        }
+    }
+
+    /**
      * Time ticks to ms
      */
     public static final _MAGIC_Time_Ticks ticks = _MAGIC_Time_Ticks.instance();

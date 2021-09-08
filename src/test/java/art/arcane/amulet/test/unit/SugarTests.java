@@ -4,6 +4,7 @@ import static art.arcane.amulet.MagicalSugar.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import art.arcane.amulet.geometry.Vec;
+import art.arcane.amulet.range.IntegerRange;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -25,6 +26,12 @@ public class SugarTests {
         assertEquals(48 min 64, 64);
         assertEquals(50 min 60 max 70, 60);
         assertEquals(76 min 60 max 70, 70);
+    }
+
+    @Test
+    public void testRanges()
+    {
+        assertEquals(3 to 5, new IntegerRange(3, 5));
     }
 
     @Test
