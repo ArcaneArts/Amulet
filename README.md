@@ -4,6 +4,9 @@ A very simple collections &amp; general util api
 # But what does it do?
 Amulet can do a ton to help save you time.
 
+## Sugar
+Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in ITJ if you setup a live-template.
+
 ## Lists, Sets, Maps
 There's a fair bit of new methods for lists sets & maps you can use on any implementation, here's the gist
 ```java
@@ -20,6 +23,17 @@ m.qput("a", 1).qput("b", 2);
 
 Map<Integer, String> flp = -map;
 // you get it
+```
+
+## Math
+Math, for the lazy man
+```java
+4 max 6; // Math.max
+6 min 2; // Math.min
+
+5sq; // 25
+25sqrt; // 5
+(5sq + 5sq)sqrt; // Math.sqrt(5sq + 5sq);
 ```
 
 ## Vectors
@@ -46,6 +60,33 @@ Gotta love ranges
 for(int i : 0 to 19) {} // inclusive 0 to 19
 for(int i : 5 to 25 step 3) {}
 int val = 34 clip 5 to 10; // restrict input (34) to a range of 5-10, so its 10
+
+List<?> someList = ...;
+for(int i : index someList)
+{
+    Object o = someList[i];
+}
+
+// Reverse
+for(int i : reverse index someList)
+{
+    Object o = someList[i];
+}
+```
+
+## Time
+Everything works in milliseconds at the end of the day
+```java
+long duration;
+
+duration = 15 seconds;
+
+while(duration > 1 second)
+{
+    duration -= 0.25 seconds;
+}
+
+duration += 5 years + 3 months + 25 days + 1 hour + 25 minutes + 1 second
 ```
 
 ## Strings
