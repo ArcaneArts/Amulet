@@ -7,12 +7,12 @@ A very simple collections &amp; general util api
 Amulet can do a ton to help save you time.
 
 ## Sugar
-Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in ITJ if you setup a live-template for Java > Declaration
+Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in IntelliJ if you setup a live-template for Java > Declaration
 
 ## Lists, Sets, Maps
-There's a fair bit of new methods for lists sets & maps you can use on any implementation, here's the gist
+There are a fair amount of new methods for lists, sets & maps you can use on any implementation, here's the gist
 ```java
-List<Intege> list = List.of(3, 4, 5);
+List<Integer> list = List.of(3, 4, 5);
 list.toString(","); // "3,4,5"
 (-list).toString(",") // "5,4,3"
 list.pop() // Removes off 5 & returns it"
