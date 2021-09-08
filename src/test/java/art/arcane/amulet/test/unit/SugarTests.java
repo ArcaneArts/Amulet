@@ -16,15 +16,15 @@ public class SugarTests {
     {
         assertEquals(30 seconds, TimeUnit.SECONDS.toMillis(30));
         assertEquals(4.5 hours, TimeUnit.HOURS.toMillis(1) * 4.5D);
-        assertEquals(30 seconds + 25 minutes, TimeUnit.SECONDS.toMillis(TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25)));
+        assertEquals(30 seconds + (25 minutes), TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25));
     }
 
     @Test
     public void testMath()
     {
-        assertEquals(40 max 15, 15);
-        assertEquals(48 min 64, 64);
-        assertEquals(50 min 60 max 70, 60);
+        assertEquals(40 max 15, 40);
+        assertEquals(48 min 64, 48);
+        assertEquals(50 min 60 max 70, 70);
         assertEquals(76 min 60 max 70, 70);
     }
 
@@ -32,6 +32,8 @@ public class SugarTests {
     public void testRanges()
     {
         assertEquals(3 to 5, new IntegerRange(3, 5));
+        assertEquals(-(3 to 5), 5 to 3);
+        assertEquals(reverse 3 to 5, 5 to 3);
     }
 
     @Test

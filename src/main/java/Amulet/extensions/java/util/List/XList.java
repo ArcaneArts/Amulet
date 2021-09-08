@@ -120,33 +120,24 @@ public class XList {
             return self;
         }
 
-        for(int i : index self)
+        List<E> drop = new ArrayList<>();
+
+        for(int i : reverse index self)
         {
-            if(predicate.test(self.get(i)))
+            if(predicate.test(self[i]))
             {
-                self.remove(i);
+                drop.add(self[i]);
             }
         }
+
+        self.removeAll(drop);
 
         return self;
     }
 
     public static <E> @Self List<E> keepWhere(@This List<E> self, Predicate<E> predicate)
     {
-        if(self.isEmpty())
-        {
-            return self;
-        }
-
-        for(int i = self.last(); i >= 0; i--)
-        {
-            if(!predicate.test(self.get(i)))
-            {
-                self.remove(i);
-            }
-        }
-
-        return self;
+        return self.removeWhere(predicate.negate());
     }
 
     public static <E, R> @Self List<R> convert(@This List<E> self, Function<E, R> converter)

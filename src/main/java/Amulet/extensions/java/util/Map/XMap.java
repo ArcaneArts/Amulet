@@ -155,7 +155,7 @@ public class XMap {
         Map<V, K> m = new HashMap<>();
 
         for (V i : f.k()) {
-            m.putNonNull(i, m.isEmpty() ? null : m.get(0));
+            m.putNonNull(i, m.isEmpty() ? null : (f.get(i))[0]);
         }
 
         return m;
