@@ -1,7 +1,7 @@
 # Amulet
 A very simple collections &amp; general util api
 
-[!](https://raw.githubusercontent.com/ArcaneArts/Amulet/main/icons8-necklace-512.png)
+![](https://raw.githubusercontent.com/ArcaneArts/Amulet/main/icons8-necklace-512.png)
 
 # But what does it do?
 Amulet can do a ton to help save you time.
