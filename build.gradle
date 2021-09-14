@@ -1,3 +1,21 @@
+/*
+ * Amulet is an extension api for Java
+ * Copyright (c) 2021 Arcane Arts
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 plugins {
     id 'java'
     id 'java-library'
@@ -24,7 +42,7 @@ configurations {
 
 jar {
     manifest {
-        attributes('Contains-Sources':'java,class')
+        attributes('Contains-Sources': 'java,class')
     }
 }
 
@@ -35,6 +53,8 @@ dependencies {
     annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'com.google.guava:guava:30.1.1-jre'
+    implementation 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
 }
 
 test {
@@ -42,7 +62,7 @@ test {
 }
 
 if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
-        sourceSets.main.allJava.files.any {it.name == "module-info.java"}) {
+        sourceSets.main.allJava.files.any { it.name == "module-info.java" }) {
     tasks.withType(JavaCompile) {
         // if you DO define a module-info.java file:
         options.compilerArgs += ['-Xplugin:Manifold', '--module-path', it.classpath.asPath]

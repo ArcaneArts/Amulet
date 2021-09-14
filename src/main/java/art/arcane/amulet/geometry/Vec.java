@@ -1,3 +1,21 @@
+/*
+ * Amulet is an extension api for Java
+ * Copyright (c) 2021 Arcane Arts
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package art.arcane.amulet.geometry;
 
 import manifold.ext.rt.api.Structural;
@@ -11,100 +29,83 @@ public interface Vec {
      */
     static final double epsilon = 0.000001;
 
-    static Vec of(Vec other)
-    {
+    static Vec of(Vec other) {
         return other.copy();
     }
 
-    static Vec of(double x, double y, double z)
-    {
+    static Vec of(double x, double y, double z) {
         return new VecImpl3(x, y, z);
     }
 
-    static Vec of(int x, int y, int z)
-    {
+    static Vec of(int x, int y, int z) {
         return new VecImpl3(x, y, z);
     }
 
-    static Vec of(double x)
-    {
+    static Vec of(double x) {
         return new VecImpl3(x);
     }
 
     /**
      * Add to this vector
+     *
      * @param x +
      * @param y +
      * @param z +
      * @return this (now added) vector
      */
-    default Vec add(double x, double y, double z)
-    {
+    default Vec add(double x, double y, double z) {
         return x(x() + x).y(y() + y).z(z() + z);
     }
 
-    default Vec multiply(double mult)
-    {
+    default Vec multiply(double mult) {
         return multiply(mult, mult, mult);
     }
 
-    default Vec add(double all)
-    {
+    default Vec add(double all) {
         return add(all, all, all);
     }
 
-    default Vec copy()
-    {
+    default Vec copy() {
         return new VecImpl3(x(), y(), z());
     }
 
-    default Vec rem(double d)
-    {
+    default Vec rem(double d) {
         return copy().modulus(d);
     }
 
-    default Vec plus(double d)
-    {
+    default Vec plus(double d) {
         return copy().add(d);
     }
 
-    default Vec minus(double d)
-    {
+    default Vec minus(double d) {
         return copy().subtract(d);
     }
 
-    default Vec times(double d)
-    {
+    default Vec times(double d) {
         return copy().multiply(d);
     }
 
-    default Vec div(double d)
-    {
+    default Vec div(double d) {
         return copy().divide(d);
     }
 
-    default Vec rem(Vec d)
-    {
+    default Vec rem(Vec d) {
         return copy().modulus(d);
     }
 
-    default Vec plus(Vec d)
-    {
+    default Vec plus(Vec d) {
         return copy().add(d);
     }
 
-    default Vec minus(Vec d)
-    {
+    default Vec minus(Vec d) {
         return copy().subtract(d);
     }
 
-    default Vec times(Vec d)
-    {
+    default Vec times(Vec d) {
         return copy().multiply(d);
     }
 
-    default Vec div(Vec d)
-    {
+    default Vec div(Vec d) {
         return copy().divide(d);
     }
 
@@ -116,135 +117,98 @@ public interface Vec {
         return divide(d.x(), d.y(), d.z());
     }
 
-    default Vec multiply(Vec d)
-    {
+    default Vec multiply(Vec d) {
         return multiply(d.x(), d.y(), d.z());
     }
 
-    default Vec inc()
-    {
+    default Vec inc() {
         return copy().add(1);
     }
 
-    default Vec dec()
-    {
+    default Vec dec() {
         return copy().subtract(1);
     }
 
-    default Vec unaryMinus()
-    {
+    default Vec unaryMinus() {
         return copy().reverse();
     }
 
-    default Vec divide(double d)
-    {
+    default Vec divide(double d) {
         return divide(d, d, d);
     }
 
-    default Vec modulus(double d)
-    {
+    default Vec modulus(double d) {
         return modulus(d, d, d);
     }
 
-    default Vec subtract(double d)
-    {
+    default Vec subtract(double d) {
         return add(-d);
     }
 
-    default Vec multiply(double x, double y, double z)
-    {
+    default Vec multiply(double x, double y, double z) {
         return x(x() * x).y(y() * y).z(z() * z);
     }
 
-    default Vec divide(double x, double y, double z)
-    {
+    default Vec divide(double x, double y, double z) {
         return x(x() / x).y(y() / y).z(z() / z);
     }
 
-    default Vec modulus(double x, double y, double z)
-    {
+    default Vec modulus(double x, double y, double z) {
         return x(x() % x).y(y() % y).z(z() % z);
     }
 
-    default Vec reverse()
-    {
+    default Vec reverse() {
         return x(-x()).y(-y()).z(-z());
     }
 
-    default Vec reverseX()
-    {
+    default Vec reverseX() {
         return x(-x());
     }
 
-    default Vec reverseY()
-    {
+    default Vec reverseY() {
         return y(-y());
     }
 
-    default Vec reverseZ()
-    {
+    default Vec reverseZ() {
         return z(-z());
     }
 
-    default double get(int index)
-    {
-        if(index == 0)
-        {
+    default double get(int index) {
+        if (index == 0) {
             return x();
-        }
-        else if(index == 1)
-        {
+        } else if (index == 1) {
             return y();
-        }
-        else if(index == 2)
-        {
+        } else if (index == 2) {
             return z();
-        }
-
-        else
-        {
+        } else {
             throw new IndexOutOfBoundsException("0, 1, or 2 (provided: " + index + ")");
         }
     }
 
-    default double set(int index, double value)
-    {
-        if(index == 0)
-        {
+    default double set(int index, double value) {
+        if (index == 0) {
             x(value);
             return value;
-        }
-
-        else if(index == 1)
-        {
+        } else if (index == 1) {
             y(value);
             return value;
-        }
-
-        else if(index == 2)
-        {
+        } else if (index == 2) {
             z(value);
             return value;
-        }
-
-        else
-        {
+        } else {
             throw new IndexOutOfBoundsException("0, 1, or 2 (provided: " + index + ")");
         }
     }
 
-    default Vec subtract(double x, double y, double z)
-    {
+    default Vec subtract(double x, double y, double z) {
         return add(-x, -y, -z);
     }
 
-    default Vec add(Vec v)
-    {
+    default Vec add(Vec v) {
         return add(v.x(), v.y(), v.z());
     }
 
-    default Vec subtract(Vec v)
-    {
+    default Vec subtract(Vec v) {
         return subtract(v.x(), v.y(), v.z());
     }
 
@@ -258,7 +222,7 @@ public interface Vec {
 
     double z();
 
-     Vec z(double z);
+    Vec z(double z);
 
 
     /**
@@ -423,15 +387,14 @@ public interface Vec {
         if (x() == -0.0D) {
             x(0);
         }
-        if (y() == -0.0D){
+        if (y() == -0.0D) {
             y(0);
         }
-        if (z() == -0.0D){
+        if (z() == -0.0D) {
             z(0);
         }
         return this;
     }
-
 
 
     /**
@@ -486,7 +449,7 @@ public interface Vec {
      * Matrix</a>.
      *
      * @param angle the angle to rotate the vector about. This angle is passed
-     * in radians
+     *              in radians
      * @return the same vector
      */
     default Vec rotateAroundX(double angle) {
@@ -507,7 +470,7 @@ public interface Vec {
      * Matrix</a>.
      *
      * @param angle the angle to rotate the vector about. This angle is passed
-     * in radians
+     *              in radians
      * @return the same vector
      */
     default Vec rotateAroundY(double angle) {
@@ -528,7 +491,7 @@ public interface Vec {
      * Matrix</a>.
      *
      * @param angle the angle to rotate the vector about. This angle is passed
-     * in radians
+     *              in radians
      * @return the same vector
      */
     default Vec rotateAroundZ(double angle) {
@@ -551,13 +514,13 @@ public interface Vec {
      * not modify the length of the vector when rotating. If you are experienced
      * with the scaling of a non-unit axis vector, you can use
      *
-     * @param axis the axis to rotate the vector around. If the passed vector is
-     * not of length 1, it gets copied and normalized before using it for the
-     * passing it to this method
+     * @param axis  the axis to rotate the vector around. If the passed vector is
+     *              not of length 1, it gets copied and normalized before using it for the
+     *              passing it to this method
      * @param angle the angle to rotate the vector around the axis
      * @return the same vector
      * @throws IllegalArgumentException if the provided axis vector instance is
-     * null
+     *                                  null
      */
     default Vec rotateAroundAxis(Vec axis, double angle) throws IllegalArgumentException {
         return rotateAroundNonUnitAxis(axis.isNormalized() ? axis : axis.copy().normalize(), angle);
@@ -576,11 +539,11 @@ public interface Vec {
      * vector will be related to the axis vector. If you are not perfectly sure
      * about the scaling of the vector, use
      *
-     * @param axis the axis to rotate the vector around.
+     * @param axis  the axis to rotate the vector around.
      * @param angle the angle to rotate the vector around the axis
      * @return the same vector
      * @throws IllegalArgumentException if the provided axis vector instance is
-     * null
+     *                                  null
      */
     default Vec rotateAroundNonUnitAxis(Vec axis, double angle) throws IllegalArgumentException {
         double x = x(), y = y(), z = z();
@@ -603,18 +566,15 @@ public interface Vec {
         return x(xPrime).y(yPrime).z(zPrime);
     }
 
-    default Vec floor()
-    {
+    default Vec floor() {
         return x(Math.floor(x())).y(Math.floor(y())).z(Math.floor(z()));
     }
 
-    default Vec ceil()
-    {
+    default Vec ceil() {
         return x(Math.ceil(x())).y(Math.ceil(y())).z(Math.ceil(z()));
     }
 
-    default Vec floorDiv(int m)
-    {
+    default Vec floorDiv(int m) {
         return floor().x(Math.floorDiv((int) x(), m))
                 .y(Math.floorDiv((int) y(), m))
                 .z(Math.floorDiv((int) z(), m));

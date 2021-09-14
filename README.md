@@ -1,16 +1,23 @@
 # Amulet
+
 A very simple collections &amp; general util api
 
 ![](https://raw.githubusercontent.com/ArcaneArts/Amulet/main/icons8-necklace-512.png)
 
 # But what does it do?
+
 Amulet can do a ton to help save you time.
 
 ## Sugar
-Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in ITJ if you setup a live-template for Java > Declaration
+
+Most of Amulet adds additional "keyword-like" functionality to java, basically sugar. Always make sure
+to `import static art.arcane.amulet.MagicalSugar.*;` whenever you need some sugar. It's easier in ITJ if you setup a
+live-template for Java > Declaration
 
 ## Lists, Sets, Maps
+
 There's a fair bit of new methods for lists sets & maps you can use on any implementation, here's the gist
+
 ```java
 List<Intege> list = List.of(3, 4, 5);
 list.toString(","); // "3,4,5"
@@ -28,7 +35,9 @@ Map<Integer, String> flp = -map;
 ```
 
 ## Math
+
 Math, for the lazy man
+
 ```java
 4 max 6; // Math.max
 6 min 2; // Math.min
@@ -39,7 +48,9 @@ Math, for the lazy man
 ```
 
 ## Vectors
+
 Vectors are useful
+
 ```java
 Vec a = Vec.of(0); // 0,0,0
 a += 1; // 1,1,1
@@ -57,7 +68,9 @@ Vec rt a rotate b angle 45 deg; // rotate a around b (as plane) by 45 degrees
 ```
 
 ## Ranges
+
 Gotta love ranges
+
 ```java
 for(int i : 0 to 19) {} // inclusive 0 to 19
 for(int i : 5 to 25 step 3) {}
@@ -77,7 +90,9 @@ for(int i : reverse index someList)
 ```
 
 ## Time
+
 Everything works in milliseconds at the end of the day
+
 ```java
 long duration;
 
@@ -92,6 +107,7 @@ duration += 5 years + 3 months + 25 days + 1 hour + 25 minutes + 1 second
 ```
 
 ## Strings
+
 ```java
 " hello   world   ".normalize(); // "hello world"
 "hello world".capitalizeWords(); // "Hello World"
@@ -102,7 +118,10 @@ duration += 5 years + 3 months + 25 days + 1 hour + 25 minutes + 1 second
 ```
 
 # Project Setup
-To use Amulet in your project, there is some additional setup required. Please follow the setup instructions to ensure everything will work properly.
+
+To use Amulet in your project, there is some additional setup required. Please follow the setup instructions to ensure
+everything will work properly.
+
 1. In settings.gradle Add
     ```groovy
     sourceControl {
@@ -113,7 +132,8 @@ To use Amulet in your project, there is some additional setup required. Please f
     ````
 3. Define the dependency as `implementation art.arcane:Amulet:<TAG>` such as 1.0.2
 4. Install the Manifold Plugin to Intellij (then restart)
-   * Note: You do not need to buy a license, use CTRL + SHIFT + A > Manage Licenses > Mantifold > Evaluate 30 Days (once expired, it will still work but may remind you to register). Though you can just re-evaluate after that time.
+    * Note: You do not need to buy a license, use CTRL + SHIFT + A > Manage Licenses > Mantifold > Evaluate 30 Days (
+      once expired, it will still work but may remind you to register). Though you can just re-evaluate after that time.
 5. Add this to the bottom of your build.gradle
     ```groovy
     if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
@@ -157,14 +177,19 @@ To use Amulet in your project, there is some additional setup required. Please f
     }
     ```
 8. Resync Gradle project in Intellij (hit the refresh button)
-9. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by re-syncing the project.
-10. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
+9. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by
+   re-syncing the project.
+10. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not
+    add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
 11. (OPTIONAL) Invalidate caches / restart
-12. (OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New Template). Specify an abbriviation such as sugar, and enter `import static art.arcane.amulet.MagicalSugar.*;` in the template text. Then simply set the applicable types to Java > Declaration only.
+12. (OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New
+    Template). Specify an abbriviation such as sugar, and enter `import static art.arcane.amulet.MagicalSugar.*;` in the
+    template text. Then simply set the applicable types to Java > Declaration only.
 
 ## Full Gradle Example
 
 settings.gradle
+
 ```groovy
 rootProject.name = 'ExampleProject' // TODO: CHANGE TO YOUR PROJECT NAME!!!
 
@@ -176,6 +201,7 @@ sourceControl {
 ```
 
 build.gradle
+
 ```groovy
 plugins {
     id 'java'

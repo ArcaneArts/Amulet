@@ -1,3 +1,21 @@
+/*
+ * Amulet is an extension api for Java
+ * Copyright (c) 2021 Arcane Arts
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package Amulet.extensions.java.util.Map;
 
 import art.arcane.amulet.functional.Consume;
@@ -5,7 +23,13 @@ import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -14,10 +38,11 @@ public class XMap {
     /**
      * Returns a sorted list of keys from this map, based on the sorting order of
      * the values.
+     *
      * @param comparator the comparator
      * @return the value-sorted key list
      */
-    public static <K,V> List<K> sortK(@This Map<K,V> self, Comparator<V> comparator) {
+    public static <K, V> List<K> sortK(@This Map<K, V> self, Comparator<V> comparator) {
         List<K> k = new ArrayList<K>();
         List<V> v = self.v();
         List<K> sk = self.k();
@@ -35,8 +60,7 @@ public class XMap {
         return k;
     }
 
-    public static <K,V> @Self Map<K,V> unmodifiable(@This Map<K,V> self)
-    {
+    public static <K, V> @Self Map<K, V> unmodifiable(@This Map<K, V> self) {
         return Collections.unmodifiableMap(self);
     }
 
@@ -46,72 +70,67 @@ public class XMap {
      *
      * @return the value-sorted key list
      */
-    public static <K,V> List<K> sortK(@This Map<K,V> self) {
+    public static <K, V> List<K> sortK(@This Map<K, V> self) {
         return self.sortK(Comparator.comparing(Object::toString));
     }
 
-    public static <K,V> @Self Map<K, V> plus(@This Map<K, V> self, Map<K, V> map)
-    {
+    public static <K, V> @Self Map<K, V> plus(@This Map<K, V> self, Map<K, V> map) {
         return self.copy().put(map);
     }
 
-    public static <K,V> @Self Map<K,V> removeWhere(@This Map<K,V> self, Predicate<K> predicate)
-    {
+    public static <K, V> @Self Map<K, V> removeWhere(@This Map<K, V> self, Predicate<K> predicate) {
         self.keySet().removeWhere(predicate);
         return self;
     }
 
-    public static <K,V> @Self Map<K,V> keepWhere(@This Map<K,V> self, Predicate<K> predicate)
-    {
+    public static <K, V> @Self Map<K, V> keepWhere(@This Map<K, V> self, Predicate<K> predicate) {
         self.keySet().keepWhere(predicate);
         return self;
     }
 
-    public static <K,V> @Self Map<K, V> minus(@This Map<K, V> self, Map<K, V> map)
-    {
+    public static <K, V> @Self Map<K, V> minus(@This Map<K, V> self, Map<K, V> map) {
         return self.copy().removeWhere(map::containsKey);
     }
 
-    public static <K,V> @Self Map<K, V> minus(@This Map<K, V> self, Collection<K> collection)
-    {
+    public static <K, V> @Self Map<K, V> minus(@This Map<K, V> self, Collection<K> collection) {
         return self.copy().removeWhere(collection::contains);
     }
 
-    public static <K,V> @Self Map<K, V> minus(@This Map<K, V> self, K v)
-    {
+    public static <K, V> @Self Map<K, V> minus(@This Map<K, V> self, K v) {
         return self.copy().qremove(v);
     }
 
-    public static <K,V> @Self Map<V, K> unaryMinus(@This Map<K, V> self)
-    {
+    public static <K, V> @Self Map<V, K> unaryMinus(@This Map<K, V> self) {
         return self.copy().flipFlatten();
     }
+
     /**
      * Put another map's values into this map
      *
      * @param m the map to insert
      * @return this map (builder)
      */
-    public static <K,V> @Self Map<K, V> put(@This Map<K,V> self, Map<K, V> m) {
+    public static <K, V> @Self Map<K, V> put(@This Map<K, V> self, Map<K, V> m) {
         self.putAll(m);
         return self;
     }
 
     /**
      * Return a copy of this map
+     *
      * @param factory the factory to create a new map
      * @return the copied map
      */
-    public static <K,V> @Self Map<K, V> copy(@This Map<K,V> self, Supplier<Map<K,V>> factory) {
+    public static <K, V> @Self Map<K, V> copy(@This Map<K, V> self, Supplier<Map<K, V>> factory) {
         return factory.get().put(self);
     }
 
     /**
      * Return a copy of this map
-
+     *
      * @return the copied map
      */
-    public static <K,V> @Self Map<K, V> copy(@This Map<K,V> self) {
+    public static <K, V> @Self Map<K, V> copy(@This Map<K, V> self) {
         return self.copy(HashMap::new);
     }
 
@@ -121,7 +140,7 @@ public class XMap {
      * @param f the function
      * @return the same gmap
      */
-    public static <K,V> @Self Map<K, V> rewrite(@This Map<K,V> self, Consume.Three<K, V, Map<K, V>> f) {
+    public static <K, V> @Self Map<K, V> rewrite(@This Map<K, V> self, Consume.Three<K, V, Map<K, V>> f) {
         Map<K, V> m = self.copy();
 
         for (K i : m.k()) {
@@ -137,7 +156,7 @@ public class XMap {
      * @param f the function
      * @return the same gmap
      */
-    public static <K,V> @Self Map<K, V> each(@This Map<K,V> self, Consume.Two<K, V> f) {
+    public static <K, V> @Self Map<K, V> each(@This Map<K, V> self, Consume.Two<K, V> f) {
         for (K i : self.k()) {
             f.accept(i, self.get(i));
         }
@@ -150,7 +169,7 @@ public class XMap {
      *
      * @return the flipped and flattened hashmap
      */
-    public static <K,V> Map<V, K> flipFlatten(@This Map<K, V> self) {
+    public static <K, V> Map<V, K> flipFlatten(@This Map<K, V> self) {
         Map<V, List<K>> f = self.flip();
         Map<V, K> m = new HashMap<>();
 
@@ -166,7 +185,7 @@ public class XMap {
      *
      * @return the flipped hashmap
      */
-    public static <K,V> Map<V, List<K>> flip(@This Map<K,V> self) {
+    public static <K, V> Map<V, List<K>> flip(@This Map<K, V> self) {
         Map<V, List<K>> flipped = new HashMap<>();
 
         for (K i : self.keySet()) {
@@ -182,10 +201,11 @@ public class XMap {
 
     /**
      * Sort values based on the keys sorting order
+     *
      * @param comparator the comparator to use
      * @return the values (sorted)
      */
-    public static <K,V> List<V> sortV(@This Map<K,V> self, Comparator<K> comparator) {
+    public static <K, V> List<V> sortV(@This Map<K, V> self, Comparator<K> comparator) {
         List<V> v = new ArrayList<>();
         List<K> k = self.k();
         List<V> vs = self.v();
@@ -207,7 +227,7 @@ public class XMap {
      *
      * @return the values (sorted)
      */
-    public static <K,V> List<V> sortV(@This Map<K,V> self) {
+    public static <K, V> List<V> sortV(@This Map<K, V> self) {
         return self.sortV(Comparator.comparing(Object::toString));
     }
 
@@ -216,7 +236,7 @@ public class XMap {
      *
      * @return the keys
      */
-    public static <K,V> List<K> k(@This Map<K, V> self) {
+    public static <K, V> List<K> k(@This Map<K, V> self) {
         return List.from(self.keySet());
     }
 
@@ -225,7 +245,7 @@ public class XMap {
      *
      * @return the values
      */
-    public static <K,V> List<V> v(@This Map<K, V> self) {
+    public static <K, V> List<V> v(@This Map<K, V> self) {
         return List.from(self.values());
     }
 
@@ -236,12 +256,12 @@ public class XMap {
      * @param value the value (single only supported)
      * @return self
      */
-    public static <K,V> @Self Map<K, V> qput(@This Map<K, V> self, K key, V value) {
+    public static <K, V> @Self Map<K, V> qput(@This Map<K, V> self, K key, V value) {
         self.put(key, value);
         return self;
     }
 
-    public static <K,V> @Self Map<K, V> qremove(@This Map<K, V> self, K key) {
+    public static <K, V> @Self Map<K, V> qremove(@This Map<K, V> self, K key) {
         self.remove(key);
         return self;
     }
@@ -254,7 +274,7 @@ public class XMap {
      * @param value the nonnull value
      * @return the same map
      */
-    public static <K,V> @Self Map<K, V> putNonNull(@This Map<K,V> self, K key, V value) {
+    public static <K, V> @Self Map<K, V> putNonNull(@This Map<K, V> self, K key, V value) {
         if (key != null && value != null) {
             self.put(key, value);
         }
@@ -267,7 +287,7 @@ public class XMap {
      *
      * @return the cleared map
      */
-    public static <K,V> @Self Map<K, V> qclear(@This Map<K,V> self) {
+    public static <K, V> @Self Map<K, V> qclear(@This Map<K, V> self) {
         self.clear();
         return self;
     }
