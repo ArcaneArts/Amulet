@@ -18,6 +18,7 @@
 
 package art.arcane.amulet.test.unit;
 
+import art.arcane.amulet.Amulet;
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.range.IntegerRange;
 import org.junit.jupiter.api.Test;
@@ -64,9 +65,9 @@ public class SugarTests {
 
     @Test
     public void testDegreesRadians() {
-        assertEquals(90deg, Math.toRadians(90));
+        assertEquals(90 deg, Math.toRadians(90));
         assertEquals(1rad, Math.toDegrees(1));
-        assertEquals(1337, 1337deg rad);
+        assertEquals(1337, 1337 deg rad);
         assertEquals(1337, 1337rad deg);
     }
 
@@ -88,9 +89,9 @@ public class SugarTests {
         assertEquals(a distanceSq b, a.copy().distanceSquared(b));
         assertEquals(a dot b, a.copy().dot(b));
         assertEquals(a cross b, a.copy().crossProduct(b));
-        assertEquals(a rotateX 42deg, a.copy().rotateAroundX(42deg));
-        assertEquals(a rotateY(-2342)deg, a.copy().rotateAroundY(-2342deg));
-        assertEquals(a rotateZ 424deg, a.copy().rotateAroundZ(424deg));
-        assertEquals(a rotate x angle 38deg, a.copy().rotateAroundAxis(x, 38deg));
+        assertEquals(a rotateX 42 deg, a.copy().rotateAroundX(42 deg));
+        assertEquals(a rotateY(-2342)deg, a.copy().rotateAroundY(-2342 deg));
+        assertEquals(a rotateZ 424 deg, a.copy().rotateAroundZ(424 deg));
+        assertEquals(a rotate x angle 38 deg, a.copy().rotateAroundAxis(x, 38 deg));
     }
 }

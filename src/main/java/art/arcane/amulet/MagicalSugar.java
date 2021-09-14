@@ -19,6 +19,7 @@
 package art.arcane.amulet;
 
 import art.arcane.amulet.geometry.Vec;
+import art.arcane.amulet.io.IO;
 import art.arcane.amulet.range.AbstractIterableRange;
 import art.arcane.amulet.range.AbstractRange;
 import art.arcane.amulet.range.BigDecimalRange;
@@ -29,13 +30,21 @@ import art.arcane.amulet.range.IntegerRange;
 import art.arcane.amulet.range.LongRange;
 import art.arcane.amulet.range.Sequential;
 import art.arcane.amulet.range.SequentialRange;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public class MagicalSugar {
+    public static final Gson gson = new Gson();
+
     /**
      * Create a vector & angle amount
      */
@@ -470,6 +479,133 @@ public class MagicalSugar {
                 long max = Math.max(into.getLeftEndpoint(), into.getRightEndpoint());
                 return Math.min(Math.max(start, min), max);
             }
+        }
+    }
+
+    /**
+     * Write to files. "text" write file OR "text" write "file.txt" OR outputStream write file
+     */
+    public static final _MAGIC_IO_WriteAll write = _MAGIC_IO_WriteAll.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_IO_WriteAll {
+        private static final _MAGIC_IO_WriteAll INSTANCE = new _MAGIC_IO_WriteAll();
+
+        private static _MAGIC_IO_WriteAll instance() {
+            return INSTANCE;
+        }
+
+        public __FROM_STRING postfixBind(String start) {
+            return new __FROM_STRING(start);
+        }
+
+        public __FROM_OUT postfixBind(OutputStream start) {
+            return new __FROM_OUT(start);
+        }
+
+        public record __FROM_STRING(String start) {
+            public Void prefixBind(File into) throws IOException {
+                IO.writeAll(into, start);
+                return null;
+            }
+            public Void prefixBind(String into) throws IOException {
+                IO.writeAll(new File(into), start);
+                return null;
+            }
+        }
+
+        public record __FROM_OUT(OutputStream start) {
+            public Void prefixBind(File into) throws IOException {
+                IO.writeAll(into, start);
+                return null;
+            }
+            public Void prefixBind(String into) throws IOException {
+                IO.writeAll(new File(into), start);
+                return null;
+            }
+        }
+    }
+
+    public static final _MAGIC_IO_FromJson fromJson = _MAGIC_IO_FromJson.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_IO_FromJson {
+        private static final _MAGIC_IO_FromJson INSTANCE = new _MAGIC_IO_FromJson();
+
+        private static _MAGIC_IO_FromJson instance() {
+            return INSTANCE;
+        }
+
+        public __FROM postfixBind(String start) {
+            return new __FROM(start);
+        }
+
+        public record __FROM(String start) {
+            public <T> T prefixBind(Class<T> into) {
+                return gson.fromJson(start, into);
+            }
+        }
+    }
+
+    /**
+     * Convert file to FileInputStream
+     */
+    public static final _MAGIC_IO_Open open = _MAGIC_IO_Open.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_IO_Open {
+        private static final _MAGIC_IO_Open INSTANCE = new _MAGIC_IO_Open();
+
+        private static _MAGIC_IO_Open instance() {
+            return INSTANCE;
+        }
+
+        public FileInputStream prefixBind(File in) throws FileNotFoundException {
+            return new FileInputStream(in);
+        }
+
+        public FileInputStream prefixBind(String in) throws FileNotFoundException {
+            return new FileInputStream(in);
+        }
+    }
+
+    /**
+     * Convert Object to Json using Gson
+     */
+    public static final _MAGIC_IO_TOJson toJson = _MAGIC_IO_TOJson.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_IO_TOJson {
+        private static final _MAGIC_IO_TOJson INSTANCE = new _MAGIC_IO_TOJson();
+
+        private static _MAGIC_IO_TOJson instance() {
+            return INSTANCE;
+        }
+
+        public String postfixBind(Object in) throws FileNotFoundException {
+            return gson.toJson(in);
+        }
+    }
+
+    /**
+     * Convert file to String
+     */
+    public static final _MAGIC_IO_ReadAll read = _MAGIC_IO_ReadAll.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_IO_ReadAll {
+        private static final _MAGIC_IO_ReadAll INSTANCE = new _MAGIC_IO_ReadAll();
+
+        private static _MAGIC_IO_ReadAll instance() {
+            return INSTANCE;
+        }
+
+        public String prefixBind(File in) throws IOException {
+            return IO.readAll(in);
+        }
+
+        public String prefixBind(String in) throws IOException {
+            return IO.readAll(new File(in));
         }
     }
 
