@@ -106,6 +106,30 @@ while(duration > 1 second)
 duration += 5 years + 3 months + 25 days + 1 hour + 25 minutes + 1 second
 ```
 
+## Numbers & Bytes
+
+```java
+long a;
+a = 1K; // 1,000
+a = 1M; // 1,000,000
+a = 1B; // 1,000,000,000
+
+a = 1KB; // 1024
+a = 1MB;
+a = 4GB;
+a = 2.77TB;
+```
+
+## Futures
+
+```java
+Future<Long> completed = async 36L; // Simply returns a completed future
+Future<Something> future = async () -> giveSomethingExpensive(); // Calls pool task async
+
+long pointless = await completed;
+Something s = await future; // Waits for it to finish (blocking)
+```
+
 ## Strings
 
 ```java
