@@ -18,7 +18,6 @@
 
 package art.arcane.amulet.test.unit;
 
-import art.arcane.amulet.Amulet;
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.range.IntegerRange;
 import org.junit.jupiter.api.Test;
@@ -35,6 +34,14 @@ public class SugarTests {
         assertEquals(30seconds, TimeUnit.SECONDS.toMillis(30));
         assertEquals(4.5hours, TimeUnit.HOURS.toMillis(1) * 4.5D);
         assertEquals(30seconds + (25minutes), TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Test
+    public void testNullSafe() {
+        String aa = null;
+        assertEquals("a", "a" or "b");
+        assertEquals("b", aa ifnull "b");
     }
 
     @Test

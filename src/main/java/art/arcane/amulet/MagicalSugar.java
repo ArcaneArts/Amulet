@@ -409,7 +409,7 @@ public class MagicalSugar {
     }
 
     /**
-     * String without
+     * String without (replaceall)
      */
     public static final _MAGIC_String_Without without = _MAGIC_String_Without.instance();
 
@@ -431,6 +431,41 @@ public class MagicalSugar {
             }
         }
     }
+
+    /**
+     * NullableObject ifnull Object, simply return the object, or if it's null, the second object
+     */
+    public static final _MAGIC_NullCheck_IfNull ifnull = _MAGIC_NullCheck_IfNull.instance();
+
+    /**
+     * NullableObject or Object, simply return the object, or if it's null, the second object
+     */
+    public static final _MAGIC_NullCheck_IfNull or = _MAGIC_NullCheck_IfNull.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_NullCheck_IfNull {
+        private static final _MAGIC_NullCheck_IfNull INSTANCE = new _MAGIC_NullCheck_IfNull();
+
+        private static _MAGIC_NullCheck_IfNull instance() {
+            return INSTANCE;
+        }
+
+        public <T> __FROM<T> postfixBind(T from) {
+            return new __FROM<>(from);
+        }
+
+        public record __FROM<T>(T start) {
+            public T prefixBind(T into) {
+                if(start != null)
+                {
+                    return start;
+                }
+
+                return into;
+            }
+        }
+    }
+
 
     /**
      * Clip a number to a min and max bound
@@ -522,27 +557,6 @@ public class MagicalSugar {
             public Void prefixBind(String into) throws IOException {
                 IO.writeAll(new File(into), start);
                 return null;
-            }
-        }
-    }
-
-    public static final _MAGIC_IO_FromJson fromJson = _MAGIC_IO_FromJson.instance();
-
-    @SuppressWarnings("unused")
-    public static class _MAGIC_IO_FromJson {
-        private static final _MAGIC_IO_FromJson INSTANCE = new _MAGIC_IO_FromJson();
-
-        private static _MAGIC_IO_FromJson instance() {
-            return INSTANCE;
-        }
-
-        public __FROM postfixBind(String start) {
-            return new __FROM(start);
-        }
-
-        public record __FROM(String start) {
-            public <T> T prefixBind(Class<T> into) {
-                return gson.fromJson(start, into);
             }
         }
     }
