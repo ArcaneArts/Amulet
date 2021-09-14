@@ -18,6 +18,7 @@
 
 package art.arcane.amulet;
 
+import art.arcane.amulet.concurrent.J;
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.io.IO;
 import art.arcane.amulet.range.AbstractIterableRange;
@@ -40,6 +41,9 @@ import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 @SuppressWarnings("unused")
 public class MagicalSugar {
@@ -1247,6 +1251,46 @@ public class MagicalSugar {
     }
 
     /**
+     * Create an async task
+     */
+    public static final _MAGIC_Future_Async async = _MAGIC_Future_Async.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Future_Async {
+        private static final _MAGIC_Future_Async INSTANCE = new _MAGIC_Future_Async();
+
+        private static _MAGIC_Future_Async instance() {
+            return INSTANCE;
+        }
+
+        public <T> Future<T> postfixBind(T v) {
+            return CompletableFuture.completedFuture(v);
+        }
+
+        public <T> Future<T> postfixBind(Callable<T> v) {
+            return J.get(v);
+        }
+    }
+
+    /**
+     * Create an async task
+     */
+    public static final _MAGIC_Future_Await await = _MAGIC_Future_Await.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Future_Await {
+        private static final _MAGIC_Future_Await INSTANCE = new _MAGIC_Future_Await();
+
+        private static _MAGIC_Future_Await instance() {
+            return INSTANCE;
+        }
+
+        public <T> T postfixBind(Future<T> v) {
+            return v.force();
+        }
+    }
+
+    /**
      * Get a range from the indexes of a list. index List == 0 to List.size() - 1
      */
     public static final _MAGIC_Range_Index_List index = _MAGIC_Range_Index_List.instance();
@@ -1297,6 +1341,200 @@ public class MagicalSugar {
 
         public long postfixBind(double rad) {
             return (long) (rad * __MAGIC_UNIT_TIMES.TT);
+        }
+    }
+
+    /**
+     * Times 1,000
+     */
+    public static final _MAGIC_Metric_Thousand thousand = _MAGIC_Metric_Thousand.instance();
+    /**
+     * Times 1,000
+     */
+    public static final _MAGIC_Metric_Thousand K = _MAGIC_Metric_Thousand.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Metric_Thousand {
+        private static final _MAGIC_Metric_Thousand INSTANCE = new _MAGIC_Metric_Thousand();
+
+        private static _MAGIC_Metric_Thousand instance() {
+            return INSTANCE;
+        }
+
+        public double postfixBind(double rad) {
+            return (rad * 1_000);
+        }
+
+        public long postfixBind(long rad) {
+            return (rad * 1_000);
+        }
+
+        public int postfixBind(int rad) {
+            return (rad * 1_000);
+        }
+    }
+
+    /**
+     * Times 1,000,000
+     */
+    public static final _MAGIC_Metric_Million million = _MAGIC_Metric_Million.instance();
+    /**
+     * Times 1,000,000
+     */
+    public static final _MAGIC_Metric_Million M = _MAGIC_Metric_Million.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Metric_Million {
+        private static final _MAGIC_Metric_Million INSTANCE = new _MAGIC_Metric_Million();
+
+        private static _MAGIC_Metric_Million instance() {
+            return INSTANCE;
+        }
+
+        public double postfixBind(double rad) {
+            return (rad * 1_000_000);
+        }
+
+        public long postfixBind(long rad) {
+            return (rad * 1_000_000);
+        }
+
+        public int postfixBind(int rad) {
+            return (rad * 1_000_000);
+        }
+    }
+
+    /**
+     * Times 1,000,000,000
+     */
+    public static final _MAGIC_Metric_Billion billion = _MAGIC_Metric_Billion.instance();
+    /**
+     * Times 1,000,000,000
+     */
+    public static final _MAGIC_Metric_Billion B = _MAGIC_Metric_Billion.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Metric_Billion {
+        private static final _MAGIC_Metric_Billion INSTANCE = new _MAGIC_Metric_Billion();
+
+        private static _MAGIC_Metric_Billion instance() {
+            return INSTANCE;
+        }
+
+        public double postfixBind(double rad) {
+            return (rad * 1_000_000_000);
+        }
+
+        public long postfixBind(long rad) {
+            return (rad * 1_000_000_000);
+        }
+
+        public int postfixBind(int rad) {
+            return (rad * 1_000_000_000);
+        }
+    }
+
+    /**
+     * Times 1,024
+     */
+    public static final _MAGIC_Bytes_KB kilobytes = _MAGIC_Bytes_KB.instance();
+    /**
+     * Times 1,024
+     */
+    public static final _MAGIC_Bytes_KB KB = _MAGIC_Bytes_KB.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Bytes_KB {
+        private static final _MAGIC_Bytes_KB INSTANCE = new _MAGIC_Bytes_KB();
+
+        private static _MAGIC_Bytes_KB instance() {
+            return INSTANCE;
+        }
+
+        public long postfixBind(long rad) {
+            return rad * 1024L;
+        }
+
+        public double postfixBind(double rad) {
+            return rad * 1024L;
+        }
+    }
+
+    /**
+     * Times 1,048,576
+     */
+    public static final _MAGIC_Bytes_MB megabytes = _MAGIC_Bytes_MB.instance();
+    /**
+     * Times 1,048,576
+     */
+    public static final _MAGIC_Bytes_MB MB = _MAGIC_Bytes_MB.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Bytes_MB {
+        private static final _MAGIC_Bytes_MB INSTANCE = new _MAGIC_Bytes_MB();
+
+        private static _MAGIC_Bytes_MB instance() {
+            return INSTANCE;
+        }
+
+        public long postfixBind(long rad) {
+            return rad * 1048576L;
+        }
+
+        public double postfixBind(double rad) {
+            return rad * 1048576L;
+        }
+    }
+
+    /**
+     * Times 1,073,741,824
+     */
+    public static final _MAGIC_Bytes_GB gigabytes = _MAGIC_Bytes_GB.instance();
+    /**
+     * Times 1,073,741,824
+     */
+    public static final _MAGIC_Bytes_GB GB = _MAGIC_Bytes_GB.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Bytes_GB {
+        private static final _MAGIC_Bytes_GB INSTANCE = new _MAGIC_Bytes_GB();
+
+        private static _MAGIC_Bytes_GB instance() {
+            return INSTANCE;
+        }
+
+        public long postfixBind(long rad) {
+            return rad * 1073741824L;
+        }
+
+        public double postfixBind(double rad) {
+            return rad * 1073741824L;
+        }
+    }
+
+    /**
+     * Times 1,099,511,627,776
+     */
+    public static final _MAGIC_Bytes_TB terabytes = _MAGIC_Bytes_TB.instance();
+    /**
+     * Times 1,099,511,627,776
+     */
+    public static final _MAGIC_Bytes_TB TB = _MAGIC_Bytes_TB.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Bytes_TB {
+        private static final _MAGIC_Bytes_TB INSTANCE = new _MAGIC_Bytes_TB();
+
+        private static _MAGIC_Bytes_TB instance() {
+            return INSTANCE;
+        }
+
+        public long postfixBind(long rad) {
+            return rad * (1099511627776L);
+        }
+
+        public double postfixBind(double rad) {
+            return rad * (1099511627776L);
         }
     }
 
