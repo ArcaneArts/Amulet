@@ -32,14 +32,14 @@ import java.util.zip.ZipInputStream;
 
 import static art.arcane.amulet.MagicalSugar.*;
 
-public class ClassMaster {
+public class JarLoader {
     private final Map<String, Supplier<Class<?>>> classCache = new HashMap<>();
 
-    public static ClassMaster from(Class<?> jarClass) throws IOException {
-        return new ClassMaster(jarClass);
+    public static JarLoader from(Class<?> jarClass) throws IOException {
+        return new JarLoader(jarClass);
     }
 
-    public ClassMaster(File... jarFiles) throws IOException {
+    public JarLoader(File... jarFiles) throws IOException {
         List<File> jars = jarFiles.toList();
 
         for(File i : jars)
@@ -70,9 +70,10 @@ public class ClassMaster {
         }
     }
 
-    public ClassMaster(Class<?>... baseClasses) throws IOException {
+    @SuppressWarnings("Convert2MethodRef")
+    public JarLoader(Class<?>... baseClasses) throws IOException {
         this(Arrays.stream(baseClasses)
-                .map(i -> new File(i.getProtectionDomain().getCodeSource().getLocation().getFile()))
+                .map(i -> i.jarFile())
                 .toArray(File[]::new));
     }
 

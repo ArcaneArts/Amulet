@@ -91,7 +91,6 @@ public class XMap {
      * @param <V> the value type
      * @return the new map
      */
-    @SafeVarargs
     @Extension
     public static <K,V> Map<K,V> from(Object... collection) {
         return Arrays.stream(collection).splitInterlace((e, o) ->
