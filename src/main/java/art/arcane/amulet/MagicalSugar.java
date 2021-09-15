@@ -18,6 +18,7 @@
 
 package art.arcane.amulet;
 
+import Amulet.extensions.java.util.concurrent.Future.XFuture;
 import art.arcane.amulet.concurrent.J;
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.io.IO;
@@ -1251,24 +1252,30 @@ public class MagicalSugar {
     }
 
     /**
-     * Create an async task
+     * After this future, call this
      */
-    public static final _MAGIC_Future_Async async = _MAGIC_Future_Async.instance();
+    public static final _MAGIC_Future_Then then = _MAGIC_Future_Then.instance();
 
     @SuppressWarnings("unused")
-    public static class _MAGIC_Future_Async {
-        private static final _MAGIC_Future_Async INSTANCE = new _MAGIC_Future_Async();
+    public static class _MAGIC_Future_Then {
+        private static final _MAGIC_Future_Then INSTANCE = new _MAGIC_Future_Then();
 
-        private static _MAGIC_Future_Async instance() {
+        private static _MAGIC_Future_Then instance() {
             return INSTANCE;
         }
 
-        public <T> Future<T> postfixBind(T v) {
-            return CompletableFuture.completedFuture(v);
+        public <T> __FROM<T> postfixBind(Future<T> from) {
+            return new __FROM<>(from);
         }
 
-        public <T> Future<T> postfixBind(Callable<T> v) {
-            return J.get(v);
+        public record __FROM<T>(Future<T> start) {
+            public <R> Future<R> prefixBind(XFuture.FutureThenFunction<T, R> into) {
+                return start.then(into);
+            }
+
+            public <R> Future<R> prefixBind(Future<R> into) {
+                return start.then(into);
+            }
         }
     }
 

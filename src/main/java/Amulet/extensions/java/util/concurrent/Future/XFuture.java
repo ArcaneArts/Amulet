@@ -19,6 +19,7 @@
 package Amulet.extensions.java.util.concurrent.Future;
 
 import art.arcane.amulet.concurrent.J;
+import art.arcane.amulet.functional.Function;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
@@ -87,13 +88,31 @@ public class XFuture {
     /**
      * When this future completes, run a consumer with it's result
      *
-     * @param self
-     * @param then the consumer to call when this future completes
-     * @param <V>
-     * @return the future of the THEN being called. This future should be
-     * chained on the then consumer, not after this method if you need types.
+     * @param then the function to call when this future completes,
+     *             this will be converted into another future switching to the return type
+     * @param <V> the incoming future type
+     * @param <R> the resulting (then) future type
+     * @return the future of the THEN being called.
      */
-    public static <V> Future<?> then(@This Future<V> self, Consumer<V> then) {
-        return J.run(() -> then.accept(self.force()));
+    public static <V, R> Future<R> then(@This Future<V> self, FutureThenFunction<V, R> then) {
+        return J.get(() -> then.apply(self.force()));
+    }
+
+    /**
+     * Join two futures with the THEN tag, one after another
+     *
+     * @param then the function to call when this future completes,
+     *             this will be converted into another future switching to the return type
+     * @param <V> the incoming future type
+     * @param <R> the resulting (then) future type
+     * @return the future of the THEN being called.
+     */
+    public static <V, R> Future<R> then(@This Future<V> self, Future<R> then) {
+        return self.then((r) -> J.get(then::get).force());
+    }
+
+    @FunctionalInterface
+    public interface FutureThenFunction<V, R> {
+        R apply(V v);
     }
 }
