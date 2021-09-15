@@ -23,6 +23,7 @@ import art.arcane.amulet.range.IntegerRange;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static art.arcane.amulet.MagicalSugar.*;
@@ -31,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SugarTests {
     @Test
     public void testTime() {
-        assertEquals(30seconds, TimeUnit.SECONDS.toMillis(30));
-        assertEquals(4.5hours, TimeUnit.HOURS.toMillis(1) * 4.5D);
-        assertEquals(30seconds + (25minutes), TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25));
+        assertEquals(TimeUnit.SECONDS.toMillis(30), 30seconds);
+        assertEquals(TimeUnit.HOURS.toMillis(1) * 4.5D, 4.5hours);
+        assertEquals(TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25), 30seconds + (25minutes));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -46,10 +47,10 @@ public class SugarTests {
 
     @Test
     public void testMath() {
-        assertEquals(40 max 15, 40);
-        assertEquals(48 min 64, 48);
-        assertEquals(50 min 60 max 70, 70);
-        assertEquals(76 min 60 max 70, 70);
+        assertEquals(40, 40 max 15);
+        assertEquals(48, 48 min 64);
+        assertEquals(70, 50 min 60 max 70);
+        assertEquals(70, 76 min 60 max 70);
         assertEquals(5 * 5, 5 sq);
         assertEquals(50, 5 sq + 5 sq);
         assertEquals(Math.sqrt(5 * 5), 5 sq sqrt);
@@ -73,32 +74,32 @@ public class SugarTests {
 
     @Test
     public void testRanges() {
-        assertEquals(3 to 5, new IntegerRange(3, 5));
-        assertEquals(-(3 to 5), 5 to 3);
-        assertEquals(reverse 3 to 5, 5 to 3);
+        assertEquals(new IntegerRange(3, 5), 3 to 5);
+        assertEquals(5 to 3, -(3 to 5));
+        assertEquals(5 to 3, reverse 3 to 5);
     }
 
     @Test
     public void testClip() {
-        assertEquals(45 clip 3 to 50, 45);
-        assertEquals(42 clip 4 to 25, 25);
-        assertEquals(2 clip 7 to 50, 7);
+        assertEquals(45, 45 clip 3 to 50);
+        assertEquals(25, 42 clip 4 to 25);
+        assertEquals(7, 2 clip 7 to 50);
     }
 
     @Test
     public void testDegreesRadians() {
         assertEquals(90 deg, Math.toRadians(90));
         assertEquals(1 rad, Math.toDegrees(1));
-        assertEquals(1337, 1337 deg rad);
-        assertEquals(1337, 1337 rad deg);
+        assertEquals(1337 deg rad, 1337);
+        assertEquals(1337 rad deg, 1337);
     }
 
     @Test
     public void testStrings() {
-        assertEquals("hello" uc, "hello".upper());
-        assertEquals("aaa" uc lc, "aaa");
-        assertEquals("hello" without "o", "hell");
-        assertEquals("a,b,c" split ",", List.of("a", "b", "c"));
+        assertEquals("hello".upper(), "hello" uc);
+        assertEquals("aaa", "aaa" uc lc);
+        assertEquals("hell", "hello" without "o");
+        assertEquals(List.of("a", "b", "c"), "a,b,c" split ",");
     }
 
     @Test
@@ -107,13 +108,13 @@ public class SugarTests {
         Vec b = Vec.of(33, 21, 66);
         Vec x = Vec.of(1, 3, 8).normalize();
 
-        assertEquals(a distance b, a.copy().distance(b));
-        assertEquals(a distanceSq b, a.copy().distanceSquared(b));
-        assertEquals(a dot b, a.copy().dot(b));
-        assertEquals(a cross b, a.copy().crossProduct(b));
-        assertEquals(a rotateX 42 deg, a.copy().rotateAroundX(42 deg));
-        assertEquals(a rotateY (-2342) deg, a.copy().rotateAroundY(-2342 deg));
-        assertEquals(a rotateZ 424 deg, a.copy().rotateAroundZ(424 deg));
-        assertEquals(a rotate x angle 38 deg, a.copy().rotateAroundAxis(x, 38 deg));
+        assertEquals(a.copy().distance(b), a distance b);
+        assertEquals(a.copy().distanceSquared(b), a distanceSq b);
+        assertEquals(a.copy().dot(b), a dot b);
+        assertEquals(a.copy().crossProduct(b), a cross b);
+        assertEquals(a.copy().rotateAroundX(42 deg), a rotateX 42 deg);
+        assertEquals(a.copy().rotateAroundY(-2342 deg), a rotateY (-2342) deg);
+        assertEquals(a.copy().rotateAroundZ(424 deg), a rotateZ 424 deg);
+        assertEquals(a.copy().rotateAroundAxis(x, 38 deg), a rotate x angle 38 deg);
     }
 }

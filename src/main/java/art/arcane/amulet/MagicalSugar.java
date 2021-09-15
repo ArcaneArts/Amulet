@@ -18,8 +18,6 @@
 
 package art.arcane.amulet;
 
-import Amulet.extensions.java.util.concurrent.Future.XFuture;
-import art.arcane.amulet.concurrent.J;
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.io.IO;
 import art.arcane.amulet.range.AbstractIterableRange;
@@ -42,9 +40,6 @@ import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 @SuppressWarnings("unused")
 public class MagicalSugar {
@@ -1248,52 +1243,6 @@ public class MagicalSugar {
 
         public double postfixBind(double rad) {
             return Math.sqrt(rad);
-        }
-    }
-
-    /**
-     * After this future, call this
-     */
-    public static final _MAGIC_Future_Then then = _MAGIC_Future_Then.instance();
-
-    @SuppressWarnings("unused")
-    public static class _MAGIC_Future_Then {
-        private static final _MAGIC_Future_Then INSTANCE = new _MAGIC_Future_Then();
-
-        private static _MAGIC_Future_Then instance() {
-            return INSTANCE;
-        }
-
-        public <T> __FROM<T> postfixBind(Future<T> from) {
-            return new __FROM<>(from);
-        }
-
-        public record __FROM<T>(Future<T> start) {
-            public <R> Future<R> prefixBind(XFuture.FutureThenFunction<T, R> into) {
-                return start.then(into);
-            }
-
-            public <R> Future<R> prefixBind(Future<R> into) {
-                return start.then(into);
-            }
-        }
-    }
-
-    /**
-     * Create an async task
-     */
-    public static final _MAGIC_Future_Await await = _MAGIC_Future_Await.instance();
-
-    @SuppressWarnings("unused")
-    public static class _MAGIC_Future_Await {
-        private static final _MAGIC_Future_Await INSTANCE = new _MAGIC_Future_Await();
-
-        private static _MAGIC_Future_Await instance() {
-            return INSTANCE;
-        }
-
-        public <T> T postfixBind(Future<T> v) {
-            return v.force();
         }
     }
 

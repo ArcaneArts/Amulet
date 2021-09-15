@@ -19,16 +19,15 @@
 package Amulet.extensions.java.util.concurrent.Future;
 
 import art.arcane.amulet.concurrent.J;
-import art.arcane.amulet.functional.Function;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
 @Extension
 public class XFuture {
@@ -54,6 +53,18 @@ public class XFuture {
     }
 
     /**
+     * Get a completed future of a given value
+     * @param v the value
+     * @param <V> the value type
+     * @return the future of the value (already completed)
+     */
+    @Extension
+    public static <V> Future<V> of(V v)
+    {
+        return CompletableFuture.completedFuture(v);
+    }
+
+    /**
      * Wait on this future and multiple callables to finish in parallel,
      * once all (including this future) have finished a list of all the values is constructed.
      *
@@ -64,7 +75,7 @@ public class XFuture {
      */
     @SafeVarargs
     @SuppressWarnings("Convert2MethodRef")
-    public static <V> Future<List<V>> and(@This Future<V> self, Callable<V>... vs) {
+    public static <V> Future<List<V>> andCall(@This Future<V> self, Callable<V>... vs) {
         return J.get(() -> Arrays.stream(vs).map(J::get).and(self).map((i) -> i.force()).toList());
     }
 
@@ -77,7 +88,7 @@ public class XFuture {
      * @return this future's result (after all the runnables have finished with this future concurrently)
      */
     @SuppressWarnings("Convert2MethodRef")
-    public static <V> Future<V> and(@This Future<V> self, Runnable... vs) {
+    public static <V> Future<V> andRunAll(@This Future<V> self, Runnable... vs) {
         return J.get(() -> {
             AtomicReference<V> bin = new AtomicReference<>();
             J.run(() -> Arrays.stream(vs).and(() -> bin.set(self.force())).map((i) -> J.run(i)).forEach((i) -> i.force())).force();

@@ -18,33 +18,29 @@
 
 package art.arcane.amulet.test.unit;
 
+import art.arcane.amulet.concurrent.J;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
+import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ListTests {
+public class FutureTests {
     @Test
-    public void testOperators() {
-        List<Integer> v = List.from(1, 2, 3);
-
-        assertEquals(v.copy().reverse(), -v);
-        assertEquals(v.copy().add(9, 10, 11), v + List.from(9, 10, 11));
-        assertEquals(v.copy().remove(1, 2), v - List.from(1, 2));
-        assertEquals(2, v[1]);
+    public void testThenChaining() {
+        assertEquals(50, Future.of(50).force());
+        assertEquals(25, Future.of(50).then((i) -> i/2).force());
+        assertEquals(100, Future.of(25).then(i -> i*2).then(i -> i * 2).force());
     }
 
     @Test
-    public void testMethods() {
-        List<Integer> v = List.from(1, 2, 3);
+    public void testAndCalling() {
+        assertEquals(15, J.get(this::get)
+                .andCall(this::get, this::get)
+                .force().stream().mapToInt(i -> i).sum());
+    }
 
-        assertEquals(v.copy().remove(1, 2), List.from(3));
-        assertEquals(v.copy().remove(1, 2), v.copy().removeWhere(i -> i <= 2));
-        assertEquals(v.copy().remove(1, 2), v.copy().keepWhere(i -> i > 2));
-        assertEquals("1,2,3", v.toString(","));
-        assertEquals(1, v.copy().pop());
-        assertEquals(3, v.copy().popLast());
-        assertEquals(2, v.last());
+    public int get()
+    {
+        return 5;
     }
 }

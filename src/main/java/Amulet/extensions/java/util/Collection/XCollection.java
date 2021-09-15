@@ -16,27 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package Amulet.extensions.java.lang.Object;
+package Amulet.extensions.java.util.Collection;
 
-import com.google.gson.Gson;
 import manifold.ext.rt.api.Extension;
+import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 
+import java.util.Collection;
+import java.util.Collections;
+
 @Extension
-public class XObject {
-  private static final Gson gson = new Gson();
-
-  public static String toJson(@This Object o) {
-    return gson.toJson(o);
-  }
-
-  public static int identity(@This Object o) {
-    return System.identityHashCode(o);
-  }
-
-  @Extension
-  public static <T> T fromJson(String json, Class<? extends T> clazz)
-  {
-    return gson.fromJson(json, clazz);
+public class XCollection {
+  public static <E> @Self Collection<E> unmodifiable(@This Collection<E> self) {
+    return Collections.unmodifiableCollection(self);
   }
 }

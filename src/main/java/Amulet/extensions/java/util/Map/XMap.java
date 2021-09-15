@@ -24,6 +24,7 @@ import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -81,6 +82,28 @@ public class XMap {
     public static <K, V> @Self Map<K, V> removeWhere(@This Map<K, V> self, Predicate<K> predicate) {
         self.keySet().removeWhere(predicate);
         return self;
+    }
+
+    /**
+     * Force map creation with every other object in the collection
+     * @param collection the collection of K,V,K,V...
+     * @param <K> the key type
+     * @param <V> the value type
+     * @return the new map
+     */
+    @SafeVarargs
+    @Extension
+    public static <K,V> Map<K,V> from(Object... collection) {
+        return Arrays.stream(collection).splitInterlace((e, o) ->
+            Map.from(e.map((i) -> (K) i).toList(),
+                    o.map((i) -> (V) i).toList()));
+    }
+
+    @Extension
+    public static <K,V> Map<K,V> from(List<K> k, List<V> v) {
+        Map<K,V> map = new HashMap<>();
+        k.forEachIndex((m, i) -> map.put(m[i], v[i]));
+        return map;
     }
 
     public static <K, V> @Self Map<K, V> keepWhere(@This Map<K, V> self, Predicate<K> predicate) {

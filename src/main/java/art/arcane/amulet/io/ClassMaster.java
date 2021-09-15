@@ -29,6 +29,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
 import static art.arcane.amulet.MagicalSugar.*;
 
 public class ClassMaster {
