@@ -290,3 +290,6 @@ if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
     }
 }
 ```
+
+## Updating Amulet
+To update Amulet, you need to invalidate caches / restart after changing the gradle dep version & resyncing the project.
