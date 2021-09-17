@@ -195,21 +195,41 @@ public class MagicalSugar {
     /**
      * a min b == Math.min(a, b)
      */
-    public static final _MAGIC_Math_Min_Double min = _MAGIC_Math_Min_Double.instance();
+    public static final _MAGIC_Math_Min min = _MAGIC_Math_Min.instance();
 
     @SuppressWarnings("unused")
-    public static class _MAGIC_Math_Min_Double {
-        private static final _MAGIC_Math_Min_Double INSTANCE = new _MAGIC_Math_Min_Double();
+    public static class _MAGIC_Math_Min {
+        private static final _MAGIC_Math_Min INSTANCE = new _MAGIC_Math_Min();
 
-        private static _MAGIC_Math_Min_Double instance() {
+        private static _MAGIC_Math_Min instance() {
             return INSTANCE;
         }
 
-        public __FROM postfixBind(double from) {
-            return new __FROM(from);
+        public __FROM_Integer postfixBind(int from) {
+            return new __FROM_Integer(from);
         }
 
-        public record __FROM(double start) {
+        public record __FROM_Integer(int start) {
+            public int prefixBind(int into) {
+                return Math.min(start, into);
+            }
+        }
+
+        public __FROM_Long postfixBind(long from) {
+            return new __FROM_Long(from);
+        }
+
+        public record __FROM_Long(long start) {
+            public long prefixBind(long into) {
+                return Math.min(start, into);
+            }
+        }
+
+        public __FROM_Double postfixBind(double from) {
+            return new __FROM_Double(from);
+        }
+
+        public record __FROM_Double(double start) {
             public double prefixBind(double into) {
                 return Math.min(start, into);
             }
@@ -308,6 +328,40 @@ public class MagicalSugar {
         public record __FROM(double start) {
             public double prefixBind(double into) {
                 return Math.max(start, into);
+            }
+        }
+    }
+
+    /**
+     * range lerp double percent
+     */
+    public static final _MAGIC_Math_Lerp lerp = _MAGIC_Math_Lerp.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Math_Lerp {
+        private static final _MAGIC_Math_Lerp INSTANCE = new _MAGIC_Math_Lerp();
+
+        private static _MAGIC_Math_Lerp instance() {
+            return INSTANCE;
+        }
+
+        public __FROM_Double postfixBind(DoubleRange from) {
+            return new __FROM_Double(from);
+        }
+
+        public record __FROM_Double(DoubleRange start) {
+            public double prefixBind(double into) {
+                return Math.lerp(start.getLeftEndpoint(), start.getRightEndpoint(), into);
+            }
+        }
+
+        public __FROM_Integer postfixBind(IntegerRange from) {
+            return new __FROM_Integer(from);
+        }
+
+        public record __FROM_Integer(IntegerRange start) {
+            public double prefixBind(double into) {
+                return Math.lerp(start.getLeftEndpoint(), start.getRightEndpoint(), into);
             }
         }
     }

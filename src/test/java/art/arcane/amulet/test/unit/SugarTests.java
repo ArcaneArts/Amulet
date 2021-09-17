@@ -23,7 +23,6 @@ import art.arcane.amulet.range.IntegerRange;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static art.arcane.amulet.MagicalSugar.*;
@@ -43,6 +42,12 @@ public class SugarTests {
         String aa = null;
         assertEquals("a", "a" or "b");
         assertEquals("b", aa ifnull "b");
+    }
+
+    @Test
+    public void testLerping() {
+        assertEquals(5, 0 to 10 lerp 0.5);
+        assertEquals(7.5D, 0.0 to 10D lerp 0.75);
     }
 
     @Test
