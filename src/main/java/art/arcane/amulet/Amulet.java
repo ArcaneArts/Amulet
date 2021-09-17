@@ -22,11 +22,6 @@ import static art.arcane.amulet.MagicalSugar.*;
 
 public class Amulet {
     public static void main(String[] args) {
-        new Amulet();
-    }
 
-    public Amulet()
-    {
-        
     }
 }
