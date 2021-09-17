@@ -34,6 +34,18 @@ Map<Integer, String> flp = -map;
 // you get it
 ```
 
+## Logging
+Logging is easy. Logging methods are extensions on the base Object class. They show up as `[<CH>/<TYPE>]: <MSG>` such as `[F/SomeManager]: Some Fatal Message`
+```java
+public void doSomething()
+{
+    i("Info log");
+    w("Warning log");
+    f("Fatal log");
+    d("Debug log");
+}
+```
+
 ## Math
 
 Math, for the lazy man
