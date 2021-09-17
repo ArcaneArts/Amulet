@@ -50,7 +50,6 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
 
     public ConcurrentSpaceMap(int initialMax, int absoluteMax, SpaceLoader<T> loader, SpaceSaver<T> saver)
     {
-        assert initialMax <= absoluteMax "Initial Max is larger than the absolute max!";
         this.loader = loader;
         this.saver = saver;
         data = new ConcurrentLinkedHashMap.Builder<Long, SpaceNode<T>>()

@@ -18,8 +18,15 @@
 
 package art.arcane.amulet;
 
-public class Amulet {
-    public static void main(String[] ax) {
+import static art.arcane.amulet.MagicalSugar.*;
 
+public class Amulet {
+    public static void main(String[] args) {
+        new Amulet();
+    }
+
+    public Amulet()
+    {
+        
     }
 }

@@ -18,9 +18,12 @@
 
 package Amulet.extensions.java.lang.Object;
 
+import art.arcane.amulet.logging.LogListener;
 import com.google.gson.Gson;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
+
+import java.util.logging.LogManager;
 
 @Extension
 public class XObject {
@@ -32,6 +35,27 @@ public class XObject {
 
   public static int identity(@This Object o) {
     return System.identityHashCode(o);
+  }
+
+  public static String typeName(@This Object o)
+  {
+    return o.getClass().simpleName();
+  }
+
+  public static void i(@This Object o, Object msg) {
+    LogListener.logger().i(o.typeName(), msg);
+  }
+
+  public static void f(@This Object o, Object msg) {
+    LogListener.logger().f(o.typeName(), msg);
+  }
+
+  public static void w(@This Object o, Object msg) {
+    LogListener.logger().w(o.typeName(), msg);
+  }
+
+  public static void d(@This Object o, Object msg) {
+    LogListener.logger().d(o.typeName(), msg);
   }
 
   @Extension
