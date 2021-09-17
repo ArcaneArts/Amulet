@@ -16,16 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package Amulet.extensions.java.lang.reflect.AccessibleObject;
+package Amulet.extensions.java.lang.reflect.Method;
 
 import manifold.ext.rt.api.Extension;
+import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
-import java.lang.reflect.AccessibleObject;
+
+import java.lang.reflect.Method;
 
 @Extension
-public class XAccessableObject {
-  public static <T extends AccessibleObject> T access(@This AccessibleObject thiz) {
+public class XMethod {
+  public static @Self Method access(@This Method thiz) {
     thiz.setAccessible(true);
-    return (T) thiz;
+    return thiz;
   }
 }
