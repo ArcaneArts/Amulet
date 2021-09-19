@@ -24,7 +24,7 @@ plugins {
 }
 
 group 'art.arcane'
-version '1.0.13'
+version '1.0.14'
 
 java {
     toolchain {
@@ -62,6 +62,14 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
 
 if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
