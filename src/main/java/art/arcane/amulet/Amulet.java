@@ -22,6 +22,6 @@ import static art.arcane.amulet.MagicalSugar.*;
 
 public class Amulet {
     public static void main(String[] args) {
-
+        String a = "this" without "that";
     }
 }
