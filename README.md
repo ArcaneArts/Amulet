@@ -2,6 +2,18 @@
 
 A very simple collections &amp; general util api
 
+[![Release](https://jitpack.io/v/ArcaneArts/Amulet.svg)](https://jitpack.io/#ArcaneArts/Amulet)
+
+```groovy
+maven { url 'https://jitpack.io' }
+```
+
+```groovy
+implementation 'com.github.ArcaneArts:Amulet:latest.release'
+```
+
+See the full [Project Setup](https://github.com/ArcaneArts/Amulet#project-setup)
+
 ![](https://raw.githubusercontent.com/ArcaneArts/Amulet/main/icons8-necklace-512.png)
 
 # But what does it do?
@@ -158,19 +170,13 @@ Something s = await future; // Waits for it to finish (blocking)
 To use Amulet in your project, there is some additional setup required. Please follow the setup instructions to ensure
 everything will work properly.
 
-1. In settings.gradle Add
-    ```groovy
-    sourceControl {
-      gitRepository("https://github.com/ArcaneArts/Amulet.git") {
-          producesModule("art.arcane:Amulet")
-      }
-    }
-    ````
-3. Define the dependency as `implementation art.arcane:Amulet:<TAG>` such as 1.0.2
-4. Install the Manifold Plugin to Intellij (then restart)
+
+
+1. Install the Manifold Plugin to Intellij (then restart)
     * Note: You do not need to buy a license, use CTRL + SHIFT + A > Manage Licenses > Mantifold > Evaluate 30 Days (
       once expired, it will still work but may remind you to register). Though you can just re-evaluate after that time.
-5. Add this to the bottom of your build.gradle
+2. Add the jitpack repository `maven { url 'https://jitpack.io' }` and the dependency (above) for Amulet
+3. Add this to the bottom of your build.gradle
     ```groovy
     if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
         sourceSets.main.allJava.files.any {
@@ -186,13 +192,13 @@ everything will work properly.
         }
     }
     ```
-5. (OPTIONAL) If you use unit testing with Amulet
+4. (OPTIONAL) If you use unit testing with Amulet
     ```groovy
     configurations {
         testImplementation.extendsFrom annotationProcessor
     }
     ```
-6. (OPTIONAL) If you are a dependency to another project add
+5. (OPTIONAL) If you are a dependency to another project add
     ```groovy
     jar {
         manifest {
@@ -200,7 +206,7 @@ everything will work properly.
         }
     }
     ```
-7. Add Manifold Dependencies to your project
+6. Add Manifold Dependencies to your project
     ```groovy
     repositories {
         mavenCentral()
@@ -212,13 +218,13 @@ everything will work properly.
         annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     }
     ```
-8. Resync Gradle project in Intellij (hit the refresh button)
-9. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by
+7. Resync Gradle project in Intellij (hit the refresh button)
+8. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by
    re-syncing the project.
-10. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not
+9. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not
     add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
-11. (OPTIONAL) Invalidate caches / restart
-12. (OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New
+10. (OPTIONAL) Invalidate caches / restart
+11. (OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New
     Template). Specify an abbriviation such as sugar, and enter `import static art.arcane.amulet.MagicalSugar.*;` in the
     template text. Then simply set the applicable types to Java > Declaration only.
 
