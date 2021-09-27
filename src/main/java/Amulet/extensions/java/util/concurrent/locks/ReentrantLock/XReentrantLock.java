@@ -14,10 +14,11 @@ public class XReentrantLock {
     lock.unlock();
   }
 
-  public static <T> void run(@This ReentrantLock lock, Supplier<T> v)
+  public static <T> T run(@This ReentrantLock lock, Supplier<T> v)
   {
     lock.lock();
     T vv = v.get();
     lock.unlock();
+    return vv;
   }
 }
