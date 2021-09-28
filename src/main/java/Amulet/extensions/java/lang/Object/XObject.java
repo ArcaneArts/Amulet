@@ -18,32 +18,14 @@
 
 package Amulet.extensions.java.lang.Object;
 
-import art.arcane.amulet.io.Writable;
 import art.arcane.amulet.logging.LogListener;
 import com.google.gson.Gson;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.logging.LogManager;
-
 @Extension
-public abstract class XObject implements Writable {
+public abstract class XObject {
   private static final Gson gson = new Gson();
-
-
-  public static void writeData(@This Object o, DataOutputStream dos) throws IOException
-  {
-      dos.writeUTF(o.getClass().getCanonicalName());
-      dos.writeUTF(o.toJson());
-  }
-
-  public static void readData(@This Object o, DataInputStream din) throws IOException
-  {
-    throw new UnsupportedOperationException();
-  }
 
   public static String toJson(@This Object o) {
     return gson.toJson(o);

@@ -127,7 +127,7 @@ public class XMap {
     }
 
     @Extension
-    public static <K, V> IdentityHashMap<K, V> identity()
+    public static <K, V> IdentityHashMap<K, V> identityHash()
     {
         return new IdentityHashMap<>();
     }
