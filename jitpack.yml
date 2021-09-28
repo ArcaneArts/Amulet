@@ -3,4 +3,4 @@ jdk:
   - sdk use java 11.0.10-open
 install:
   - chmod 777 gradlew
-  - ./gradlew clean build --stacktrace
+  - ./gradlew clean build --stacktrace --info
