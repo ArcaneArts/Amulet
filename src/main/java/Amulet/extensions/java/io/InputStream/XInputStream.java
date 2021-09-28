@@ -18,7 +18,8 @@
 
 package Amulet.extensions.java.io.InputStream;
 
-import art.arcane.amulet.data.VarInt;
+import art.arcane.amulet.data.Varint;
+import art.arcane.amulet.io.Writable;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
@@ -27,11 +28,8 @@ import java.io.InputStream;
 
 @Extension
 public class XInputStream {
-    public static int writeVarInt(@This InputStream self) throws IOException {
-        return VarInt.readVInt(self);
-    }
-
-    public static long writeVarLong(@This InputStream self) throws IOException {
-        return VarInt.readVLong(self);
+    public static void readObject(@This InputStream self, Writable writable) throws IOException
+    {
+        writable.readStream(self);
     }
 }
