@@ -48,25 +48,18 @@ jar {
     }
 }
 
-configurations {
-    trans {
-        extendsFrom(implementation)
-        canBeConsumed(true)
-        canBeResolved(true)
-    }
-}
-
 dependencies {
-    trans 'systems.manifold:manifold-rt:2021.1.16'
-    trans 'systems.manifold:manifold-ext-rt:2021.1.16'
+    api 'systems.manifold:manifold-rt:2021.1.16'
+    implementation 'systems.manifold:manifold-rt:2021.1.16'
+    api 'systems.manifold:manifold-ext-rt:2021.1.16'
     testAnnotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-    trans 'com.google.guava:guava:30.1.1-jre'
-    trans 'org.apache.commons:commons-lang3:3.12.0'
-    trans 'com.google.code.gson:gson:2.8.8'
-    trans 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
+    api 'com.google.guava:guava:30.1.1-jre'
+    api 'org.apache.commons:commons-lang3:3.12.0'
+    api 'com.google.code.gson:gson:2.8.8'
+    api 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
 }
 
 test {
