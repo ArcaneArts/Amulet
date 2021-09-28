@@ -22,15 +22,10 @@ import art.arcane.amulet.functional.Consume;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
+import manifold.util.concurrent.ConcurrentHashSet;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -103,6 +98,38 @@ public class XMap {
         Map<K,V> map = new HashMap<>();
         k.forEachIndex((m, i) -> map.put(m[i], v[i]));
         return map;
+    }
+
+    @Extension
+    public static <K, V> ConcurrentHashMap<K, V> concurrent()
+    {
+        return new ConcurrentHashMap<>();
+    }
+
+    @Extension
+    public static <K, V> HashMap<K, V> hash()
+    {
+        return new HashMap<>();
+    }
+
+
+    @Extension
+    public static <K, V> LinkedHashMap<K, V> linked()
+    {
+        return new LinkedHashMap<>();
+    }
+
+
+    @Extension
+    public static <K, V> WeakHashMap<K, V> weak()
+    {
+        return new WeakHashMap<>();
+    }
+
+    @Extension
+    public static <K, V> IdentityHashMap<K, V> identity()
+    {
+        return new IdentityHashMap<>();
     }
 
     public static <K, V> @Self Map<K, V> keepWhere(@This Map<K, V> self, Predicate<K> predicate) {

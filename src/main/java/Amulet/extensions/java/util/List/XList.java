@@ -23,12 +23,8 @@ import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -233,6 +229,21 @@ public class XList {
     @Extension
     public static <E> List<E> from(Collection<E> collection) {
         return List.from(collection, ArrayList::new);
+    }
+
+    @Extension
+    public static <E> CopyOnWriteArrayList<E> copyOnWrite() {
+        return new CopyOnWriteArrayList<>();
+    }
+
+    @Extension
+    public static <E> ArrayList<E> array() {
+        return new ArrayList<>();
+    }
+
+    @Extension
+    public static <E> LinkedList<E> linked() {
+        return new LinkedList<>();
     }
 
     @Extension

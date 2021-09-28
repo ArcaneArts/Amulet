@@ -21,13 +21,10 @@ package Amulet.extensions.java.util.Set;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
+import manifold.util.concurrent.ConcurrentHashSet;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -129,6 +126,30 @@ public class XSet {
         }
 
         return self.iterator().next();
+    }
+
+    @Extension
+    public static <E> ConcurrentHashSet<E> concurrent()
+    {
+        return new ConcurrentHashSet<>();
+    }
+
+    @Extension
+    public static <E> HashSet<E> hash()
+    {
+        return new HashSet<>();
+    }
+
+    @Extension
+    public static <E> LinkedHashSet<E> linked()
+    {
+        return new LinkedHashSet<>();
+    }
+
+    @Extension
+    public static <E> CopyOnWriteArraySet<E> copyOnWriteArraySet()
+    {
+        return new CopyOnWriteArraySet<>();
     }
 
     @Extension
