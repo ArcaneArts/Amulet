@@ -37,6 +37,11 @@ public class Consume {
     }
 
     @FunctionalInterface
+    public static interface TwoIO<T0, T1> {
+        public void accept(T0 t0, T1 t1) throws IOException;
+    }
+
+    @FunctionalInterface
     public static interface Three<T0, T1, T2> {
         public void accept(T0 t0, T1 t1, T2 t2);
     }
