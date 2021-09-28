@@ -206,7 +206,7 @@ everything will work properly.
         }
     }
     ```
-6. Add Manifold Dependencies to your project
+6. Add Manifold Annotation Processors to your project
     ```groovy
     repositories {
         mavenCentral()
@@ -214,33 +214,17 @@ everything will work properly.
     }
     
     dependencies {
-        implementation 'systems.manifold:manifold-ext-rt:2021.1.16'
         annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     }
     ```
 7. Resync Gradle project in Intellij (hit the refresh button)
-8. On the gradle sidebar, run Tasks > build > build (:build). This will grab Amulet because Intellij does not do this by
-   re-syncing the project.
-9. (OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not
+10(OPTIONAL) Add the [lombok plugin](https://plugins.gradle.org/plugin/io.freefair.lombok) **ONLY THE PLUGIN** Do not
     add the dependencies or annotation processors, such as `id "io.freefair.lombok" version "6.1.0"`.
-10. (OPTIONAL) Invalidate caches / restart
-11. (OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New
-    Template). Specify an abbriviation such as sugar, and enter `import static art.arcane.amulet.MagicalSugar.*;` in the
-    template text. Then simply set the applicable types to Java > Declaration only.
+11(OPTIONAL) Add a live template to ITJ in Settings > Editor > Live Templates > Java and click (click + > New
+   Template). Specify an abbriviation such as sugar, and enter `import static art.arcane.amulet.MagicalSugar.*;` in the
+   template text. Then simply set the applicable types to Java > Declaration only.
 
 ## Full Gradle Example
-
-settings.gradle
-
-```groovy
-rootProject.name = 'ExampleProject' // TODO: CHANGE TO YOUR PROJECT NAME!!!
-
-sourceControl {
-    gitRepository("https://github.com/ArcaneArts/Amulet.git") {
-        producesModule("art.arcane:Amulet")
-    }
-}
-```
 
 build.gradle
 
@@ -273,7 +257,6 @@ repositories {
 
 dependencies {
     implementation 'art.arcane:Amulet:1.0.2'
-    implementation 'systems.manifold:manifold-ext-rt:2021.1.16'
     annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
