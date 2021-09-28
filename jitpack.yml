@@ -2,5 +2,5 @@ jdk:
   - sdk install java 11.0.10-open
   - sdk use java 11.0.10-open
 install:
-  - echo "Running a custom install command"
+  - chmod 777 gradlew
   - ./gradlew clean install --stacktrace
