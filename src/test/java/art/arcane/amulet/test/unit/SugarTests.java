@@ -23,6 +23,7 @@ import art.arcane.amulet.range.IntegerRange;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static art.arcane.amulet.MagicalSugar.*;
@@ -108,11 +109,30 @@ public class SugarTests {
     }
 
     @Test
+    public void testHashing() {
+        assertArrayEquals("hello".md5(), "hello" md5);
+        assertArrayEquals("hello".sha1(), "hello" sha1);
+        assertArrayEquals("hello".sha256(), "hello" sha256);
+        assertArrayEquals("hello".sha384(), "hello" sha384);
+        assertArrayEquals("hello".sha512(), "hello" sha512);
+        assertEquals("hello".md5().hex(), "hello" md5 hex);
+        assertEquals("hello".sha1().hex(), "hello" sha1 hex);
+        assertEquals("hello".sha256().hex(), "hello" sha256 hex);
+        assertEquals("hello".sha384().hex(), "hello" sha384 hex);
+        assertEquals("hello".sha512().hex(), "hello" sha512 hex);
+    }
+
+    @Test
+    public void testBase64() {
+        String mass = Random.r().s(512);
+        assertEquals(mass.toBase64().fromBase64String(), mass);
+    }
+
+    @Test
     public void testVectors() {
         Vec a = Vec.of(0);
         Vec b = Vec.of(33, 21, 66);
         Vec x = Vec.of(1, 3, 8).normalize();
-
         assertEquals(a.copy().distance(b), a distance b);
         assertEquals(a.copy().distanceSquared(b), a distanceSq b);
         assertEquals(a.copy().dot(b), a dot b);
