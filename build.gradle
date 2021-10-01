@@ -48,12 +48,14 @@ jar {
     }
 }
 
+var manifold = "2021.1.24"
+
 dependencies {
-    api 'systems.manifold:manifold-rt:2021.1.16'
-    implementation 'systems.manifold:manifold-rt:2021.1.16'
-    api 'systems.manifold:manifold-ext-rt:2021.1.16'
-    testAnnotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
-    annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
+    api 'systems.manifold:manifold-rt:' + manifold
+    implementation 'systems.manifold:manifold-rt:' + manifold
+    api 'systems.manifold:manifold-ext-rt:' + manifold
+    testAnnotationProcessor 'systems.manifold:manifold-ext:' + manifold
+    annotationProcessor 'systems.manifold:manifold-ext:' + manifold
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     api 'com.google.guava:guava:30.1.1-jre'
