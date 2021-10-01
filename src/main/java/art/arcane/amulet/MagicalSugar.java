@@ -745,6 +745,114 @@ public class MagicalSugar {
     }
 
     /**
+     * Convert String to MD5 hash (in bytes). Use a conversion such as "hex" after this tag to get a hex string
+     */
+    public static final _MAGIC_Convert_Hash_MD5 md5 = _MAGIC_Convert_Hash_MD5.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Hash_MD5 {
+        private static final _MAGIC_Convert_Hash_MD5 INSTANCE = new _MAGIC_Convert_Hash_MD5();
+
+        private static _MAGIC_Convert_Hash_MD5 instance() {
+            return INSTANCE;
+        }
+
+        public byte[] postfixBind(String in) {
+            return in.md5();
+        }
+    }
+
+    /**
+     * Convert String to SHA-1 hash (in bytes). Use a conversion such as "hex" after this tag to get a hex string
+     */
+    public static final _MAGIC_Convert_Hash_SHA1 sha1 = _MAGIC_Convert_Hash_SHA1.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Hash_SHA1 {
+        private static final _MAGIC_Convert_Hash_SHA1 INSTANCE = new _MAGIC_Convert_Hash_SHA1();
+
+        private static _MAGIC_Convert_Hash_SHA1 instance() {
+            return INSTANCE;
+        }
+
+        public byte[] postfixBind(String in) {
+            return in.sha1();
+        }
+    }
+
+    /**
+     * Convert String to SHA-256 hash (in bytes). Use a conversion such as "hex" after this tag to get a hex string
+     */
+    public static final _MAGIC_Convert_Hash_SHA256 sha256 = _MAGIC_Convert_Hash_SHA256.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Hash_SHA256 {
+        private static final _MAGIC_Convert_Hash_SHA256 INSTANCE = new _MAGIC_Convert_Hash_SHA256();
+
+        private static _MAGIC_Convert_Hash_SHA256 instance() {
+            return INSTANCE;
+        }
+
+        public byte[] postfixBind(String in) {
+            return in.sha256();
+        }
+    }
+
+    /**
+     * Convert String to SHA-384 hash (in bytes). Use a conversion such as "hex" after this tag to get a hex string
+     */
+    public static final _MAGIC_Convert_Hash_SHA384 sha384 = _MAGIC_Convert_Hash_SHA384.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Hash_SHA384 {
+        private static final _MAGIC_Convert_Hash_SHA384 INSTANCE = new _MAGIC_Convert_Hash_SHA384();
+
+        private static _MAGIC_Convert_Hash_SHA384 instance() {
+            return INSTANCE;
+        }
+
+        public byte[] postfixBind(String in) {
+            return in.sha384();
+        }
+    }
+
+    /**
+     * Convert String to SHA-512 hash (in bytes). Use a conversion such as "hex" after this tag to get a hex string
+     */
+    public static final _MAGIC_Convert_Hash_SHA512 sha512 = _MAGIC_Convert_Hash_SHA512.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Hash_SHA512 {
+        private static final _MAGIC_Convert_Hash_SHA512 INSTANCE = new _MAGIC_Convert_Hash_SHA512();
+
+        private static _MAGIC_Convert_Hash_SHA512 instance() {
+            return INSTANCE;
+        }
+
+        public byte[] postfixBind(String in) {
+            return in.sha512();
+        }
+    }
+
+    /**
+     * Convert these bytes into a hex string
+     */
+    public static final _MAGIC_Convert_Hex_String hex = _MAGIC_Convert_Hex_String.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Hex_String {
+        private static final _MAGIC_Convert_Hex_String INSTANCE = new _MAGIC_Convert_Hex_String();
+
+        private static _MAGIC_Convert_Hex_String instance() {
+            return INSTANCE;
+        }
+
+        public String postfixBind(byte[] in) {
+            return in.hex();
+        }
+    }
+
+    /**
      * Convert degrees to radians
      */
     public static final _MAGIC_Convert_Vector vec = _MAGIC_Convert_Vector.instance();
