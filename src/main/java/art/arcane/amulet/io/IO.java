@@ -133,6 +133,35 @@ public class IO {
         return "¯\\_(ツ)_/¯";
     }
 
+    public static byte[] hashMD5(String b) {
+        return hash(b, "MD5");
+    }
+
+    public static byte[] hashSHA1(String b) {
+        return hash(b, "SHA-1");
+    }
+
+    public static byte[] hashSHA256(String b) {
+        return hash(b, "SHA-256");
+    }
+
+    public static byte[] hashSHA512(String b) {
+        return hash(b, "SHA-512");
+    }
+
+    public static byte[] hashSHA384(String b) {
+        return hash(b, "SHA-384");
+    }
+
+    public static byte[] hash(String b, String algo) {
+        try {
+            MessageDigest d = MessageDigest.getInstance(algo);
+            return d.digest(b.getBytes(StandardCharsets.UTF_8));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String hash(File b) {
         try {
             MessageDigest d = MessageDigest.getInstance("SHA-256");
