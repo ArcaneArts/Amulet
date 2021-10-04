@@ -38,10 +38,6 @@ import static art.arcane.amulet.MagicalSugar.*;
 
 @Extension
 public class XStream {
-    public static <T> List<T> toList(@This Stream<T> thiz) {
-        return thiz.collect(Collectors.toList());
-    }
-
     public static <T,R> R splitInterlace(@This Stream<T> thiz, Function.Two<Stream<T>, Stream<T>, R> s)
     {
         List<T> f = thiz.toList();
