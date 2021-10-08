@@ -33,9 +33,7 @@ java {
 }
 
 repositories {
-    mavenCentral()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-    maven { url 'https://jitpack.io' }
+    maven { url "https://dl.cloudsmith.io/public/arcane/archive/maven/" }
 }
 
 configurations {
@@ -72,6 +70,18 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = "cloudsmith"
+            version = System.getenv("CLOUDSMITH_VERSION")
+            url = "https://maven.cloudsmith.io/arcane/archive/"
+            url = "https://maven.cloudsmith.io/arcane/archive/"
+            credentials {
+                username = System.getenv("CLOUDSMITH_USERNAME")
+                password = System.getenv("CLOUDSMITH_PASSWORD")
+            }
         }
     }
 }
