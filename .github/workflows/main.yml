@@ -17,6 +17,19 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${{ env.release_tag  }}"
+          automatic_release_tag: "${{ env.release_tag }}"
           prerelease: false
           title: "${{ env.release_tag  }}"
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Publish Package
+        run: gradle publish
+        env:
+          CLOUDSMITH_USERNAME: ${{ secrets.CLOUDSMITH_USERNAME }}
+          CLOUDSMITH_PASSWORD: ${{ secrets.CLOUDSMITH_PASSWORD }}
+          CLOUDSMITH_VERSION: ${{ env.release_tag }}
