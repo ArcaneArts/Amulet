@@ -46,7 +46,7 @@ jar {
     }
 }
 
-var manifold = "2021.1.24"
+var manifold = "2021.1.25"
 
 dependencies {
     api 'systems.manifold:manifold-rt:' + manifold
