@@ -79,7 +79,7 @@ publishing {
             url = "https://maven.cloudsmith.io/arcane/archive/"
             url = "https://maven.cloudsmith.io/arcane/archive/"
             credentials {
-                username = System.getenv("CLOUDSMITH_USERNAME")
+                username = System.getenv("CLOUDSMITH_USERNAME") 
                 password = System.getenv("CLOUDSMITH_PASSWORD")
             }
         }
