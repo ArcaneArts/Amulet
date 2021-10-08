@@ -2,15 +2,17 @@
 
 A very simple collections &amp; general util api
 
-[![Release](https://jitpack.io/v/ArcaneArts/Amulet.svg)](https://jitpack.io/#ArcaneArts/Amulet)
+[![Latest version of 'Amulet' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/arcane/archive/maven/Amulet/latest/a=noarch;xg=art.arcane/?render=true&show_latest=true)](https://cloudsmith.io/~arcane/repos/archive/packages/detail/maven/Amulet/latest/a=noarch;xg=art.arcane/)
 
 ```groovy
-maven { url 'https://jitpack.io' }
+maven { url "https://dl.cloudsmith.io/public/arcane/archive/maven/" }
 ```
 
 ```groovy
-implementation 'com.github.ArcaneArts:Amulet:latest.release'
+implementation 'art.arcane:Amulet:<VERSION>'
 ```
+
+Manifold Version: `2021.1.24`
 
 See the full [Project Setup](https://github.com/ArcaneArts/Amulet#project-setup)
 
@@ -209,8 +211,7 @@ everything will work properly.
 6. Add Manifold Annotation Processors to your project
     ```groovy
     repositories {
-        mavenCentral()
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url 'https://dl.cloudsmith.io/public/arcane/archive/maven/' }
     }
     
     dependencies {
@@ -251,12 +252,11 @@ jar {
 }
 
 repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
+    maven { url 'https://dl.cloudsmith.io/public/arcane/archive/maven/' }
 }
 
 dependencies {
-    implementation 'art.arcane:Amulet:1.0.2'
+    implementation 'art.arcane:Amulet:<VERSION>'
     annotationProcessor 'systems.manifold:manifold-ext:2021.1.16'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
