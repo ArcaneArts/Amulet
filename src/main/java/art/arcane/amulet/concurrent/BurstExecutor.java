@@ -19,6 +19,7 @@
 package art.arcane.amulet.concurrent;
 
 import lombok.Setter;
+import lombok.SneakyThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,7 @@ public class BurstExecutor {
         return this;
     }
 
+    @SneakyThrows
     public void complete() {
         if (!multicore) {
             return;
@@ -100,15 +102,11 @@ public class BurstExecutor {
                 return;
             }
 
-            try {
-                for (Future<?> i : futures) {
-                    i.get();
-                }
-
-                futures.clear();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+            for (Future<?> i : futures) {
+                i.get();
             }
+
+            futures.clear();
         }
     }
 }

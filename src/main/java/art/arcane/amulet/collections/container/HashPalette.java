@@ -55,7 +55,7 @@ public class HashPalette<T> implements Palette<T> {
             lookup.put(index, t);
         }
 
-        return index;
+        return index; 
     }
 
     @Override
