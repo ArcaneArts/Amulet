@@ -56,6 +56,12 @@ public abstract class XObject {
     LogListener.logger().d(o.typeName(), msg);
   }
 
+  public static void ex(@This Object o, Throwable e) {
+    for(String i : e.printAsStrings()) {
+      LogListener.logger().f(o.typeName(), i);
+    }
+  }
+
   @Extension
   public static <T> T fromJson(String json, Class<? extends T> clazz)
   {
