@@ -18,37 +18,167 @@
 
 package art.arcane.amulet.functional;
 
+import art.arcane.amulet.metric.Average;
+import art.arcane.amulet.metric.PrecisionStopwatch;
+
 import java.io.IOException;
+import java.util.function.DoubleConsumer;
 
 public class Consume {
     @FunctionalInterface
     public static interface One<T0> {
-        public void accept(T0 t0);
+        void accept(T0 t0);
+
+        default One<T0> profiled(DoubleConsumer metrics)
+        {
+            PrecisionStopwatch p = new PrecisionStopwatch();
+
+            return (t) -> {
+                p.begin();
+                accept(t);
+                metrics.accept(p.getMilliseconds());
+                p.reset();
+            };
+        }
+
+        default One<T0> profiledParallel(DoubleConsumer metrics)
+        {
+            return (t) -> {
+                PrecisionStopwatch p = PrecisionStopwatch.start();
+                accept(t);
+                metrics.accept(p.getMilliseconds());
+            };
+        }
     }
 
     @FunctionalInterface
     public static interface Any<T0> {
-        public void accept(T0... t0);
+        void accept(T0... t0);
+
+        default One<T0> profiled(DoubleConsumer metrics)
+        {
+            PrecisionStopwatch p = new PrecisionStopwatch();
+
+            return (t) -> {
+                p.begin();
+                accept(t);
+                metrics.accept(p.getMilliseconds());
+                p.reset();
+            };
+        }
+
+        default One<T0> profiledParallel(DoubleConsumer metrics)
+        {
+            return (t) -> {
+                PrecisionStopwatch p = PrecisionStopwatch.start();
+                accept(t);
+                metrics.accept(p.getMilliseconds());
+            };
+        }
     }
 
     @FunctionalInterface
     public static interface Two<T0, T1> {
-        public void accept(T0 t0, T1 t1);
+        void accept(T0 t0, T1 t1);
+
+        default Two<T0, T1> profiled(DoubleConsumer metrics)
+        {
+            PrecisionStopwatch p = new PrecisionStopwatch();
+
+            return (t, tt) -> {
+                p.begin();
+                accept(t, tt);
+                metrics.accept(p.getMilliseconds());
+                p.reset();
+            };
+        }
+
+        default Two<T0, T1> profiledParallel(DoubleConsumer metrics)
+        {
+            return (t, tt) -> {
+                PrecisionStopwatch p = PrecisionStopwatch.start();
+                accept(t, tt);
+                metrics.accept(p.getMilliseconds());
+            };
+        }
     }
 
     @FunctionalInterface
     public static interface TwoIO<T0, T1> {
-        public void accept(T0 t0, T1 t1) throws IOException;
+        void accept(T0 t0, T1 t1) throws IOException;
+
+        default TwoIO<T0, T1> profiled(DoubleConsumer metrics)
+        {
+            PrecisionStopwatch p = new PrecisionStopwatch();
+
+            return (t, tt) -> {
+                p.begin();
+                accept(t, tt);
+                metrics.accept(p.getMilliseconds());
+                p.reset();
+            };
+        }
+
+        default TwoIO<T0, T1> profiledParallel(DoubleConsumer metrics)
+        {
+            return (t, tt) -> {
+                PrecisionStopwatch p = PrecisionStopwatch.start();
+                accept(t, tt);
+                metrics.accept(p.getMilliseconds());
+            };
+        }
     }
 
     @FunctionalInterface
     public static interface Three<T0, T1, T2> {
-        public void accept(T0 t0, T1 t1, T2 t2);
+        void accept(T0 t0, T1 t1, T2 t2);
+
+        default Three<T0, T1, T2> profiled(DoubleConsumer metrics)
+        {
+            PrecisionStopwatch p = new PrecisionStopwatch();
+
+            return (t, tt, ttt) -> {
+                p.begin();
+                accept(t, tt, ttt);
+                metrics.accept(p.getMilliseconds());
+                p.reset();
+            };
+        }
+
+        default Three<T0, T1, T2> profiledParallel(DoubleConsumer metrics)
+        {
+            return (t, tt, ttt) -> {
+                PrecisionStopwatch p = PrecisionStopwatch.start();
+                accept(t, tt, ttt);
+                metrics.accept(p.getMilliseconds());
+            };
+        }
     }
 
     @FunctionalInterface
     public static interface Four<T0, T1, T2, T3> {
-        public void accept(T0 t0, T1 t1, T2 t2, T3 t3);
+        void accept(T0 t0, T1 t1, T2 t2, T3 t3);
+
+        default Four<T0, T1, T2, T3> profiled(DoubleConsumer metrics)
+        {
+            PrecisionStopwatch p = new PrecisionStopwatch();
+
+            return (t, tt, ttt, tttt) -> {
+                p.begin();
+                accept(t, tt, ttt, tttt);
+                metrics.accept(p.getMilliseconds());
+                p.reset();
+            };
+        }
+
+        default Four<T0, T1, T2, T3> profiledParallel(DoubleConsumer metrics)
+        {
+            return (t, tt, ttt, tttt) -> {
+                PrecisionStopwatch p = PrecisionStopwatch.start();
+                accept(t, tt, ttt, tttt);
+                metrics.accept(p.getMilliseconds());
+            };
+        }
     }
 
     @FunctionalInterface
