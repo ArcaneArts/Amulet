@@ -34,6 +34,7 @@ java {
 
 repositories {
     maven { url "https://dl.cloudsmith.io/public/arcane/archive/maven/" }
+    mavenCentral()
 }
 
 configurations {
@@ -46,20 +47,21 @@ jar {
     }
 }
 
-var manifold = "2021.1.25"
-
 dependencies {
-    api 'systems.manifold:manifold-rt:' + manifold
-    implementation 'systems.manifold:manifold-rt:' + manifold
-    api 'systems.manifold:manifold-ext-rt:' + manifold
-    testAnnotationProcessor 'systems.manifold:manifold-ext:' + manifold
-    annotationProcessor 'systems.manifold:manifold-ext:' + manifold
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.39.1'
+    annotationProcessor 'systems.manifold:manifold-ext:2021.1.27'
+    implementation 'systems.manifold:manifold-rt:2021.1.27'
+    implementation 'com.google.dagger:dagger:2.39.1'
+    api 'systems.manifold:manifold-rt:2021.1.27'
+    api 'systems.manifold:manifold-ext-rt:2021.1.27'
+    api 'it.unimi.dsi:fastutil:8.5.6'
     api 'com.google.guava:guava:31.0.1-jre'
     api 'org.apache.commons:commons-lang3:3.12.0'
     api 'com.google.code.gson:gson:2.8.8'
     api 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
+    testAnnotationProcessor 'systems.manifold:manifold-ext:2021.1.27'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
