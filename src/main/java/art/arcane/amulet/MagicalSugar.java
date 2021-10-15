@@ -30,6 +30,8 @@ import art.arcane.amulet.range.IntegerRange;
 import art.arcane.amulet.range.LongRange;
 import art.arcane.amulet.range.Sequential;
 import art.arcane.amulet.range.SequentialRange;
+import com.google.common.util.concurrent.AtomicDouble;
+import com.google.common.util.concurrent.AtomicDoubleArray;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -40,6 +42,11 @@ import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicLongArray;
 
 @SuppressWarnings("unused")
 public class MagicalSugar {
@@ -1423,6 +1430,26 @@ public class MagicalSugar {
 
         public IntegerRange prefixBind(List<?> rad) {
             return 0to(rad.last());
+        }
+
+        public IntegerRange prefixBind(Object[] rad) {
+            return 0to(rad.length - 1);
+        }
+
+        public IntegerRange prefixBind(int[] rad) {
+            return 0to(rad.length - 1);
+        }
+
+        public IntegerRange prefixBind(long[] rad) {
+            return 0to(rad.length - 1);
+        }
+
+        public IntegerRange prefixBind(double[] rad) {
+            return 0to(rad.length - 1);
+        }
+
+        public IntegerRange prefixBind(boolean[] rad) {
+            return 0to(rad.length - 1);
         }
     }
 

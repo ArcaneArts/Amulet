@@ -16,24 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package Amulet.extensions.java.util.Collection;
+package art.arcane.amulet.config;
 
-import art.arcane.amulet.flow.FlowBuilder;
-import manifold.ext.rt.api.Extension;
-import manifold.ext.rt.api.Self;
-import manifold.ext.rt.api.This;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.stream.Stream;
-
-@Extension
-public class XCollection {
-  public static <E> FlowBuilder<E> flow(@This Collection<E> self) {
-    return new FlowBuilder<>(self.iterator());
-  }
-
-  public static <E> @Self Collection<E> unmodifiable(@This Collection<E> self) {
-    return Collections.unmodifiableCollection(self);
-  }
+public class ConfigurationManager {
 }

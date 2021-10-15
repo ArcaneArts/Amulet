@@ -18,10 +18,12 @@
 
 package Amulet.extensions.java.util.Set;
 
+import art.arcane.amulet.flow.FlowBuilder;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
 import manifold.util.concurrent.ConcurrentHashSet;
+import org.checkerframework.checker.units.qual.K;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -33,6 +35,10 @@ import java.util.function.Supplier;
 public class XSet {
     public static <E> @Self Set<E> copy(@This Set<E> self) {
         return self.copy(HashSet::new);
+    }
+
+    public static <E> FlowBuilder<E> flow(@This Set<E> self) {
+        return new FlowBuilder<>(self.iterator());
     }
 
     public static <E> @Self Set<E> unmodifiable(@This Set<E> self) {

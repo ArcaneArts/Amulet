@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SugarTests {
     @Test
     public void testTime() {
-        assertEquals(TimeUnit.SECONDS.toMillis(30), 30seconds);
+        assertEquals(TimeUnit.SECONDS.toMillis(30), 30 seconds);
         assertEquals(TimeUnit.HOURS.toMillis(1) * 4.5D, 4.5hours);
         assertEquals(TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25), 30seconds + (25minutes));
     }

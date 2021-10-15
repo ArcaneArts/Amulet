@@ -18,6 +18,8 @@
 
 package Amulet.extensions.java.util.List;
 
+import art.arcane.amulet.flow.Flow;
+import art.arcane.amulet.flow.FlowBuilder;
 import art.arcane.amulet.functional.Consume;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
@@ -38,6 +40,10 @@ public class XList {
      */
     public static <E> @Self List<E> withoutDuplicates(@This List<E> self) {
         return self.withoutDuplicates(ArrayList::new);
+    }
+
+    public static <E> FlowBuilder<E> flow(@This List<E> self) {
+        return new FlowBuilder<>(self.iterator());
     }
 
     /**
@@ -101,6 +107,12 @@ public class XList {
 
     public static <E> @Self List<E> copy(@This List<E> self) {
         return self.copy(ArrayList::new);
+    }
+
+    public static <E> @Self List<E> copyClear(@This List<E> self) {
+        List<E> t = self.copy();
+        self.clear();
+        return t;
     }
 
     public static <E> @Self List<E> unmodifiable(@This List<E> self) {

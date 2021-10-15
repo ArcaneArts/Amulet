@@ -16,24 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package Amulet.extensions.java.util.Collection;
+package art.arcane.amulet.flow;
 
-import art.arcane.amulet.flow.FlowBuilder;
-import manifold.ext.rt.api.Extension;
-import manifold.ext.rt.api.Self;
-import manifold.ext.rt.api.This;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.stream.Stream;
+@RequiredArgsConstructor
+@Data
+public class BoundFlowListener<T> {
+    private final FlowListener<T> listener;
+    private final Flow<T> stream;
+    private final int id;
 
-@Extension
-public class XCollection {
-  public static <E> FlowBuilder<E> flow(@This Collection<E> self) {
-    return new FlowBuilder<>(self.iterator());
-  }
-
-  public static <E> @Self Collection<E> unmodifiable(@This Collection<E> self) {
-    return Collections.unmodifiableCollection(self);
-  }
+    public void close()
+    {
+        stream.close(id);
+    }
 }
