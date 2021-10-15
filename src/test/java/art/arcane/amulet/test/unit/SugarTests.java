@@ -25,6 +25,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static art.arcane.amulet.MagicalSugar.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -126,6 +128,14 @@ public class SugarTests {
     public void testBase64() {
         String mass = Random.r().s(512);
         assertEquals(mass.toBase64().fromBase64String(), mass);
+    }
+
+    @Test
+    public void testAtomics() {
+        assertEquals("AAA", (atomic "aaa").get() uc);
+        assertEquals(8, (aint 7).incrementAndGet());
+        assertEquals(11.32, (adouble 7.32).addAndGet(4));
+        assertEquals(2L, (along 3).decrementAndGet());
     }
 
     @Test

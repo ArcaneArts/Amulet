@@ -47,6 +47,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicLongArray;
+import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("unused")
 public class MagicalSugar {
@@ -1840,6 +1841,78 @@ public class MagicalSugar {
 
         public long postfixBind(double rad) {
             return (long) (rad * __MAGIC_UNIT_TIMES.TY);
+        }
+    }
+
+    /**
+     * Convert to atomic ref
+     */
+    public static final _MAGIC_Atomic_Reference atomic = _MAGIC_Atomic_Reference.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Atomic_Reference {
+        private static final _MAGIC_Atomic_Reference INSTANCE = new _MAGIC_Atomic_Reference();
+
+        private static _MAGIC_Atomic_Reference instance() {
+            return INSTANCE;
+        }
+
+        public <T> AtomicReference<T> prefixBind(T d) {
+            return new AtomicReference<>(d);
+        }
+    }
+
+    /**
+     * Convert to atomic Double
+     */
+    public static final _MAGIC_Atomic_Double adouble = _MAGIC_Atomic_Double.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Atomic_Double {
+        private static final _MAGIC_Atomic_Double INSTANCE = new _MAGIC_Atomic_Double();
+
+        private static _MAGIC_Atomic_Double instance() {
+            return INSTANCE;
+        }
+
+        public AtomicDouble prefixBind(double d) {
+            return new AtomicDouble(d);
+        }
+    }
+
+    /**
+     * Convert to atomic Int
+     */
+    public static final _MAGIC_Atomic_Integer aint = _MAGIC_Atomic_Integer.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Atomic_Integer {
+        private static final _MAGIC_Atomic_Integer INSTANCE = new _MAGIC_Atomic_Integer();
+
+        private static _MAGIC_Atomic_Integer instance() {
+            return INSTANCE;
+        }
+
+        public AtomicInteger prefixBind(int d) {
+            return new AtomicInteger(d);
+        }
+    }
+
+    /**
+     * Convert to atomic Long
+     */
+    public static final _MAGIC_Atomic_Long along = _MAGIC_Atomic_Long.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Atomic_Long {
+        private static final _MAGIC_Atomic_Long INSTANCE = new _MAGIC_Atomic_Long();
+
+        private static _MAGIC_Atomic_Long instance() {
+            return INSTANCE;
+        }
+
+        public AtomicLong prefixBind(long d) {
+            return new AtomicLong(d);
         }
     }
 
