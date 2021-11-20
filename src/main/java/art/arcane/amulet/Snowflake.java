@@ -18,12 +18,9 @@
 
 package art.arcane.amulet;
 
-import java.io.File;
+import lombok.Data;
 
-import static art.arcane.amulet.MagicalSugar.*;
-
-public class Amulet {
-    public static void main(String[] args) {
-
-    }
+@Data
+public class Snowflake {
+    private int age;
 }
