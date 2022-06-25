@@ -28,7 +28,7 @@ version 'latest'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(16)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -49,8 +49,8 @@ jar {
 
 dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.42'
-    annotationProcessor 'systems.manifold:manifold-ext:2022.1.15'
-    implementation 'systems.manifold:manifold-rt:2022.1.15'
+    annotationProcessor 'systems.manifold:manifold-ext:2022.1.18'
+    implementation 'systems.manifold:manifold-rt:2022.1.18'
     implementation 'com.google.dagger:dagger:2.40.1'
     implementation 'org.reflections:reflections:0.10.2'
     api 'systems.manifold:manifold-rt:2022.1.14'
