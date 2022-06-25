@@ -101,3 +101,5 @@ if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
         options.compilerArgs += ['-Xplugin:Manifold']
     }
 }
+
+System.out.println("Gradle is using Java " + JavaVersion.current());
