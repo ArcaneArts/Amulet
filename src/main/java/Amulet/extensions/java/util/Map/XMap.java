@@ -18,15 +18,10 @@
 
 package Amulet.extensions.java.util.Map;
 
-import art.arcane.amulet.flow.FlowBuilder;
 import art.arcane.amulet.functional.Consume;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
-import manifold.util.concurrent.ConcurrentHashSet;
-import org.checkerframework.checker.units.qual.K;
-
-import java.security.KeyPair;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
@@ -57,14 +52,6 @@ public class XMap {
         }
 
         return k;
-    }
-
-    public static <K, V> FlowBuilder<K> keyFlow(@This Map<K, V> self) {
-        return new FlowBuilder<>(self.keySet().iterator());
-    }
-
-    public static <K, V> FlowBuilder<V> valueFlow(@This Map<K, V> self) {
-        return new FlowBuilder<>(self.values().iterator());
     }
 
     public static <K, V> @Self Map<K, V> unmodifiable(@This Map<K, V> self) {

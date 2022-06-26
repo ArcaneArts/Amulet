@@ -18,7 +18,6 @@
 
 package Amulet.extensions.java.util.stream.Stream;
 
-import art.arcane.amulet.flow.FlowBuilder;
 import art.arcane.amulet.functional.Consume;
 import art.arcane.amulet.functional.Function;
 import manifold.ext.rt.api.Extension;
@@ -43,10 +42,6 @@ public class XStream {
     {
         List<T> f = thiz.toList();
         return s.apply(f.evenValues().stream(), f.oddValues().stream());
-    }
-
-    public static <T> FlowBuilder<T> flow(@This Stream<T> self) {
-        return new FlowBuilder<>(self.iterator());
     }
 
     public static <T> Set<T> toSet(@This Stream<T> thiz) {

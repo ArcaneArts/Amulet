@@ -18,8 +18,11 @@
 
 package art.arcane.amulet.test.unit;
 
+import art.arcane.amulet.MagicalSugar;
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.range.IntegerRange;
+import manifold.ext.rt.RuntimeMethods;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
