@@ -19,6 +19,7 @@
 package Amulet.extensions.java.util.List;
 
 import art.arcane.amulet.functional.Consume;
+import com.google.common.util.concurrent.AtomicDoubleArray;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
@@ -40,6 +41,84 @@ public class XList {
         return self.withoutDuplicates(ArrayList::new);
     }
 
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, Object[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, int[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, double[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, float[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, byte[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, short[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, long[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> @Self List<E> forceAdd(@This List<E> self, boolean[] values) {
+        for(Object i : values) {
+            self.add((E) i);
+        }
+
+        return self;
+    }
+
+    public static <E> @Self List<E> sort(@This List<E> self) {
+        self.sort(Comparator.comparing(Object::toString));
+        return self;
+    }
+
     /**
      * Returns a copy of this list without duplicates (set conversion)
      *
@@ -49,6 +128,14 @@ public class XList {
         List<E> f = factory.get();
         f.addAll(new HashSet<>(self));
         return f;
+    }
+
+    public static <E> E middleValue(@This List<E> self) {
+        return self.get(self.middleIndex());
+    }
+
+    public static <E> int middleIndex(@This List<E> self) {
+        return self.size() % 2 == 0 ? (self.size() / 2) : ((self.size() / 2) + 1);
     }
 
     public static <E> @Self List<E> forEachIndex(@This List<E> self, Consume.Two<List<E>, Integer> itr)
