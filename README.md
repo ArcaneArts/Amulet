@@ -177,7 +177,7 @@ everything will work properly.
 1. Install the Manifold Plugin to Intellij (then restart)
     * Note: You do not need to buy a license, use CTRL + SHIFT + A > Manage Licenses > Mantifold > Evaluate 30 Days (
       once expired, it will still work but may remind you to register). Though you can just re-evaluate after that time.
-2. Add the jitpack repository `maven { url 'https://jitpack.io' }` and the dependency (above) for Amulet
+2. Add the cloudsmith repository `maven { url "https://dl.cloudsmith.io/public/arcane/archive/maven/" }` and the dependency (above) for Amulet
 3. Add this to the bottom of your build.gradle
     ```groovy
     if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
