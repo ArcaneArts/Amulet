@@ -57,8 +57,8 @@ public class JarLoader {
                     classCache.put(c, () -> {
                         try {
                             return Class.forName(c);
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                        } catch (Throwable ignored) {
+
                         }
 
                         return null;
