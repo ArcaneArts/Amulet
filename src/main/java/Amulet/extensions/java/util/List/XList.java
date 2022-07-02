@@ -373,21 +373,9 @@ public class XList {
         return self.remove(r.i(0, self.last()));
     }
 
-    public static <E> @Self List<E> plus(@This List<E> self, E that) {
-        List<E> s = List.from(self);
-        s.add(that);
-        return s;
-    }
-
     public static <E> @Self List<E> minus(@This List<E> self, E that) {
         List<E> s = List.from(self);
         s.remove(that);
-        return s;
-    }
-
-    public static <E> @Self List<E> plus(@This List<E> self, Collection<E> that) {
-        List<E> s = List.from(self);
-        s.addAll(that);
         return s;
     }
 

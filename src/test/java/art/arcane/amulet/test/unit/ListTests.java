@@ -30,7 +30,6 @@ public class ListTests {
         List<Integer> v = List.from(1, 2, 3);
 
         assertEquals(v.copy().reverse(), -v);
-        assertEquals(v.copy().add(9, 10, 11), v + List.from(9, 10, 11));
         assertEquals(v.copy().remove(1, 2), v - List.from(1, 2));
         assertEquals(2, v[1]);
     }
