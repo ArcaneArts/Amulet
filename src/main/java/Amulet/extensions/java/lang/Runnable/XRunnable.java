@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,35 +18,31 @@
 
 package Amulet.extensions.java.lang.Runnable;
 
-import art.arcane.amulet.metric.Average;
 import art.arcane.amulet.metric.PrecisionStopwatch;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
-import java.lang.Runnable;
-import java.util.function.Consumer;
+
 import java.util.function.DoubleConsumer;
 
 @Extension
 public class XRunnable {
-  public static @Self Runnable profiled(@This Runnable r, DoubleConsumer metrics)
-  {
-    PrecisionStopwatch p = new PrecisionStopwatch();
+    public static @Self Runnable profiled(@This Runnable r, DoubleConsumer metrics) {
+        PrecisionStopwatch p = new PrecisionStopwatch();
 
-    return () -> {
-      p.begin();
-      r.run();
-      metrics.accept(p.getMilliseconds());
-      p.reset();
-    };
-  }
+        return () -> {
+            p.begin();
+            r.run();
+            metrics.accept(p.getMilliseconds());
+            p.reset();
+        };
+    }
 
-  public static @Self Runnable profiledParallel(@This Runnable r, DoubleConsumer metrics)
-  {
-    return () -> {
-      PrecisionStopwatch p = PrecisionStopwatch.start();
-      r.run();
-      metrics.accept(p.getMilliseconds());
-    };
-  }
+    public static @Self Runnable profiledParallel(@This Runnable r, DoubleConsumer metrics) {
+        return () -> {
+            PrecisionStopwatch p = PrecisionStopwatch.start();
+            r.run();
+            metrics.accept(p.getMilliseconds());
+        };
+    }
 }

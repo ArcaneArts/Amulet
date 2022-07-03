@@ -1,6 +1,6 @@
 /*
- * Iris is a World Generator for Minecraft Bukkit Servers
- * Copyright (c) 2021 Arcane Arts (Volmit Software)
+ * Amulet is an extension api for Java
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,8 +60,7 @@ public class HashPalette<T> implements Palette<T> {
 
     @Override
     public int id(T t) {
-        if(t == null)
-        {
+        if (t == null) {
             return 0;
         }
 
@@ -77,8 +76,7 @@ public class HashPalette<T> implements Palette<T> {
     @Override
     public void iterate(Consume.Two<T, Integer> c) {
         for (T i : palette.keySet()) {
-            if(i == null)
-            {
+            if (i == null) {
                 continue;
             }
 

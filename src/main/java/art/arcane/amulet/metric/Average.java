@@ -1,12 +1,23 @@
 /*
- * Copyright (c) 2021.
- * Arcane Arts Inc. All rights reserved.
- * Proprietary. Do not distribute outside MPower Me LLC or Arcane Arts Inc.
+ * Amulet is an extension api for Java
+ * Copyright (c) 2022 Arcane Arts
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package art.arcane.amulet.metric;
 
-import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
 /**
@@ -27,8 +38,7 @@ public class Average implements DoubleConsumer {
     /**
      * Create an average holder
      *
-     * @param size
-     *     the size of entries to keep
+     * @param size the size of entries to keep
      */
     public Average(int size) {
         values = new double[size];
@@ -43,13 +53,12 @@ public class Average implements DoubleConsumer {
     /**
      * Put a value into the average (rolls over if full)
      *
-     * @param i
-     *     the value
+     * @param i the value
      */
     public void put(double i) {
         dirty = true;
 
-        if(brandNew) {
+        if (brandNew) {
             DoubleArrayUtils.fill(values, i);
             lastSum = size() * i;
             brandNew = false;
@@ -68,7 +77,7 @@ public class Average implements DoubleConsumer {
      * @return the average
      */
     public double getAverage() {
-        if(dirty) {
+        if (dirty) {
             calculateAverage();
             return getAverage();
         }

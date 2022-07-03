@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,9 @@
 
 package art.arcane.amulet.metric;
 
-import static art.arcane.amulet.MagicalSugar.*;
-
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
@@ -40,29 +35,25 @@ public class StarvingTimeout {
     private final long patience;
     private final AtomicReference<Thread> waiting;
 
-    public StarvingTimeout(long patience, Runnable timeout)
-    {
+    public StarvingTimeout(long patience, Runnable timeout) {
         waiting = new AtomicReference<>();
         this.patience = patience;
         this.ticking = new AtomicBoolean(true);
         this.timeout = timeout;
         this.last = new AtomicLong(Math.ms());
         future = service.scheduleWithFixedDelay(() -> {
-            if(Math.ms() - last.get() > patience)
-            {
+            if (Math.ms() - last.get() > patience) {
                 timedOut();
             }
         }, patience, patience, TimeUnit.MILLISECONDS);
     }
 
-    public boolean waitForTimeout()
-    {
+    public boolean waitForTimeout() {
         waiting.set(Thread.currentThread());
-        while(ticking.get())
-        {
+        while (ticking.get()) {
             try {
-                Thread.sleep(patience/2);
-            } catch(InterruptedException ignored) {
+                Thread.sleep(patience / 2);
+            } catch (InterruptedException ignored) {
 
             }
         }
@@ -71,25 +62,20 @@ public class StarvingTimeout {
         return true;
     }
 
-    public void stop()
-    {
+    public void stop() {
         timedOut();
     }
 
-    public void feed()
-    {
-        if(!ticking.get())
-        {
+    public void feed() {
+        if (!ticking.get()) {
             return;
         }
 
         last.set(Math.ms());
     }
 
-    private void timedOut()
-    {
-        if(!ticking.get())
-        {
+    private void timedOut() {
+        if (!ticking.get()) {
             return;
         }
 
@@ -97,8 +83,7 @@ public class StarvingTimeout {
         ticking.set(false);
         timeout.run();
 
-        if(waiting.get() != null)
-        {
+        if (waiting.get() != null) {
             waiting.get().interrupt();
         }
     }

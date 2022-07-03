@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,6 @@
  */
 
 package art.arcane.amulet;
-
-import java.io.File;
-
-import static art.arcane.amulet.MagicalSugar.*;
 
 public class Amulet {
     public static void main(String[] args) {

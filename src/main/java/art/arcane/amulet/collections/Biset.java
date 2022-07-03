@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@
 
 package art.arcane.amulet.collections;
 
-public interface Biset<A,B> {
-    static <A,B> Biset<A,B> from(A a, B b)
-    {
+public interface Biset<A, B> {
+    static <A, B> Biset<A, B> from(A a, B b) {
         return new ObjectBiset<>(a, b);
     }
 
@@ -32,21 +31,15 @@ public interface Biset<A,B> {
 
     void setB(B b);
 
-    default <T> void set(int m, T v)
-    {
-        if(m == 0)
-        {
+    default <T> void set(int m, T v) {
+        if (m == 0) {
             setA((A) v);
-        }
-
-        else
-        {
+        } else {
             setB((B) v);
         }
     }
 
-    default <T> T get(int m)
-    {
+    default <T> T get(int m) {
         return m == 0 ? (T) getA() : (T) getB();
     }
 }

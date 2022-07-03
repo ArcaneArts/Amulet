@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,6 @@
  */
 
 package art.arcane.amulet.metric;
-
-import art.arcane.amulet.functional.Consume;
-
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class PrecisionStopwatch {
     private long nanos;
@@ -44,8 +38,7 @@ public class PrecisionStopwatch {
         profiling = false;
     }
 
-    public void resetAndBegin()
-    {
+    public void resetAndBegin() {
         reset();
         begin();
     }
@@ -57,7 +50,7 @@ public class PrecisionStopwatch {
     }
 
     public void end() {
-        if(!profiling) {
+        if (!profiling) {
             return;
         }
 

@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ import java.lang.reflect.Method;
 
 @Extension
 public class XMethod {
-  public static @Self Method access(@This Method thiz) {
-    thiz.setAccessible(true);
-    return thiz;
-  }
+    public static @Self Method access(@This Method thiz) {
+        thiz.setAccessible(true);
+        return thiz;
+    }
 }

@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,28 +18,18 @@
 
 package Amulet.extensions.java.util.stream.Stream;
 
-import art.arcane.amulet.functional.Consume;
 import art.arcane.amulet.functional.Function;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
-import org.checkerframework.checker.units.qual.A;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
-import static art.arcane.amulet.MagicalSugar.*;
+import java.util.stream.*;
 
 @Extension
 public class XStream {
-    public static <T,R> R splitInterlace(@This Stream<T> thiz, Function.Two<Stream<T>, Stream<T>, R> s)
-    {
+    public static <T, R> R splitInterlace(@This Stream<T> thiz, Function.Two<Stream<T>, Stream<T>, R> s) {
         List<T> f = thiz.toList();
         return s.apply(f.evenValues().stream(), f.oddValues().stream());
     }
@@ -49,15 +39,15 @@ public class XStream {
     }
 
     public static <T> IntStream ints(@This Stream<T> thiz) {
-        return thiz.mapToInt(i -> (int)i);
+        return thiz.mapToInt(i -> (int) i);
     }
 
     public static <T> DoubleStream doubles(@This Stream<T> thiz) {
-        return thiz.mapToDouble(i -> (double)i);
+        return thiz.mapToDouble(i -> (double) i);
     }
 
     public static <T> LongStream longs(@This Stream<T> thiz) {
-        return thiz.mapToLong(i -> (long)i);
+        return thiz.mapToLong(i -> (long) i);
     }
 
     public static <T> @Self Stream<T> and(@This Stream<T> thiz, Stream<T> add) {

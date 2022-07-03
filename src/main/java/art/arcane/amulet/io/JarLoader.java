@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static art.arcane.amulet.MagicalSugar.*;
+import static art.arcane.amulet.MagicalSugar.open;
 
 public class JarLoader {
     private final Map<String, Supplier<Class<?>>> classCache = new HashMap<>();
@@ -42,8 +42,7 @@ public class JarLoader {
     public JarLoader(File... jarFiles) throws IOException {
         List<File> jars = jarFiles.toList();
 
-        for(File i : jars)
-        {
+        for (File i : jars) {
             FileInputStream fin = open i;
             ZipInputStream zip = new ZipInputStream(fin);
 
@@ -77,30 +76,26 @@ public class JarLoader {
                 .toArray(File[]::new));
     }
 
-    public Stream<Class<?>> all()
-    {
+    public Stream<Class<?>> all() {
         return classCache.keySet().parallelStream()
                 .map(i -> classCache.get(i).get());
     }
 
-    public Stream<Class<?>> all(Class<?> superType)
-    {
+    public Stream<Class<?>> all(Class<?> superType) {
         return all().filter(superType::isAssignableFrom)
                 .filter(i -> !i.equals(superType));
     }
 
-    public Stream<Class<?>> inPackageNested(String superPackage, Class<?> superType)
-    {
+    public Stream<Class<?>> inPackageNested(String superPackage, Class<?> superType) {
         return classCache.keySet().parallelStream()
                 .filter(i -> i.startsWith(superPackage))
                 .map(i -> classCache.get(i).get())
                 .filter(i -> !i.equals(superType))
                 .filter(superType::isAssignableFrom)
-                .map(i -> (Class<?>)i);
+                .map(i -> (Class<?>) i);
     }
 
-    public Stream<Class<?>> inPackageSpecifically(String superPackage, Class<?> superType)
-    {
+    public Stream<Class<?>> inPackageSpecifically(String superPackage, Class<?> superType) {
         return classCache.keySet().parallelStream()
                 .filter(i -> i.startsWith(superPackage)
                         && i.splitAbs(".").toList().removeLast()
@@ -108,18 +103,16 @@ public class JarLoader {
                 .map(i -> classCache.get(i).get())
                 .filter(i -> !i.equals(superType))
                 .filter(superType::isAssignableFrom)
-                .map(i -> (Class<?>)i);
+                .map(i -> (Class<?>) i);
     }
 
-    public Stream<Class<?>> inPackageNested(String superPackage)
-    {
+    public Stream<Class<?>> inPackageNested(String superPackage) {
         return classCache.keySet().parallelStream()
                 .filter(i -> i.startsWith(superPackage))
                 .map(i -> classCache.get(i).get());
     }
 
-    public Stream<Class<?>> inPackageSpecifically(String superPackage)
-    {
+    public Stream<Class<?>> inPackageSpecifically(String superPackage) {
         return classCache.keySet().parallelStream()
                 .filter(i -> i.startsWith(superPackage)
                         && i.splitAbs(".").toList().removeLast()

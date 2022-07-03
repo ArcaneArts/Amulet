@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import art.arcane.amulet.functional.Consume;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
@@ -79,54 +80,50 @@ public class XMap {
 
     /**
      * Force map creation with every other object in the collection
+     *
      * @param collection the collection of K,V,K,V...
-     * @param <K> the key type
-     * @param <V> the value type
+     * @param <K>        the key type
+     * @param <V>        the value type
      * @return the new map
      */
     @Extension
-    public static <K,V> Map<K,V> from(Object... collection) {
+    public static <K, V> Map<K, V> from(Object... collection) {
         return Arrays.stream(collection).splitInterlace((e, o) ->
-            Map.from(e.map((i) -> (K) i).toList(),
-                    o.map((i) -> (V) i).toList()));
+                Map.from(e.map((i) -> (K) i).toList(),
+                        o.map((i) -> (V) i).toList()));
     }
 
     @Extension
-    public static <K,V> Map<K,V> from(List<K> k, List<V> v) {
-        Map<K,V> map = new HashMap<>();
+    public static <K, V> Map<K, V> from(List<K> k, List<V> v) {
+        Map<K, V> map = new HashMap<>();
         k.forEachIndex((m, i) -> map.put(m[i], v[i]));
         return map;
     }
 
     @Extension
-    public static <K, V> ConcurrentHashMap<K, V> concurrent()
-    {
+    public static <K, V> ConcurrentHashMap<K, V> concurrent() {
         return new ConcurrentHashMap<>();
     }
 
     @Extension
-    public static <K, V> HashMap<K, V> hash()
-    {
+    public static <K, V> HashMap<K, V> hash() {
         return new HashMap<>();
     }
 
 
     @Extension
-    public static <K, V> LinkedHashMap<K, V> linked()
-    {
+    public static <K, V> LinkedHashMap<K, V> linked() {
         return new LinkedHashMap<>();
     }
 
 
     @Extension
-    public static <K, V> WeakHashMap<K, V> weak()
-    {
+    public static <K, V> WeakHashMap<K, V> weak() {
         return new WeakHashMap<>();
     }
 
     @Extension
-    public static <K, V> IdentityHashMap<K, V> identityHash()
-    {
+    public static <K, V> IdentityHashMap<K, V> identityHash() {
         return new IdentityHashMap<>();
     }
 

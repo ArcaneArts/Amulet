@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
 
 package art.arcane.amulet.functional;
 
-import art.arcane.amulet.metric.Average;
 import art.arcane.amulet.metric.PrecisionStopwatch;
 
 import java.io.IOException;
@@ -29,8 +28,7 @@ public class Consume {
     public static interface One<T0> {
         void accept(T0 t0);
 
-        default One<T0> profiled(DoubleConsumer metrics)
-        {
+        default One<T0> profiled(DoubleConsumer metrics) {
             PrecisionStopwatch p = new PrecisionStopwatch();
 
             return (t) -> {
@@ -41,8 +39,7 @@ public class Consume {
             };
         }
 
-        default One<T0> profiledParallel(DoubleConsumer metrics)
-        {
+        default One<T0> profiledParallel(DoubleConsumer metrics) {
             return (t) -> {
                 PrecisionStopwatch p = PrecisionStopwatch.start();
                 accept(t);
@@ -55,8 +52,7 @@ public class Consume {
     public static interface Any<T0> {
         void accept(T0... t0);
 
-        default One<T0> profiled(DoubleConsumer metrics)
-        {
+        default One<T0> profiled(DoubleConsumer metrics) {
             PrecisionStopwatch p = new PrecisionStopwatch();
 
             return (t) -> {
@@ -67,8 +63,7 @@ public class Consume {
             };
         }
 
-        default One<T0> profiledParallel(DoubleConsumer metrics)
-        {
+        default One<T0> profiledParallel(DoubleConsumer metrics) {
             return (t) -> {
                 PrecisionStopwatch p = PrecisionStopwatch.start();
                 accept(t);
@@ -81,8 +76,7 @@ public class Consume {
     public static interface Two<T0, T1> {
         void accept(T0 t0, T1 t1);
 
-        default Two<T0, T1> profiled(DoubleConsumer metrics)
-        {
+        default Two<T0, T1> profiled(DoubleConsumer metrics) {
             PrecisionStopwatch p = new PrecisionStopwatch();
 
             return (t, tt) -> {
@@ -93,8 +87,7 @@ public class Consume {
             };
         }
 
-        default Two<T0, T1> profiledParallel(DoubleConsumer metrics)
-        {
+        default Two<T0, T1> profiledParallel(DoubleConsumer metrics) {
             return (t, tt) -> {
                 PrecisionStopwatch p = PrecisionStopwatch.start();
                 accept(t, tt);
@@ -107,8 +100,7 @@ public class Consume {
     public static interface TwoIO<T0, T1> {
         void accept(T0 t0, T1 t1) throws IOException;
 
-        default TwoIO<T0, T1> profiled(DoubleConsumer metrics)
-        {
+        default TwoIO<T0, T1> profiled(DoubleConsumer metrics) {
             PrecisionStopwatch p = new PrecisionStopwatch();
 
             return (t, tt) -> {
@@ -119,8 +111,7 @@ public class Consume {
             };
         }
 
-        default TwoIO<T0, T1> profiledParallel(DoubleConsumer metrics)
-        {
+        default TwoIO<T0, T1> profiledParallel(DoubleConsumer metrics) {
             return (t, tt) -> {
                 PrecisionStopwatch p = PrecisionStopwatch.start();
                 accept(t, tt);
@@ -133,8 +124,7 @@ public class Consume {
     public static interface Three<T0, T1, T2> {
         void accept(T0 t0, T1 t1, T2 t2);
 
-        default Three<T0, T1, T2> profiled(DoubleConsumer metrics)
-        {
+        default Three<T0, T1, T2> profiled(DoubleConsumer metrics) {
             PrecisionStopwatch p = new PrecisionStopwatch();
 
             return (t, tt, ttt) -> {
@@ -145,8 +135,7 @@ public class Consume {
             };
         }
 
-        default Three<T0, T1, T2> profiledParallel(DoubleConsumer metrics)
-        {
+        default Three<T0, T1, T2> profiledParallel(DoubleConsumer metrics) {
             return (t, tt, ttt) -> {
                 PrecisionStopwatch p = PrecisionStopwatch.start();
                 accept(t, tt, ttt);
@@ -159,8 +148,7 @@ public class Consume {
     public static interface Four<T0, T1, T2, T3> {
         void accept(T0 t0, T1 t1, T2 t2, T3 t3);
 
-        default Four<T0, T1, T2, T3> profiled(DoubleConsumer metrics)
-        {
+        default Four<T0, T1, T2, T3> profiled(DoubleConsumer metrics) {
             PrecisionStopwatch p = new PrecisionStopwatch();
 
             return (t, tt, ttt, tttt) -> {
@@ -171,8 +159,7 @@ public class Consume {
             };
         }
 
-        default Four<T0, T1, T2, T3> profiledParallel(DoubleConsumer metrics)
-        {
+        default Four<T0, T1, T2, T3> profiledParallel(DoubleConsumer metrics) {
             return (t, tt, ttt, tttt) -> {
                 PrecisionStopwatch p = PrecisionStopwatch.start();
                 accept(t, tt, ttt, tttt);

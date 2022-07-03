@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,13 +54,13 @@ public class XFuture {
 
     /**
      * Get a completed future of a given value
-     * @param v the value
+     *
+     * @param v   the value
      * @param <V> the value type
      * @return the future of the value (already completed)
      */
     @Extension
-    public static <V> Future<V> of(V v)
-    {
+    public static <V> Future<V> of(V v) {
         return CompletableFuture.completedFuture(v);
     }
 
@@ -101,8 +101,8 @@ public class XFuture {
      *
      * @param then the function to call when this future completes,
      *             this will be converted into another future switching to the return type
-     * @param <V> the incoming future type
-     * @param <R> the resulting (then) future type
+     * @param <V>  the incoming future type
+     * @param <R>  the resulting (then) future type
      * @return the future of the THEN being called.
      */
     public static <V, R> Future<R> then(@This Future<V> self, FutureThenFunction<V, R> then) {
@@ -114,8 +114,8 @@ public class XFuture {
      *
      * @param then the function to call when this future completes,
      *             this will be converted into another future switching to the return type
-     * @param <V> the incoming future type
-     * @param <R> the resulting (then) future type
+     * @param <V>  the incoming future type
+     * @param <R>  the resulting (then) future type
      * @return the future of the THEN being called.
      */
     public static <V, R> Future<R> then(@This Future<V> self, Future<R> then) {

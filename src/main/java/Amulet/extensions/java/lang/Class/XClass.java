@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,40 +22,38 @@ import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
 import java.io.File;
-import java.lang.Class;
-import java.lang.reflect.InvocationTargetException;
 
 @Extension
 public class XClass {
-  public static <T> String simpleName(@This Class<T>  thiz) {
-    return thiz.getSimpleName();
-  }
-
-  public static <T> File jarFile(@This Class<T>  thiz) {
-    return new File(thiz.getProtectionDomain().getCodeSource().getLocation().getFile());
-  }
-
-  public static <T> T construct(@This Class<T>  thiz) {
-    try {
-      return thiz.getConstructor().access().newInstance();
-    } catch (Throwable ignored) {
-
+    public static <T> String simpleName(@This Class<T> thiz) {
+        return thiz.getSimpleName();
     }
 
-    return null;
-  }
-
-  public static <T> T forceConstruct(@This Class<T>  thiz) {
-    try {
-      return thiz.getConstructor().access().newInstance();
-    } catch (Throwable ignored) {
-      try {
-        return thiz.newInstance();
-      } catch (Throwable ignored1) {
-
-      }
+    public static <T> File jarFile(@This Class<T> thiz) {
+        return new File(thiz.getProtectionDomain().getCodeSource().getLocation().getFile());
     }
 
-    return null;
-  }
+    public static <T> T construct(@This Class<T> thiz) {
+        try {
+            return thiz.getConstructor().access().newInstance();
+        } catch (Throwable ignored) {
+
+        }
+
+        return null;
+    }
+
+    public static <T> T forceConstruct(@This Class<T> thiz) {
+        try {
+            return thiz.getConstructor().access().newInstance();
+        } catch (Throwable ignored) {
+            try {
+                return thiz.newInstance();
+            } catch (Throwable ignored1) {
+
+            }
+        }
+
+        return null;
+    }
 }

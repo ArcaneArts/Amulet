@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,7 @@ public class SpaceNode<T> {
     private final AtomicLong accesses;
     private final boolean weighted;
 
-    public SpaceNode(T t)
-    {
+    public SpaceNode(T t) {
         this.t = t;
         this.hash = t.hashCode();
         this.lastAccess = new AtomicLong(Math.ms());
@@ -36,38 +35,31 @@ public class SpaceNode<T> {
         this.weighted = t instanceof Weighted;
     }
 
-    public int getWeight()
-    {
-        return weighted ? ((Weighted)t).getWeight() : 1;
+    public int getWeight() {
+        return weighted ? ((Weighted) t).getWeight() : 1;
     }
 
-    public long getLastAccess()
-    {
+    public long getLastAccess() {
         return lastAccess.get();
     }
 
-    public long getAccessCount()
-    {
+    public long getAccessCount() {
         return accesses.get();
     }
 
-    public long getAge()
-    {
+    public long getAge() {
         return (100 + (Math.ms() - lastAccess.get())) / accesses.get();
     }
 
-    public boolean isModified()
-    {
+    public boolean isModified() {
         return t.hashCode() != hash;
     }
 
-    public T peek()
-    {
+    public T peek() {
         return t;
     }
 
-    public T get()
-    {
+    public T get() {
         lastAccess.set(Math.ms());
         accesses.incrementAndGet();
         return t;

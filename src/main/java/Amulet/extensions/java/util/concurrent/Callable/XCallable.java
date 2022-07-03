@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,37 +18,34 @@
 
 package Amulet.extensions.java.util.concurrent.Callable;
 
-import art.arcane.amulet.metric.Average;
 import art.arcane.amulet.metric.PrecisionStopwatch;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
+
 import java.util.concurrent.Callable;
-import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
 @Extension
 public class XCallable {
-  public static <V> @Self Callable<V> profiled(@This Callable<V> r, DoubleConsumer metrics)
-  {
-    PrecisionStopwatch p = new PrecisionStopwatch();
+    public static <V> @Self Callable<V> profiled(@This Callable<V> r, DoubleConsumer metrics) {
+        PrecisionStopwatch p = new PrecisionStopwatch();
 
-    return () -> {
-      p.begin();
-      V v = r.call();
-      metrics.accept(p.getMilliseconds());
-      p.reset();
-      return v;
-    };
-  }
+        return () -> {
+            p.begin();
+            V v = r.call();
+            metrics.accept(p.getMilliseconds());
+            p.reset();
+            return v;
+        };
+    }
 
-  public static <V> @Self Callable<V> profiledParallel(@This Callable<V> r, DoubleConsumer metrics)
-  {
-    return () -> {
-      PrecisionStopwatch p = PrecisionStopwatch.start();
-      V v = r.call();
-      metrics.accept(p.getMilliseconds());
-      return v;
-    };
-  }
+    public static <V> @Self Callable<V> profiledParallel(@This Callable<V> r, DoubleConsumer metrics) {
+        return () -> {
+            PrecisionStopwatch p = PrecisionStopwatch.start();
+            V v = r.call();
+            metrics.accept(p.getMilliseconds());
+            return v;
+        };
+    }
 }

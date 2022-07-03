@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,13 @@ package Amulet.extensions.java.lang.reflect.AccessibleObject;
 
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
+
 import java.lang.reflect.AccessibleObject;
 
 @Extension
 public class XAccessableObject {
-  public static <T extends AccessibleObject> T access(@This AccessibleObject thiz) {
-    thiz.setAccessible(true);
-    return (T) thiz;
-  }
+    public static <T extends AccessibleObject> T access(@This AccessibleObject thiz) {
+        thiz.setAccessible(true);
+        return (T) thiz;
+    }
 }

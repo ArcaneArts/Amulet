@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,29 +22,28 @@ import art.arcane.amulet.metric.PrecisionStopwatch;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
+
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
 @Extension
 public class XConsumer {
-  public static <T> @Self Consumer<T> profiled(@This Consumer<T> r, DoubleConsumer metrics)
-  {
-    PrecisionStopwatch p = new PrecisionStopwatch();
+    public static <T> @Self Consumer<T> profiled(@This Consumer<T> r, DoubleConsumer metrics) {
+        PrecisionStopwatch p = new PrecisionStopwatch();
 
-    return (t) -> {
-      p.begin();
-      r.accept(t);
-      metrics.accept(p.getMilliseconds());
-      p.reset();
-    };
-  }
+        return (t) -> {
+            p.begin();
+            r.accept(t);
+            metrics.accept(p.getMilliseconds());
+            p.reset();
+        };
+    }
 
-  public static <T> @Self Consumer<T> profiledParallel(@This Consumer<T> r, DoubleConsumer metrics)
-  {
-    return (t) -> {
-      PrecisionStopwatch p = PrecisionStopwatch.start();
-      r.accept(t);
-      metrics.accept(p.getMilliseconds());
-    };
-  }
+    public static <T> @Self Consumer<T> profiledParallel(@This Consumer<T> r, DoubleConsumer metrics) {
+        return (t) -> {
+            PrecisionStopwatch p = PrecisionStopwatch.start();
+            r.accept(t);
+            metrics.accept(p.getMilliseconds());
+        };
+    }
 }

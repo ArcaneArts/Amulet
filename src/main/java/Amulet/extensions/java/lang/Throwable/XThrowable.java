@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,20 +27,20 @@ import java.util.List;
 
 @Extension
 public class XThrowable {
-  public static String printAsString(@This Throwable e) {
-    StringWriter sw = new StringWriter();
-    PrintWriter pw = new PrintWriter(sw);
-    e.printStackTrace(pw);
-    pw.flush();
-    return sw.getBuffer().toString();
-  }
+    public static String printAsString(@This Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        pw.flush();
+        return sw.getBuffer().toString();
+    }
 
-  public static List<String> printAsStrings(@This Throwable e) {
-    StringWriter sw = new StringWriter();
-    PrintWriter pw = new PrintWriter(sw);
-    e.printStackTrace(pw);
-    pw.flush();
+    public static List<String> printAsStrings(@This Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        pw.flush();
 
-    return Arrays.stream(sw.getBuffer().toString().split("\\r?\\n")).toList();
-  }
+        return Arrays.stream(sw.getBuffer().toString().split("\\r?\\n")).toList();
+    }
 }

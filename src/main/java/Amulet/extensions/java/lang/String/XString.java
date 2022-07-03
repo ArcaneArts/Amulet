@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,8 +38,7 @@ public class XString {
         return IO.hashMD5(s);
     }
 
-    public static String fromBase64(@This String s)
-    {
+    public static String fromBase64(@This String s) {
         return new String(Base64.getUrlDecoder().decode(s), StandardCharsets.UTF_8);
     }
 

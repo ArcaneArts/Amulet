@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@
 package Amulet.extensions.java.util.List;
 
 import art.arcane.amulet.functional.Consume;
-import com.google.common.util.concurrent.AtomicDoubleArray;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;
@@ -30,7 +29,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static art.arcane.amulet.MagicalSugar.*;
+import static art.arcane.amulet.MagicalSugar.index;
+import static art.arcane.amulet.MagicalSugar.reverse;
 
 @Extension
 public class XList {
@@ -44,7 +44,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, Object[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -53,7 +53,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, int[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -62,7 +62,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, double[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -71,7 +71,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, float[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -80,7 +80,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, byte[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -89,7 +89,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, short[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -98,7 +98,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, long[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -107,7 +107,7 @@ public class XList {
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, boolean[] values) {
-        for(Object i : values) {
+        for (Object i : values) {
             self.add((E) i);
         }
 
@@ -138,20 +138,16 @@ public class XList {
         return self.size() % 2 == 0 ? (self.size() / 2) : ((self.size() / 2) + 1);
     }
 
-    public static <E> @Self List<E> forEachIndex(@This List<E> self, Consume.Two<List<E>, Integer> itr)
-    {
-        for(int i : index self)
-        {
+    public static <E> @Self List<E> forEachIndex(@This List<E> self, Consume.Two<List<E>, Integer> itr) {
+        for (int i : index self) {
             itr.accept(self, i);
         }
 
         return self;
     }
 
-    public static <E> @Self List<E> forEachReverseIndex(@This List<E> self, Consume.Two<List<E>, Integer> itr)
-    {
-        for(int i : reverse index self)
-        {
+    public static <E> @Self List<E> forEachReverseIndex(@This List<E> self, Consume.Two<List<E>, Integer> itr) {
+        for (int i : reverse index self) {
             itr.accept(self, i);
         }
 
@@ -161,10 +157,8 @@ public class XList {
     public static <E> @Self List<E> evenValues(@This List<E> self) {
         List<E> even = new ArrayList<>();
 
-        for(int i : reverse index self)
-        {
-            if(i % 2 == 0)
-            {
+        for (int i : reverse index self) {
+            if (i % 2 == 0) {
                 even.addFirst(self.remove(i));
             }
         }
@@ -175,10 +169,8 @@ public class XList {
     public static <E> @Self List<E> oddValues(@This List<E> self) {
         List<E> odd = new ArrayList<>();
 
-        for(int i : reverse index self)
-        {
-            if(i % 2 != 0)
-            {
+        for (int i : reverse index self) {
+            if (i % 2 != 0) {
                 odd.addFirst(self.remove(i));
             }
         }

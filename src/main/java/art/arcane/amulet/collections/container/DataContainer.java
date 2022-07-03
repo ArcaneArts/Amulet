@@ -1,6 +1,6 @@
 /*
- * Iris is a World Generator for Minecraft Bukkit Servers
- * Copyright (c) 2021 Arcane Arts (Volmit Software)
+ * Amulet is an extension api for Java
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,8 +51,7 @@ public class DataContainer<T> {
         this.bits = new AtomicInteger(palette.get().bits());
     }
 
-    public static String readBitString(DataInputStream din) throws IOException
-    {
+    public static String readBitString(DataInputStream din) throws IOException {
         DataContainer<Character> c = new DataContainer<>(din, new NodeWritable<Character>() {
             @Override
             public Character readNodeData(DataInputStream din) throws IOException {
@@ -67,8 +66,7 @@ public class DataContainer<T> {
 
         StringBuilder sb = new StringBuilder();
 
-        for(int i = c.size()-1; i >= 0; i--)
-        {
+        for (int i = c.size() - 1; i >= 0; i--) {
             sb.setCharAt(i, c.get(i));
         }
 
@@ -88,21 +86,18 @@ public class DataContainer<T> {
             }
         }, s.length());
 
-        for(int i = 0; i < s.length(); i++)
-        {
+        for (int i = 0; i < s.length(); i++) {
             c.set(i, s.charAt(i));
         }
 
         c.writeDos(dos);
     }
 
-    public DataBits getData()
-    {
+    public DataBits getData() {
         return data.get();
     }
 
-    public Palette<T> getPalette()
-    {
+    public Palette<T> getPalette() {
         return palette.get();
     }
 
@@ -131,7 +126,7 @@ public class DataContainer<T> {
 
     private Palette<T> newPalette(DataInputStream din) throws IOException {
         int paletteSize = Varint.readUnsignedVarInt(din);
-        Palette<T> d = newPalette(bits(paletteSize+1));
+        Palette<T> d = newPalette(bits(paletteSize + 1));
         d.from(paletteSize, writer, din);
         return d;
     }
@@ -151,8 +146,7 @@ public class DataContainer<T> {
     }
 
     public void set(int position, T t) {
-        synchronized (this)
-        {
+        synchronized (this) {
             int id = palette.get().id(t);
 
             if (id == -1) {
@@ -171,8 +165,7 @@ public class DataContainer<T> {
     }
 
     public T get(int position) {
-        synchronized (this)
-        {
+        synchronized (this) {
             int id = data.get().get(position) + 1;
 
             if (id <= 0) {

@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,13 +43,15 @@ public interface LogListener {
         }
     });
 
-    static LogListener logger()
-    {
+    static LogListener logger() {
         return listener.get();
     }
 
     void i(String tag, Object f);
+
     void f(String tag, Object f);
+
     void w(String tag, Object f);
+
     void d(String tag, Object f);
 }

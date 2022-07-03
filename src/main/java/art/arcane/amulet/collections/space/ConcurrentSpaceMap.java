@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,30 +31,28 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import static art.arcane.amulet.MagicalSugar.*;
+import static art.arcane.amulet.MagicalSugar.min;
+import static art.arcane.amulet.MagicalSugar.or;
 
 public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, EvictionListener<Long, SpaceNode<T>> {
     private final ConcurrentLinkedHashMap<Long, SpaceNode<T>> data;
     private final SpaceLoader<T> loader;
     private final SpaceSaver<T> saver;
 
-    public ConcurrentSpaceMap(SpaceLoader<T> loader, SpaceSaver<T> saver)
-    {
+    public ConcurrentSpaceMap(SpaceLoader<T> loader, SpaceSaver<T> saver) {
         this(65_536, loader, saver);
     }
 
-    public ConcurrentSpaceMap(int absoluteMax, SpaceLoader<T> loader, SpaceSaver<T> saver)
-    {
-        this(absoluteMax min ((absoluteMax/4) min 128), absoluteMax, loader, saver);
+    public ConcurrentSpaceMap(int absoluteMax, SpaceLoader<T> loader, SpaceSaver<T> saver) {
+        this(absoluteMax min((absoluteMax / 4)min 128), absoluteMax, loader, saver);
     }
 
-    public ConcurrentSpaceMap(int initialMax, int absoluteMax, SpaceLoader<T> loader, SpaceSaver<T> saver)
-    {
+    public ConcurrentSpaceMap(int initialMax, int absoluteMax, SpaceLoader<T> loader, SpaceSaver<T> saver) {
         this.loader = loader;
         this.saver = saver;
         data = new ConcurrentLinkedHashMap.Builder<Long, SpaceNode<T>>()
-            .initialCapacity(initialMax).maximumWeightedCapacity(absoluteMax)
-            .concurrencyLevel(32).weigher(this).listener(this).build();
+                .initialCapacity(initialMax).maximumWeightedCapacity(absoluteMax)
+                .concurrencyLevel(32).weigher(this).listener(this).build();
     }
 
     @Override
@@ -64,14 +62,12 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
 
     @Override
     public void onEviction(Long key, SpaceNode<T> value) {
-        if(value.isModified())
-        {
+        if (value.isModified()) {
             save(value.get(), CompressedNumbers.i2a(key), CompressedNumbers.i2b(key));
         }
     }
 
-    private LongStream worstKeys()
-    {
+    private LongStream worstKeys() {
         return data.entrySet().copy().stream()
                 .sorted(Comparator.comparingLong((Map.Entry<Long, SpaceNode<T>> i) -> i.getValue().getWeight()).reversed())
                 .sorted(Comparator.comparingLong((Map.Entry<Long, SpaceNode<T>> i) -> i.getValue().getLastAccess()))
@@ -80,8 +76,7 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
                 .mapToLong(Map.Entry::getKey);
     }
 
-    private Stream<Map.Entry<Long, SpaceNode<T>>> modifiedKeys()
-    {
+    private Stream<Map.Entry<Long, SpaceNode<T>>> modifiedKeys() {
         return data.entrySet().copy().stream().filter(i -> i.getValue().isModified());
     }
 
@@ -109,8 +104,7 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
     public T getOrNull(int x, int z) {
         SpaceNode<T> t = data.get(CompressedNumbers.i2(x, z));
 
-        if(t != null)
-        {
+        if (t != null) {
             return t.get();
         }
 
@@ -121,8 +115,7 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
     public boolean isModified(int x, int z) {
         SpaceNode<T> t = data.get(CompressedNumbers.i2(x, z));
 
-        if(t != null)
-        {
+        if (t != null) {
             return t.isModified();
         }
 
@@ -149,8 +142,7 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
     @Override
     public void unloadAll() {
         data.entrySet().copy().forEach(i -> {
-            if(i.getValue().isModified())
-            {
+            if (i.getValue().isModified()) {
                 save(i.getValue().peek(), CompressedNumbers.i2a(i.getKey()), CompressedNumbers.i2b(i.getKey()));
             }
 
@@ -160,16 +152,14 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
 
     @Override
     public void save(int x, int z) {
-        if(isModified(x, z))
-        {
+        if (isModified(x, z)) {
             save(getOrNull(x, z), x, z);
         }
     }
 
     @Override
     public void unload(int x, int z) {
-        if(isModified(x, z))
-        {
+        if (isModified(x, z)) {
             save(x, z);
         }
 
@@ -178,7 +168,7 @@ public class ConcurrentSpaceMap<T> implements Space<T>, Weigher<SpaceNode<T>>, E
 
     @Override
     public T get(int x, int z) {
-        return getOrNull(x, z) or (load(x, z));
+        return getOrNull(x, z)or(load(x, z));
     }
 
     @Override

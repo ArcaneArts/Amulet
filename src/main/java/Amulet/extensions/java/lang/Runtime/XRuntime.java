@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,103 +31,83 @@ public class XRuntime {
         return Runtime.getRuntime();
     }
 
-    public static double getCPULoad(@This Runtime rt)
-    {
+    public static double getCPULoad(@This Runtime rt) {
         return Platform.CPU.getCPULoad();
     }
 
-    public static long getTotalSystemMemory(@This Runtime rt)
-    {
+    public static long getTotalSystemMemory(@This Runtime rt) {
         return Platform.MEMORY.PHYSICAL.getTotalMemory();
     }
 
-    public static long getUsedSystemMemory(@This Runtime rt)
-    {
+    public static long getUsedSystemMemory(@This Runtime rt) {
         return Platform.MEMORY.PHYSICAL.getUsedMemory();
     }
 
-    public static long getFreeSystemMemory(@This Runtime rt)
-    {
+    public static long getFreeSystemMemory(@This Runtime rt) {
         return Platform.MEMORY.PHYSICAL.getUsedMemory();
     }
 
-    public static long getTotalSystemSwap(@This Runtime rt)
-    {
+    public static long getTotalSystemSwap(@This Runtime rt) {
         return Platform.MEMORY.VIRTUAL.getTotalMemory();
     }
 
-    public static long getUsedSystemSwap(@This Runtime rt)
-    {
+    public static long getUsedSystemSwap(@This Runtime rt) {
         return Platform.MEMORY.VIRTUAL.getUsedMemory();
     }
 
-    public static long getFreeSystemSwap(@This Runtime rt)
-    {
+    public static long getFreeSystemSwap(@This Runtime rt) {
         return Platform.MEMORY.VIRTUAL.getUsedMemory();
     }
 
-    public static long getFreeDiskSpace(@This Runtime rt)
-    {
+    public static long getFreeDiskSpace(@This Runtime rt) {
         return Platform.STORAGE.getFreeSpace();
     }
 
-    public static long getFreeDiskSpace(@This Runtime rt, File root)
-    {
+    public static long getFreeDiskSpace(@This Runtime rt, File root) {
         return Platform.STORAGE.getFreeSpace(root);
     }
 
-    public static long getUsedDiskSpace(@This Runtime rt)
-    {
+    public static long getUsedDiskSpace(@This Runtime rt) {
         return Platform.STORAGE.getUsedSpace();
     }
 
-    public static long getUsedDiskSpace(@This Runtime rt, File root)
-    {
+    public static long getUsedDiskSpace(@This Runtime rt, File root) {
         return Platform.STORAGE.getUsedSpace(root);
     }
 
-    public static long getTotalDiskSpace(@This Runtime rt)
-    {
+    public static long getTotalDiskSpace(@This Runtime rt) {
         return Platform.STORAGE.getTotalSpace();
     }
 
-    public static long getTotalDiskSpace(@This Runtime rt, File root)
-    {
+    public static long getTotalDiskSpace(@This Runtime rt, File root) {
         return Platform.STORAGE.getTotalSpace(root);
     }
 
-    public static long getAbsoluteTotalDiskSpace(@This Runtime rt)
-    {
+    public static long getAbsoluteTotalDiskSpace(@This Runtime rt) {
         return Platform.STORAGE.getAbsoluteTotalSpace();
     }
 
-    public static long getAbsoluteFreeDiskSpace(@This Runtime rt)
-    {
+    public static long getAbsoluteFreeDiskSpace(@This Runtime rt) {
         return Platform.STORAGE.getAbsoluteFreeSpace();
     }
 
-    public static long getAbsoluteUsedDiskSpace(@This Runtime rt)
-    {
+    public static long getAbsoluteUsedDiskSpace(@This Runtime rt) {
         return Platform.STORAGE.getAbsoluteUsedSpace();
     }
 
-    public static String getJavaVendor(@This Runtime rt)
-    {
+    public static String getJavaVendor(@This Runtime rt) {
         return Platform.ENVIRONMENT.getJavaVendor();
     }
 
-    public static String getJavaHome(@This Runtime rt)
-    {
+    public static String getJavaHome(@This Runtime rt) {
         return Platform.ENVIRONMENT.getJavaHome();
     }
 
-    public static String getJavaVersion(@This Runtime rt)
-    {
+    public static String getJavaVersion(@This Runtime rt) {
         return Platform.ENVIRONMENT.getJavaVersion();
     }
 
-    public static double getProcessCPULoad(@This Runtime rt)
-    {
+    public static double getProcessCPULoad(@This Runtime rt) {
         return Platform.CPU.getLiveProcessCPULoad();
     }
 }

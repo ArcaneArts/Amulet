@@ -1,6 +1,6 @@
 /*
  * Amulet is an extension api for Java
- * Copyright (c) 2021 Arcane Arts
+ * Copyright (c) 2022 Arcane Arts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,33 +20,16 @@ package art.arcane.amulet;
 
 import art.arcane.amulet.geometry.Vec;
 import art.arcane.amulet.io.IO;
-import art.arcane.amulet.range.AbstractIterableRange;
-import art.arcane.amulet.range.AbstractRange;
-import art.arcane.amulet.range.BigDecimalRange;
-import art.arcane.amulet.range.BigIntegerRange;
-import art.arcane.amulet.range.ComparableRange;
-import art.arcane.amulet.range.DoubleRange;
-import art.arcane.amulet.range.IntegerRange;
-import art.arcane.amulet.range.LongRange;
-import art.arcane.amulet.range.Sequential;
-import art.arcane.amulet.range.SequentialRange;
+import art.arcane.amulet.range.*;
 import com.google.common.util.concurrent.AtomicDouble;
-import com.google.common.util.concurrent.AtomicDoubleArray;
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicLongArray;
 import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("unused")
@@ -518,8 +501,7 @@ public class MagicalSugar {
 
         public record __FROM<T>(T start) {
             public T prefixBind(T into) {
-                if(start != null)
-                {
+                if (start != null) {
                     return start;
                 }
 
@@ -605,6 +587,7 @@ public class MagicalSugar {
                 IO.writeAll(into, start);
                 return null;
             }
+
             public Void prefixBind(String into) throws IOException {
                 IO.writeAll(new File(into), start);
                 return null;
@@ -616,6 +599,7 @@ public class MagicalSugar {
                 IO.writeAll(into, start);
                 return null;
             }
+
             public Void prefixBind(String into) throws IOException {
                 IO.writeAll(new File(into), start);
                 return null;
