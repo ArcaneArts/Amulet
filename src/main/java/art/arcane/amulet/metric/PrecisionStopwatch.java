@@ -44,6 +44,12 @@ public class PrecisionStopwatch {
         profiling = false;
     }
 
+    public void resetAndBegin()
+    {
+        reset();
+        begin();
+    }
+
     public void begin() {
         profiling = true;
         startNano = System.nanoTime();

@@ -19,6 +19,7 @@
 package Amulet.extensions.java.lang.Object;
 
 import art.arcane.amulet.logging.LogListener;
+import art.arcane.amulet.profiling.Profiler;
 import com.google.gson.Gson;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
@@ -35,8 +36,19 @@ public abstract class XObject {
     return System.identityHashCode(o);
   }
 
-  public static String typeName(@This Object o)
-  {
+  public static void profileStart(@This Object o, String key) {
+    Profiler.begin(key);
+  }
+
+  public static void profileEnd(@This Object o, String key) {
+    Profiler.end(key);
+  }
+
+  public static double getProfileAverage(@This Object o, String key) {
+    return Profiler.get(key);
+  }
+
+  public static String typeName(@This Object o) {
     return o.getClass().simpleName();
   }
 
