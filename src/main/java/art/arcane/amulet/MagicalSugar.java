@@ -736,6 +736,33 @@ public class MagicalSugar {
         }
     }
 
+    public static final _MAGIC_Convert_Inverted inverted = _MAGIC_Convert_Inverted.instance();
+
+    @SuppressWarnings("unused")
+    public static class _MAGIC_Convert_Inverted {
+        private static final _MAGIC_Convert_Inverted INSTANCE = new _MAGIC_Convert_Inverted();
+
+        private static _MAGIC_Convert_Inverted instance() {
+            return INSTANCE;
+        }
+
+        public double postfixBind(int in) {
+            return 1D / (double) in;
+        }
+
+        public double postfixBind(long in) {
+            return 1D / (double) in;
+        }
+
+        public double postfixBind(double in) {
+            return 1D / in;
+        }
+
+        public float postfixBind(float in) {
+            return (float) (1D / (double) in);
+        }
+    }
+
     /**
      * Convert String to MD5 hash (in bytes). Use a conversion such as "hex" after this tag to get a hex string
      */

@@ -145,6 +145,13 @@ public interface Vec {
         return add(-d);
     }
 
+    default Vec direction(Vec to) {
+        return directionNoNormal(to).normalize();
+    }
+    default Vec directionNoNormal(Vec to) {
+        return to - this;
+    }
+
     default Vec multiply(double x, double y, double z) {
         return x(x() * x).y(y() * y).z(z() * z);
     }
