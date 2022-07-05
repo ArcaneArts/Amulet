@@ -82,7 +82,7 @@ public class JarLoader {
     }
 
     public Stream<Class<?>> all(Class<?> superType) {
-        return all().filter(superType::isAssignableFrom)
+        return all().filter((i) -> i.isAssignableFrom(superType) || superType.isAssignableFrom(i))
                 .filter(i -> !i.equals(superType));
     }
 

@@ -25,6 +25,7 @@ import manifold.ext.rt.api.This;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.*;
 
 @Extension
@@ -52,6 +53,14 @@ public class XStream {
 
     public static <T> @Self Stream<T> and(@This Stream<T> thiz, Stream<T> add) {
         return Stream.concat(thiz, add);
+    }
+
+    public static <T> @Self Stream<T> where(@This Stream<T> thiz, Predicate<T> pred) {
+        return thiz.filter(pred);
+    }
+
+    public static <T> @Self Stream<T> without(@This Stream<T> thiz, Predicate<T> pred) {
+        return thiz.filter(pred.negate());
     }
 
     public static <T> @Self Stream<T> and(@This Stream<T> thiz, T add) {

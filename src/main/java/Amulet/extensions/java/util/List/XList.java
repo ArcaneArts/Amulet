@@ -41,6 +41,9 @@ public class XList {
         return self.withoutDuplicates(ArrayList::new);
     }
 
+    public static <E> @Self List<E> where(@This List<E> self, Predicate<E> pred) {
+        return self.stream().where(pred).toList();
+    }
 
     @SuppressWarnings("unchecked")
     public static <E> @Self List<E> forceAdd(@This List<E> self, Object[] values) {
@@ -217,6 +220,13 @@ public class XList {
 
     @SafeVarargs
     public static <E> @Self List<E> add(@This List<E> self, E... o) {
+        Collections.addAll(self, o);
+        return self;
+    }
+
+
+    @SafeVarargs
+    public static <E> @Self List<E> qadd(@This List<E> self, E... o) {
         Collections.addAll(self, o);
         return self;
     }

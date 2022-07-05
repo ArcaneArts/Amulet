@@ -40,7 +40,7 @@ public class PlaneFillEffect implements Effect {
 
     @Override
     public void play() {
-        int nodesPerLine = sqrt nodes;
+        int nodesPerLine = (int) Math.sqrt(nodes);
         new LineEffect(b, a, nodesPerLine, (v) -> new LineEffect(v, c + b.directionNoNormal(v), nodesPerLine, player)).play();
     }
 }

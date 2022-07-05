@@ -34,11 +34,11 @@ public class Ray
     private final int hits;
 
     public void cast(Consumer<Vec> onHit) {
-        Vec direction = from.direction(to).multiply((hits-1) inverted);
+        Vec direction = from.directionNoNormal(to).multiply(hits inverted);
         Vec cursor = from.copy();
         onHit.accept(from);
 
-        for(int i = 0; i <= hits; i++) {
+        for(int i = 0; i < hits; i++) {
             cursor += direction;
             onHit.accept(cursor);
         }

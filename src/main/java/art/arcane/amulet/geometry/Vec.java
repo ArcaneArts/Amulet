@@ -18,6 +18,7 @@
 
 package art.arcane.amulet.geometry;
 
+import art.arcane.amulet.fx.Ray;
 import manifold.ext.rt.api.Structural;
 
 import java.util.Random;
@@ -75,6 +76,10 @@ public interface Vec {
 
     default Vec plus(double d) {
         return copy().add(d);
+    }
+
+    default Ray rayTo(Vec vec, int hits) {
+        return new Ray(this, vec, hits);
     }
 
     default Vec minus(double d) {
