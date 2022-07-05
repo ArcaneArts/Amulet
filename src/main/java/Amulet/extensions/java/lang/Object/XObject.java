@@ -20,6 +20,7 @@ package Amulet.extensions.java.lang.Object;
 
 import art.arcane.amulet.io.nbt.nbt.io.SNBTSerializer;
 import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
+import art.arcane.amulet.io.nbt.nbt.tag.Tag;
 import art.arcane.amulet.io.nbt.objects.NBTObjectSerializer;
 import art.arcane.amulet.io.nbt.objects.UnserializableClassException;
 import art.arcane.amulet.logging.LogListener;
@@ -36,6 +37,10 @@ public abstract class XObject {
 
     public static String toSNBT(@This Object o) {
         try {
+            if(o instanceof Tag<?> t) {
+                return new SNBTSerializer().toString(t);
+            }
+
             return new SNBTSerializer().toString(toNBT(o));
         } catch (IOException e) {
             throw new RuntimeException(e);
