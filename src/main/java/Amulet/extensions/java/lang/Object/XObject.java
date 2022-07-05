@@ -18,13 +18,13 @@
 
 package Amulet.extensions.java.lang.Object;
 
-import art.arcane.amulet.io.nbt.nbt.io.SNBTSerializer;
-import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
-import art.arcane.amulet.io.nbt.nbt.tag.Tag;
-import art.arcane.amulet.io.nbt.objects.NBTObjectSerializer;
-import art.arcane.amulet.io.nbt.objects.UnserializableClassException;
 import art.arcane.amulet.logging.LogListener;
 import art.arcane.amulet.profiling.Profiler;
+import art.arcane.nbtson.io.NBTObjectSerializer;
+import art.arcane.nbtson.io.SNBTSerializer;
+import art.arcane.nbtson.io.UnserializableClassException;
+import art.arcane.nbtson.tag.CompoundTag;
+import art.arcane.nbtson.tag.Tag;
 import com.google.gson.Gson;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;

@@ -19,10 +19,9 @@
 package Amulet.extensions.java.io.DataOutputStream;
 
 import art.arcane.amulet.data.Varint;
-import art.arcane.amulet.io.nbt.nbt.io.NBTSerializer;
-import art.arcane.amulet.io.nbt.nbt.io.NBTUtil;
-import art.arcane.amulet.io.nbt.nbt.io.NamedTag;
-import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
+import art.arcane.nbtson.io.NBTSerializer;
+import art.arcane.nbtson.io.NamedTag;
+import art.arcane.nbtson.tag.CompoundTag;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 

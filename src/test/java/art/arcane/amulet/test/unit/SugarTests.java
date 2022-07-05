@@ -20,9 +20,6 @@ package art.arcane.amulet.test.unit;
 
 import art.arcane.amulet.MagicalSugar;
 import art.arcane.amulet.geometry.Vec;
-import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
-import art.arcane.amulet.io.nbt.objects.NBTObjectSerializer;
-import art.arcane.amulet.io.nbt.objects.UnserializableClassException;
 import art.arcane.amulet.range.IntegerRange;
 import manifold.ext.rt.RuntimeMethods;
 import org.junit.jupiter.api.Assertions;
