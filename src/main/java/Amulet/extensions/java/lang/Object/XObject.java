@@ -18,15 +18,37 @@
 
 package Amulet.extensions.java.lang.Object;
 
+import art.arcane.amulet.io.nbt.nbt.io.SNBTSerializer;
+import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
+import art.arcane.amulet.io.nbt.objects.NBTObjectSerializer;
+import art.arcane.amulet.io.nbt.objects.UnserializableClassException;
 import art.arcane.amulet.logging.LogListener;
 import art.arcane.amulet.profiling.Profiler;
 import com.google.gson.Gson;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
+import java.io.IOException;
+
 @Extension
 public abstract class XObject {
     private static final Gson gson = new Gson();
+
+    public static String toSNBT(@This Object o) {
+        try {
+            return new SNBTSerializer().toString(toNBT(o));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static CompoundTag toNBT(@This Object o) {
+        try {
+            return NBTObjectSerializer.serialize(o);
+        } catch (IllegalAccessException | UnserializableClassException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static String toJson(@This Object o) {
         return gson.toJson(o);
@@ -72,10 +94,5 @@ public abstract class XObject {
         for (String i : e.printAsStrings()) {
             LogListener.logger().f(o.typeName(), i);
         }
-    }
-
-    @Extension
-    public static <T> T fromJson(String json, Class<? extends T> clazz) {
-        return gson.fromJson(json, clazz);
     }
 }

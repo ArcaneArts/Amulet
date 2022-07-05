@@ -19,6 +19,10 @@
 package Amulet.extensions.java.io.DataOutputStream;
 
 import art.arcane.amulet.data.Varint;
+import art.arcane.amulet.io.nbt.nbt.io.NBTSerializer;
+import art.arcane.amulet.io.nbt.nbt.io.NBTUtil;
+import art.arcane.amulet.io.nbt.nbt.io.NamedTag;
+import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 
@@ -27,6 +31,10 @@ import java.io.IOException;
 
 @Extension
 public class XDataOutputStream {
+    public static void writeNBT(@This DataOutputStream self, CompoundTag tag) throws IOException {
+        new NBTSerializer(true, false).toStream(new NamedTag("", tag), self);
+    }
+
     public static void writeVarInt(@This DataOutputStream self, int i) throws IOException {
         Varint.writeSignedVarInt(i, self);
     }
