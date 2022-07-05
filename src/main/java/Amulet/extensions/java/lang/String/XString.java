@@ -74,6 +74,46 @@ public class XString {
         return s.toLowerCase(Locale.ROOT);
     }
 
+    public static double toDouble(@This String s) {
+        return Double.parseDouble(s);
+    }
+    public static double toDouble(@This String s, double or) {
+        try{
+            return toDouble(s);
+        }
+
+        catch(NumberFormatException e){
+            return or;
+        }
+    }
+
+    public static int toInt(@This String s) {
+        return Integer.parseInt(s);
+    }
+    public static int toInt(@This String s, int or) {
+        try{
+            return toInt(s);
+        }
+
+        catch(NumberFormatException e){
+            return or;
+        }
+    }
+
+    public static long toLong(@This String s) {
+        return Long.parseLong(s);
+    }
+    public static long toLong(@This String s, long or) {
+        try{
+            return toLong(s);
+        }
+
+        catch(NumberFormatException e){
+            return or;
+        }
+    }
+
+
     public static String replaceAbs(@This String s, String find, String replace) {
         return s.replaceAll("\\Q" + find + "\\E", replace);
     }

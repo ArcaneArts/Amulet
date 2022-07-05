@@ -20,6 +20,9 @@ package art.arcane.amulet.test.unit;
 
 import art.arcane.amulet.MagicalSugar;
 import art.arcane.amulet.geometry.Vec;
+import art.arcane.amulet.io.nbt.nbt.tag.CompoundTag;
+import art.arcane.amulet.io.nbt.objects.NBTObjectSerializer;
+import art.arcane.amulet.io.nbt.objects.UnserializableClassException;
 import art.arcane.amulet.range.IntegerRange;
 import manifold.ext.rt.RuntimeMethods;
 import org.junit.jupiter.api.Assertions;
@@ -38,6 +41,13 @@ public class SugarTests {
         assertEquals(TimeUnit.SECONDS.toMillis(30), 30 seconds);
         assertEquals(TimeUnit.HOURS.toMillis(1) * 4.5D, 4.5hours);
         assertEquals(TimeUnit.SECONDS.toMillis(30) + TimeUnit.MINUTES.toMillis(25), 30seconds + (25minutes));
+    }
+
+    @Test
+    public void testParsing() {
+        assertEquals(5.774, "5.774".toDouble());
+        assertEquals(-1, "xxx".toInt(-1));
+        assertEquals(7L, "7".toLong());
     }
 
     @SuppressWarnings("ConstantConditions")
