@@ -184,21 +184,9 @@ public class XSet {
         return List.from(self);
     }
 
-    public static <E> @Self Set<E> plus(@This Set<E> self, E that) {
-        Set<E> s = Set.from(self);
-        s.add(that);
-        return s;
-    }
-
     public static <E> @Self Set<E> minus(@This Set<E> self, E that) {
         Set<E> s = Set.from(self);
         s.remove(that);
-        return s;
-    }
-
-    public static <E> @Self Set<E> plus(@This Set<E> self, Collection<E> that) {
-        Set<E> s = Set.from(self);
-        s.addAll(that);
         return s;
     }
 

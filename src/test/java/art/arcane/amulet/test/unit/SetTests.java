@@ -29,7 +29,6 @@ public class SetTests {
     public void testOperators() {
         Set<Integer> v = Set.from(1, 2, 3);
 
-        assertEquals(v.copy().add(9, 10, 11), v + Set.from(9, 10, 11));
         assertEquals(v.copy().remove(1, 2), v - Set.from(1, 2));
     }
 
