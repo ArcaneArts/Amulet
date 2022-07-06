@@ -60,6 +60,13 @@ public class XList {
         return self.getRandom(Random.r());
     }
 
+    public static <E> void addIfMissing(@This List<E> self, E e)
+    {
+        if(!self.contains(e)) {
+            self.add(e);
+        }
+    }
+
     public static <E> @Self List<E> where(@This List<E> self, Predicate<E> pred) {
         return self.stream().where(pred).toList();
     }
