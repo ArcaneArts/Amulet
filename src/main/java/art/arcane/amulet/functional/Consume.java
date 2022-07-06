@@ -18,7 +18,7 @@
 
 package art.arcane.amulet.functional;
 
-import art.arcane.amulet.metric.PrecisionStopwatch;
+import art.arcane.chrono.PrecisionStopwatch;
 
 import java.io.IOException;
 import java.util.function.DoubleConsumer;

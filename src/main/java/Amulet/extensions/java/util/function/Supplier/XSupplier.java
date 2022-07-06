@@ -18,7 +18,7 @@
 
 package Amulet.extensions.java.util.function.Supplier;
 
-import art.arcane.amulet.metric.PrecisionStopwatch;
+import art.arcane.chrono.PrecisionStopwatch;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.Self;
 import manifold.ext.rt.api.This;

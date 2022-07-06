@@ -19,7 +19,7 @@
 package Amulet.extensions.java.lang.Object;
 
 import art.arcane.amulet.logging.LogListener;
-import art.arcane.amulet.profiling.Profiler;
+import art.arcane.chrono.Profiler;
 import art.arcane.nbtson.io.NBTObjectSerializer;
 import art.arcane.nbtson.io.SNBTSerializer;
 import art.arcane.nbtson.io.UnserializableClassException;

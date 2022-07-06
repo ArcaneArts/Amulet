@@ -18,7 +18,7 @@
 
 package art.arcane.amulet.format;
 
-import art.arcane.amulet.math.RollingSequence;
+import art.arcane.chrono.RollingSequence;
 
 import java.math.BigInteger;
 import java.text.DecimalFormat;
