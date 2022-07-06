@@ -18,10 +18,10 @@
 
 package art.arcane.amulet.collections.hunk.storage;
 
-import art.arcane.amulet.collections.container.DataContainer;
-import art.arcane.amulet.collections.container.NodeWritable;
 import art.arcane.amulet.collections.hunk.Hunk;
 import art.arcane.amulet.functional.Consume;
+import art.arcane.bitpack.DataContainer;
+import art.arcane.bitpack.NodeWritable;
 
 import java.io.IOException;
 import java.util.function.Supplier;

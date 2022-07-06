@@ -18,6 +18,12 @@
 
 package art.arcane.amulet.concurrent;
 
+import art.arcane.bitpack.DataContainer;
+import art.arcane.bitpack.NodeWritable;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -30,7 +36,7 @@ public class MultiBurst {
     private ExecutorService service;
 
     public MultiBurst() {
-        this("Iris", Thread.MIN_PRIORITY);
+        this("MBurst", Thread.MIN_PRIORITY);
     }
 
     public MultiBurst(String name, int priority) {
