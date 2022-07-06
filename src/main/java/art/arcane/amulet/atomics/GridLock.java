@@ -18,8 +18,8 @@
 
 package art.arcane.amulet.atomics;
 
-import art.arcane.amulet.collections.hunk.Hunk;
 import art.arcane.amulet.functional.Run;
+import art.arcane.spatial.hunk.Hunk;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
