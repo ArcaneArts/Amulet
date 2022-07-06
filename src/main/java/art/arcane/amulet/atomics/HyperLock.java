@@ -20,6 +20,7 @@ package art.arcane.amulet.atomics;
 
 import art.arcane.amulet.data.CompressedNumbers;
 import art.arcane.amulet.functional.Run;
+import com.google.common.util.concurrent.AtomicDoubleArray;
 import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 
 import java.io.IOException;
