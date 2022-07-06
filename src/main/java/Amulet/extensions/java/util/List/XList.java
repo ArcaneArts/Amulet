@@ -41,6 +41,25 @@ public class XList {
         return self.withoutDuplicates(ArrayList::new);
     }
 
+    public static <E> E getRandom(@This List<E> self, Random r)
+    {
+        if (self.isEmpty()) {
+            return null;
+        }
+
+        if(self.size() == 1)
+        {
+            return self[0];
+        }
+
+        return self[r.i(0, self.last())];
+    }
+
+    public static <E> E getRandom(@This List<E> self)
+    {
+        return self.getRandom(Random.r());
+    }
+
     public static <E> @Self List<E> where(@This List<E> self, Predicate<E> pred) {
         return self.stream().where(pred).toList();
     }
