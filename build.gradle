@@ -21,10 +21,11 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id "io.freefair.lombok" version "6.1.0"
+    id 'com.jfrog.artifactory' version '4.29.0'
 }
 
 group 'art.arcane'
-version 'latest'
+version System.getenv("JFROG_VERSION") ?: '1.0.0'
 
 java {
     toolchain {
@@ -33,7 +34,8 @@ java {
 }
 
 repositories {
-    maven { url "https://dl.cloudsmith.io/public/arcane/archive/maven/" }
+    mavenLocal()
+    maven { url "https://arcanearts.jfrog.io/artifactory/archives" }
     mavenCentral()
 }
 
@@ -49,18 +51,18 @@ jar {
 
 dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.42'
-    annotationProcessor 'systems.manifold:manifold-ext:2022.1.18'
-    testAnnotationProcessor 'systems.manifold:manifold-ext:2022.1.18'
+    annotationProcessor 'systems.manifold:manifold-ext:2022.1.19'
+    testAnnotationProcessor 'systems.manifold:manifold-ext:2022.1.19'
     implementation 'com.google.dagger:dagger:2.40.1'
     implementation 'org.reflections:reflections:0.10.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     implementation 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     api 'com.google.code.gson:gson:2.9.0'
-    api 'systems.manifold:manifold-rt:2022.1.18'
-    api 'systems.manifold:manifold-ext-rt:2022.1.18'
+    api 'systems.manifold:manifold-rt:2022.1.19'
+    api 'systems.manifold:manifold-ext-rt:2022.1.19'
     api 'art.arcane:BitPack:22.7.2'
     api 'art.arcane:NBTSon:22.7.7'
     api 'art.arcane:MultiBurst:22.7.3'
@@ -72,6 +74,24 @@ test {
     useJUnitPlatform()
 }
 
+artifactory {
+    publish {
+        contextUrl = 'https://arcanearts.jfrog.io/artifactory'
+        repository {
+            repoKey = 'arcane'
+            username = System.getenv("JFROG_USERNAME")
+            password = System.getenv("JFROG_PASSWORD")
+        }
+        defaults {
+            publications ('mavenJava')
+            publishConfigs('archives', 'published')
+            publishBuildInfo = true
+            publishArtifacts = true
+            publishPom = true
+        }
+    }
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -80,14 +100,7 @@ publishing {
     }
     repositories {
         maven {
-            name = "cloudsmith"
-            version = System.getenv("CLOUDSMITH_VERSION")
-            url = "https://maven.cloudsmith.io/arcane/archive/"
-            url = "https://maven.cloudsmith.io/arcane/archive/"
-            credentials {
-                username = System.getenv("CLOUDSMITH_USERNAME")
-                password = System.getenv("CLOUDSMITH_PASSWORD")
-            }
+            url = "https://arcanearts.jfrog.io/artifactory/arcane"
         }
     }
 }
