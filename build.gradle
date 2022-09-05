@@ -35,7 +35,6 @@ java {
 
 repositories {
     maven { url "https://arcanearts.jfrog.io/artifactory/archives" }
-    mavenCentral()
 }
 
 configurations {
