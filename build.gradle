@@ -61,11 +61,11 @@ dependencies {
     api 'com.google.code.gson:gson:2.9.0'
     api 'systems.manifold:manifold-rt:2022.1.19'
     api 'systems.manifold:manifold-ext-rt:2022.1.19'
-    api 'art.arcane:BitPack:22.7.2'
-    api 'art.arcane:NBTSon:22.7.7'
-    api 'art.arcane:MultiBurst:22.7.3'
-    api 'art.arcane:Spatial:22.7.9'
-    api 'art.arcane:Chrono:22.7.2'
+    api 'art.arcane:BitPack:22.9.2'
+    api 'art.arcane:NBTSon:22.9.2'
+    api 'art.arcane:MultiBurst:22.9.2'
+    api 'art.arcane:Spatial:22.9.2'
+    api 'art.arcane:Chrono:22.9.10'
 }
 
 test {
