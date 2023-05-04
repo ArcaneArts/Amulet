@@ -23,7 +23,7 @@ plugins {
     id "io.freefair.lombok" version "6.1.0"
     id 'com.jfrog.artifactory' version '4.29.0'
 }
-
+def manifoldVersion = '2023.1.5'
 group 'art.arcane'
 version System.getenv("JFROG_VERSION") ?: '1.0.0'
 
@@ -49,22 +49,24 @@ jar {
 
 dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.42'
-    annotationProcessor 'systems.manifold:manifold-ext:2022.1.19'
-    testAnnotationProcessor 'systems.manifold:manifold-ext:2022.1.19'
+    annotationProcessor 'systems.manifold:manifold-ext:' + manifoldVersion
+    testAnnotationProcessor 'systems.manifold:' + manifoldVersion
+    implementation 'systems.manifold:manifold-rt:' + manifoldVersion
+    api 'systems.manifold:manifold-rt:' + manifoldVersion
+    api 'systems.manifold:manifold-ext-rt:' + manifoldVersion
     implementation 'com.google.dagger:dagger:2.40.1'
     implementation 'org.reflections:reflections:0.10.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
     implementation 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-    api 'com.google.code.gson:gson:2.9.0'
-    api 'systems.manifold:manifold-rt:2022.1.19'
-    api 'systems.manifold:manifold-ext-rt:2022.1.19'
-    api 'art.arcane:BitPack:22.9.2'
+    api 'com.google.code.gson:gson:2.10'
+
+    api 'art.arcane:BitPack:22.11.1'
     api 'art.arcane:NBTSon:22.9.2'
     api 'art.arcane:MultiBurst:22.9.2'
-    api 'art.arcane:Spatial:22.9.2'
+    api 'art.arcane:Spatial:22.11.1'
     api 'art.arcane:Chrono:22.9.10'
 }
 
