@@ -38,7 +38,7 @@ list.toString(","); // "3,4,5"
 (-list).toString(",") // "5,4,3"
 list.pop() // Removes off 5 & returns it"
 list.popLast() // Removes off 3 & returns it
-list += List.of(7, 8, 9); // List is now 3, 7, 8, 9
+list += List.of(7, 8, 9); // List is now 4, 7, 8, 9
 list[2] = 46; // Array accessors
 
 Map<String, Integer> map = Map.of();
